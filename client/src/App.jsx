@@ -27,20 +27,32 @@ function App() {
     navigate('/login');
   };
 
+  const handlePinConfirmSuccess = () => {
+    navigate('/profile');
+  };
+
+  const handleProfileCompletion = () => {
+    navigate('/');
+  };
+
   return (
     <div>
       <Routes>
         <Route path="/" element={loggedIn ? <Home onLogout={handleLogout} /> : <Navigate to="/login" />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
-        <Route path="/pin-confirm" element={<PinConfirm />} />
-        <Route path="/profile" element={loggedIn ? <Profile /> : <Navigate to="/login" />} />
+        <Route path="/pin-confirm" element={<PinConfirm onPinConfirmSuccess={handlePinConfirmSuccess} />} />
+        <Route path="/profile" element={loggedIn ? <Profile onProfileCompletion={handleProfileCompletion} /> : <Navigate to="/login" />} />
       </Routes>
     </div>
   );
 }
 
 export default App;
+
+
+
+
 
 
 

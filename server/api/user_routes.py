@@ -59,6 +59,7 @@ def login():
     except Exception as e:
         logger.error(f"Error during login: {str(e)}")
         return jsonify({'message': str(e)}), 500
+    
 
 @user_bp.route('/verify_pin', methods=['POST'])
 @cross_origin()
@@ -87,6 +88,8 @@ def verify_pin():
     except Exception as e:
         logger.error(f"Error during PIN verification: {str(e)}")
         return jsonify({'message': str(e)}), 500
+
+
 
 @user_bp.route('/profile', methods=['GET', 'POST', 'DELETE'])
 @jwt_required()

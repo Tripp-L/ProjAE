@@ -1,0 +1,68 @@
+/* Styling for the header */
+.header-container {
+    height: 110px; /* Fixed height for the header */
+  }
+  
+  /* Styling for the header logo */
+  .header-logo {
+    max-height: 105px; /* Adjust the height to make the logo smaller */
+    width: auto; /* Maintain aspect ratio */
+    display: block;
+    object-fit: contain; /* Ensure the image fits within the container */
+  }
+  
+  .form-inline {
+    margin-left: auto; /* Push the form to the right */
+  }
+  
+  .form-control {
+    width: 320px; /* Adjust width */
+    height: 40px; /* Adjust height */
+    font-family: "Macondo", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: rgba(255, 193, 7, 0.7);
+    font-size: 20px;
+    border: 1px solid;
+  }
+  
+  .btn-outline-success {
+    height: 40px;
+    font-family: "Macondo", cursive;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 20px;
+  }
+  
+  .home-container {
+    text-align: center;
+    font-family: "Macondo", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: rgba(255, 193, 7, 0.7);
+  }
+  
+  .home-title {
+    font-family: "Macondo", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: rgba(255, 193, 7, 0.7);
+    text-decoration: underline; /* Underline the text */
+  }
+  
+  p, h2, h3, h4, h5, h6, li, a {
+    font-family: "Macondo", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: rgba(255, 193, 7, 0.7);
+  }
+  
+  button {
+    font-size: 1em; /* Adjust the button font size */
+    font-family: "Macondo", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: rgba(255, 193, 7, 0.7);
+    border: 1px solid;
+  }
+  

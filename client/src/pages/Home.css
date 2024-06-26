@@ -1,0 +1,33 @@
+.home-container {
+    text-align: center;
+    padding: 20px;
+    font-family: "Macondo", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: rgba(255, 193, 7, 0.7);
+  }
+  
+  .home-container h1 {
+    font-size: 4.5rem; /* Adjust the font size as needed */
+    font-weight: bold; /* Adjust the font weight as needed */
+    margin-top: 100px;
+    font-family: "Macondo", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: rgba(255, 193, 7, 0.7); /* Change text color on hover */
+    text-shadow: 5px 5px 13px rgba(255, 193, 7, 0.983);
+    text-decoration: underline;
+  }
+  
+  .home-container p {
+    font-family: "Macondo", cursive;
+    font-weight: 400;
+    font-style: normal;
+    margin-top: 10px;
+    color: rgba(255, 193, 7, 0.7);
+  }
+  
+  body.dark-mode {
+    background-color: #121212;
+    color: rgba(255, 193, 7, 0.7);
+  }

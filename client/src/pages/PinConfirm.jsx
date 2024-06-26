@@ -3,9 +3,9 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 
-function PinConfirm() {
+function PinConfirm({ onPinConfirmSuccess }) {
   const [pin, setPin] = useState('');
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // This will be used to navigate to the profile page
 
   const handleChange = (e) => {
     setPin(e.target.value);
@@ -16,7 +16,8 @@ function PinConfirm() {
     try {
       const response = await axios.post('/auth/verify_pin', { pin });
       localStorage.setItem('access_token', response.data.access_token);
-      navigate('/home');
+      onPinConfirmSuccess();
+      navigate('/profile'); // Navigate to Profile page after successful PIN confirmation
     } catch (error) {
       alert('Invalid PIN. Please try again.');
     }
@@ -37,8 +38,6 @@ function PinConfirm() {
 }
 
 export default PinConfirm;
-
-
 
 
 
