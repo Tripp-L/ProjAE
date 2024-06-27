@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
+import './PinConfirm.css';
 
 function PinConfirm({ onPinConfirmSuccess }) {
   const [pin, setPin] = useState('');
@@ -24,7 +25,7 @@ function PinConfirm({ onPinConfirmSuccess }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className="pin-confirm-form">
       <h2>Confirm Pin</h2>
       <Form.Group controlId="formPin">
         <Form.Label>4 Digit Pin</Form.Label>
@@ -38,22 +39,3 @@ function PinConfirm({ onPinConfirmSuccess }) {
 }
 
 export default PinConfirm;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

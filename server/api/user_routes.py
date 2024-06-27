@@ -59,7 +59,7 @@ def login():
     except Exception as e:
         logger.error(f"Error during login: {str(e)}")
         return jsonify({'message': str(e)}), 500
-    
+
 
 @user_bp.route('/verify_pin', methods=['POST'])
 @cross_origin()
@@ -90,61 +90,95 @@ def verify_pin():
         return jsonify({'message': str(e)}), 500
 
 
-
-@user_bp.route('/profile', methods=['GET', 'POST', 'DELETE'])
-@jwt_required()
+@user_bp.route('/profile', methods=['GET'])
 @cross_origin()
-def profile():
-    logger.debug("Profile endpoint hit")
+@jwt_required()
+def get_profile():
+    logger.debug("Get profile endpoint hit")
+    user_id = get_jwt_identity()
+    profile = Profile.query.filter_by(user_id=user_id).first()
+
+    if not profile:
+        logger.debug("Profile not found")
+        return jsonify({'message': 'Profile not found'}), 404
+
+    logger.debug(f"Profile found: {profile}")
+    return jsonify({
+        'profileImage': profile.profile_image,
+        'interests': profile.interests,
+        'knowledge': profile.knowledge,
+        'savedCivilizations': profile.saved_civilizations
+    }), 200
+
+
+@user_bp.route('/profile', methods=['POST'])
+@cross_origin()
+@jwt_required()
+def create_profile():
+    logger.debug("Create profile endpoint hit")
+    data = request.json
     user_id = get_jwt_identity()
 
-    if request.method == 'GET':
-        try:
-            profile = Profile.query.filter_by(user_id=user_id).first()
-            if profile:
-                logger.debug("Profile found")
-                return jsonify(profile.to_dict()), 200
-            else:
-                logger.debug("Profile not found")
-                return jsonify({'message': 'Profile not found'}), 404
-        except Exception as e:
-            logger.error(f"Error retrieving profile: {str(e)}")
-            return jsonify({'message': str(e)}), 500
+    try:
+        profile = Profile(
+            user_id=user_id,
+            profile_image=data.get('profileImage'),
+            interests=data.get('interests'),
+            knowledge=data.get('knowledge'),
+            saved_civilizations=data.get('savedCivilizations')
+        )
+        db.session.add(profile)
+        db.session.commit()
+        logger.debug("Profile created successfully")
+        return jsonify({'message': 'Profile created successfully'}), 201
+    except Exception as e:
+        logger.error(f"Error creating profile: {str(e)}")
+        return jsonify({'message': str(e)}), 500
 
-    if request.method == 'POST':
-        data = request.json
-        logger.debug(f"Received data: {data}")
 
-        try:
-            profile = Profile.query.filter_by(user_id=user_id).first()
+@user_bp.route('/profile', methods=['PATCH'])
+@cross_origin()
+@jwt_required()
+def update_profile():
+    logger.debug("Update profile endpoint hit")
+    data = request.json
+    user_id = get_jwt_identity()
+    profile = Profile.query.filter_by(user_id=user_id).first()
 
-            if not profile:
-                profile = Profile(user_id=user_id)
+    if not profile:
+        logger.debug("Profile not found")
+        return jsonify({'message': 'Profile not found'}), 404
 
-            profile.profile_image = data.get('profile_image')
-            profile.interests = data.get('interests')
-            profile.knowledge = data.get('knowledge')
-            profile.saved_civilizations = data.get('saved_civilizations')
+    try:
+        profile.profile_image = data.get('profileImage', profile.profile_image)
+        profile.interests = data.get('interests', profile.interests)
+        profile.knowledge = data.get('knowledge', profile.knowledge)
+        profile.saved_civilizations = data.get('savedCivilizations', profile.saved_civilizations)
+        db.session.commit()
+        logger.debug("Profile updated successfully")
+        return jsonify({'message': 'Profile updated successfully'}), 200
+    except Exception as e:
+        logger.error(f"Error updating profile: {str(e)}")
+        return jsonify({'message': str(e)}), 500
 
-            db.session.add(profile)
-            db.session.commit()
-            logger.debug("Profile updated successfully")
-            return jsonify({'message': 'Profile updated successfully'}), 200
-        except Exception as e:
-            logger.error(f"Error updating profile: {str(e)}")
-            return jsonify({'message': str(e)}), 500
 
-    if request.method == 'DELETE':
-        try:
-            profile = Profile.query.filter_by(user_id=user_id).first()
-            if profile:
-                db.session.delete(profile)
-                db.session.commit()
-                logger.debug("Profile deleted successfully")
-                return jsonify({'message': 'Profile deleted successfully'}), 200
-            else:
-                logger.debug("Profile not found")
-                return jsonify({'message': 'Profile not found'}), 404
-        except Exception as e:
-            logger.error(f"Error deleting profile: {str(e)}")
-            return jsonify({'message': str(e)}), 500
+@user_bp.route('/profile', methods=['DELETE'])
+@cross_origin()
+@jwt_required()
+def delete_profile():
+    logger.debug("Delete profile endpoint hit")
+    user_id = get_jwt_identity()
+    profile = Profile.query.filter_by(user_id=user_id).first()
+
+    if not profile:
+        logger.debug("Profile not found")
+        return jsonify({'message': 'Profile not found'}), 404
+
+    try:
+        db.session.delete(profile)
+        db.session.commit()
+        logger.debug("Profile deleted successfully")
+        return jsonify({'message': 'Profile deleted successfully'}), 200
+    except Exception as e:
+        logger.error(f"Error deleting profile: {str(e)}")
+        return jsonify({'message': str(e)}), 500

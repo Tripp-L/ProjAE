@@ -26,15 +26,18 @@ class User(db.Model):
 class Profile(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    profile_image = db.Column(db.String(255))
-    civilizations = db.Column(db.String(255))
-    interests = db.Column(db.String(255))
-    bookmarks = db.Column(db.String(255))
+    profile_name = db.Column(db.String(80), nullable=False)
+    profile_image = db.Column(db.String(200))
+    interests = db.Column(db.Text)
+    knowledge = db.Column(db.Text)
+    saved_civilizations = db.Column(db.Text)
 
-    def to_dict(self):
+    def serialize(self):
         return {
-            'profile_image': self.profile_image,
-            'civilizations': self.civilizations,
+            'profileName': self.profile_name,
+            'profileImage': self.profile_image,
             'interests': self.interests,
-            'bookmarks': self.bookmarks
+            'knowledge': self.knowledge,
+            'savedCivilizations': self.saved_civilizations
         }
+

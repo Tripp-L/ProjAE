@@ -42,13 +42,16 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
         <Route path="/pin-confirm" element={<PinConfirm onPinConfirmSuccess={handlePinConfirmSuccess} />} />
-        <Route path="/profile" element={loggedIn ? <Profile onProfileCompletion={handleProfileCompletion} /> : <Navigate to="/login" />} />
+        <Route path="/profile" element={<Profile onProfileCompletion={handleProfileCompletion} />} />
       </Routes>
     </div>
   );
 }
 
 export default App;
+
+
+
 
 
 

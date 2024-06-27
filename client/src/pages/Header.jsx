@@ -2,16 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Toggle from 'react-toggle';
-import logo from '../assets/images/AncientEchoes.png';  // Correct the path if necessary
-import './Header.css';  // Correct the path if necessary
+import logo from '../assets/images/AncientEchoes.png';
+import './Header.css';
 import 'react-toggle/style.css';
 
-function Header({ onLogout }) {
+function Header({ loggedIn, profile, onLogout }) {
   const navigate = useNavigate();
   const [theme, setTheme] = useState('light');
 
   const handleLogout = () => {
-    localStorage.removeItem('access_token');
     onLogout();
     navigate('/login');
   };
@@ -62,10 +61,19 @@ function Header({ onLogout }) {
             icons={false}
             onChange={handleThemeToggle} />
         </div>
+        {loggedIn && profile && (
+          <div className="profile-info ml-3">
+            <img src={profile.profileImage} alt="Profile" className="profile-image" />
+            <span className="profile-name">{profile.username}</span>
+          </div>
+        )}
       </div>
     </nav>
   );
 }
 
 export default Header;
+
+
+
 

@@ -13,7 +13,13 @@ app.config.from_object('config')
 # Initialize extensions
 db.init_app(app)
 migrate = Migrate(app, db)
-CORS(app)
+
+# Configure CORS
+CORS(app, resources={
+    r"/auth/*": {"origins": "*", "methods": ["GET", "POST", "PATCH", "DELETE"]},
+    r"/api/*": {"origins": "*", "methods": ["GET", "POST", "PATCH", "DELETE"]}
+})
+
 jwt = JWTManager(app)
 
 # Register blueprints
@@ -29,11 +35,5 @@ def serve_react_app(path=""):
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-
-
-
-
 
 

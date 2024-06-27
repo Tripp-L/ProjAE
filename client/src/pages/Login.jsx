@@ -39,7 +39,6 @@ export default function Login({ onLoginSuccess }) {
       } else {
         localStorage.setItem('access_token', response.data.access_token);
         onLoginSuccess();
-        navigate('/');
       }
     } catch (error) {
       setErrorMessage(error.response?.data?.message || 'Login failed. Please try again.');
@@ -50,12 +49,11 @@ export default function Login({ onLoginSuccess }) {
     e.preventDefault();
     try {
       const response = await axios.post('/auth/verify_pin', {
-        username: formData.username,
         pin,
       });
       localStorage.setItem('access_token', response.data.access_token);
       onLoginSuccess();
-      navigate('/');
+      navigate('/profile');
     } catch (error) {
       setErrorMessage('Invalid PIN. Please try again.');
     }
