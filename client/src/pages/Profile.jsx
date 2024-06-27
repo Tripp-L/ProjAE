@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axiosInstance from '../axiosInstance'; // Use the new axios instance
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/images/AncientEchoes.png';
 import './Profile.css';
@@ -21,11 +21,7 @@ function Profile({ onProfileCompletion }) {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.get('/auth/profile', {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('access_token')}`
-          }
-        });
+        const response = await axiosInstance.get('/auth/profile');
         setFormData(response.data);
         setProfileExists(true);
       } catch (error) {
@@ -53,13 +49,10 @@ function Profile({ onProfileCompletion }) {
       const endpoint = profileExists ? '/auth/profile' : '/auth/profile';
       const method = profileExists ? 'patch' : 'post';
 
-      await axios({
+      await axiosInstance({
         method: method,
         url: endpoint,
-        data: formData,
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('access_token')}`
-        }
+        data: formData
       });
       setMessage('Profile updated successfully!');
       onProfileCompletion();
@@ -77,11 +70,7 @@ function Profile({ onProfileCompletion }) {
 
   const handleDelete = async () => {
     try {
-      await axios.delete('/auth/profile', {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('access_token')}`
-        }
-      });
+      await axiosInstance.delete('/auth/profile');
       setMessage('Profile deleted successfully!');
       setFormData({
         profileName: '',
@@ -198,8 +187,3 @@ function Profile({ onProfileCompletion }) {
 }
 
 export default Profile;
-
-
-
-
-

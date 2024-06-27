@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axiosInstance from '../axiosInstance'; // Use the new instance
 import { useNavigate } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
-import './PinConfirm.css';
 
-function PinConfirm({ onPinConfirmSuccess }) {
+function PinConfirm() {
   const [pin, setPin] = useState('');
-  const navigate = useNavigate(); // This will be used to navigate to the profile page
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setPin(e.target.value);
@@ -15,17 +14,16 @@ function PinConfirm({ onPinConfirmSuccess }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/auth/verify_pin', { pin });
+      const response = await axiosInstance.post('/auth/verify_pin', { pin });
       localStorage.setItem('access_token', response.data.access_token);
-      onPinConfirmSuccess();
-      navigate('/profile'); // Navigate to Profile page after successful PIN confirmation
+      navigate('/home');
     } catch (error) {
       alert('Invalid PIN. Please try again.');
     }
   };
 
   return (
-    <Form onSubmit={handleSubmit} className="pin-confirm-form">
+    <Form onSubmit={handleSubmit}>
       <h2>Confirm Pin</h2>
       <Form.Group controlId="formPin">
         <Form.Label>4 Digit Pin</Form.Label>
@@ -39,3 +37,4 @@ function PinConfirm({ onPinConfirmSuccess }) {
 }
 
 export default PinConfirm;
+

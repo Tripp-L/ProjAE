@@ -90,6 +90,7 @@ def verify_pin():
         return jsonify({'message': str(e)}), 500
 
 
+
 @user_bp.route('/profile', methods=['GET'])
 @cross_origin()
 @jwt_required()
@@ -104,6 +105,7 @@ def get_profile():
 
     logger.debug(f"Profile found: {profile}")
     return jsonify({
+        'profileName': profile.profile_name,  # Add this line
         'profileImage': profile.profile_image,
         'interests': profile.interests,
         'knowledge': profile.knowledge,
@@ -122,6 +124,7 @@ def create_profile():
     try:
         profile = Profile(
             user_id=user_id,
+            profile_name=data.get('profileName'),  # Add this line
             profile_image=data.get('profileImage'),
             interests=data.get('interests'),
             knowledge=data.get('knowledge'),
@@ -150,6 +153,7 @@ def update_profile():
         return jsonify({'message': 'Profile not found'}), 404
 
     try:
+        profile.profile_name = data.get('profileName', profile.profile_name)  # Add this line
         profile.profile_image = data.get('profileImage', profile.profile_image)
         profile.interests = data.get('interests', profile.interests)
         profile.knowledge = data.get('knowledge', profile.knowledge)

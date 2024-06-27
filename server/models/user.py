@@ -5,7 +5,7 @@ class User(db.Model):
     username = db.Column(db.String(100), unique=True, nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
-    pin_hash = db.Column(db.String(128), nullable=False)  # Assuming you store the hashed pin
+    pin_hash = db.Column(db.String(128), nullable=False)
 
     def set_password(self, password):
         self.password_hash = bcrypt.generate_password_hash(password).decode('utf-8')
