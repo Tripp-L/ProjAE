@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Header from './Header';
 import Navbar from './Navbar';
-import './Home.css'; // Import the CSS file
+import TimelineComponent from './Timeline';
+import './Home.css';
 
 function Home({ onLogout }) {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -12,14 +13,14 @@ function Home({ onLogout }) {
   }, []);
 
   return (
-    <div className="home-container"> {/* Use the correct class name */}
+    <div className="home-container">
       {loggedIn && (
         <>
           <Header onLogout={onLogout} />
           <Navbar />
           <h1>Welcome To Ancient Echoes: The Digital Epic of History</h1>
           <p>Explore the wonders of ancient civilizations!</p>
-          {/* Other content */}
+          <TimelineComponent />
         </>
       )}
     </div>
@@ -27,7 +28,3 @@ function Home({ onLogout }) {
 }
 
 export default Home;
-
-
-
-
