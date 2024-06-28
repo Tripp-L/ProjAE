@@ -18,9 +18,3 @@ class User(db.Model):
 
     def check_pin(self, pin):
         return bcrypt.check_password_hash(self.pin_hash, pin)
-
-
-
-
-
-

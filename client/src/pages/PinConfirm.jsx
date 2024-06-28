@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import axiosInstance from '../axiosInstance'; // Use the new instance
+import axios from 'axios'; 
 import { useNavigate } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
+import './PinConfirm.css';
 
 function PinConfirm() {
   const [pin, setPin] = useState('');
@@ -14,7 +15,7 @@ function PinConfirm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axiosInstance.post('/auth/verify_pin', { pin });
+      const response = await axios.post('/auth/verify_pin', { pin }); // Changed to `axios`
       localStorage.setItem('access_token', response.data.access_token);
       navigate('/home');
     } catch (error) {
@@ -37,4 +38,3 @@ function PinConfirm() {
 }
 
 export default PinConfirm;
-

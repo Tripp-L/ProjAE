@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import logo from '../assets/images/AncientEchoes.png';
-import './Login.css'; 
+import './Login.css';
 
 export default function Login({ onLoginSuccess }) {
   const [formData, setFormData] = useState({
@@ -16,7 +16,6 @@ export default function Login({ onLoginSuccess }) {
   const [errorMessage, setErrorMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showPin, setShowPin] = useState(false);
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,8 +37,8 @@ export default function Login({ onLoginSuccess }) {
         setShowPinInput(true);
       } else {
         localStorage.setItem('access_token', response.data.access_token);
+        localStorage.setItem('refresh_token', response.data.refresh_token); // Store refresh token
         onLoginSuccess();
-        navigate('/');
       }
     } catch (error) {
       setErrorMessage(error.response?.data?.message || 'Login failed. Please try again.');
@@ -53,8 +52,8 @@ export default function Login({ onLoginSuccess }) {
         pin
       });
       localStorage.setItem('access_token', response.data.access_token);
+      localStorage.setItem('refresh_token', response.data.refresh_token); // Store refresh token
       onLoginSuccess();
-      navigate('/');
     } catch (error) {
       setErrorMessage('Invalid PIN. Please try again.');
     }

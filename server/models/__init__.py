@@ -5,8 +5,11 @@ db = SQLAlchemy()
 bcrypt = Bcrypt()
 
 from .user import User
-from .profile import Profile  # Ensure this line imports the Profile model
+from .profile import Profile
+from .civilization import Civilization
+from .artifact import Artifact
+from .event import Event
+from .region import Region
+from .saved_civs import SavedCivilization
 
-__all__ = ["User", "Profile"]  # Add Profile to the __all__ list if you use it for imports
-
-
+__all__ = ["User", "Profile", "Civilization", "Artifact", "Event", "Region", "SavedCivilization"]

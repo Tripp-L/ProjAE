@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Navbar.css'; // Correct the path if necessary
+import './Navbar.css';
 
 import civilizationsIcon from '../assets/images/civ-icon.png';  // Correct the path if necessary
 import artifactsIcon from '../assets/images/artifacts-icon.png';  // Correct the path if necessary

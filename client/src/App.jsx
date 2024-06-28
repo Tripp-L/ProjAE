@@ -7,27 +7,28 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import PinConfirm from './pages/PinConfirm';
 import Civilization from './pages/Civilization';
-import axiosInstance from './axiosInstance';
+import axios from 'axios';
 
 function App() {
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true); // Add a loading state
 
   useEffect(() => {
     const checkLoginStatus = async () => {
       const accessToken = localStorage.getItem('access_token');
       if (accessToken) {
         try {
-          await axiosInstance.get('/auth/profile', {
+          await axios.get('/auth/profile', {
             headers: {
               Authorization: `Bearer ${accessToken}`
             }
           });
           setLoggedIn(true);
         } catch (error) {
-          if (error.response.status === 401) {
+          if (error.response && error.response.status === 401) {
             try {
-              const refreshResponse = await axiosInstance.post('/auth/refresh', null, {
+              const refreshResponse = await axios.post('/auth/refresh', null, {
                 headers: {
                   Authorization: `Bearer ${localStorage.getItem('refresh_token')}`
                 }
@@ -41,20 +42,21 @@ function App() {
               localStorage.removeItem('refresh_token');
               navigate('/login');
             }
-          } else if (error.response.status === 404) {
+          } else if (error.response && error.response.status === 404) {
             setLoggedIn(true); // No profile exists, but the user is still logged in
           }
         }
       } else {
         setLoggedIn(false);
       }
+      setLoading(false); // Update the loading state
     };
     checkLoginStatus();
   }, [navigate]);
 
   const handleLoginSuccess = () => {
     setLoggedIn(true);
-    navigate('/pin-confirm');
+    navigate('/');
   };
 
   const handleLogout = () => {
@@ -72,6 +74,10 @@ function App() {
     navigate('/');
   };
 
+  if (loading) {
+    return <div>Loading...</div>; // Show a loading indicator while checking login status
+  }
+
   return (
     <div>
       <Routes>
@@ -87,7 +93,6 @@ function App() {
 }
 
 export default App;
-
 
 
 

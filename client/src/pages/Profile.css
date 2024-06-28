@@ -1,4 +1,234 @@
 html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.auth-logo {
+  width: 250px;
+  margin-bottom: 10px;
+  border-radius: 50px;
+}
+
+.auth-logo:hover {
+  background-color: #ffc107;
+  box-shadow: 10px 13px 16px rgba(255, 193, 7, 0.7);
+}
+
+.auth-form {
+  width: 100%;
+  max-width: 700px;
+  background: #fff;
+  padding: 25px;
+  border-radius: 50px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+  font-weight: bold;
+  font-family: "Macondo", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 27px;
+  text-align: center;
+  color: rgba(255, 193, 7, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  max-height: 80vh;
+}
+
+.auth-form:hover {
+  box-shadow: 10px 13px 17px rgba(255, 193, 7, 0.7);
+}
+
+.auth-form h2 {
+  text-align: center;
+  margin-bottom: 18px;
+  font-weight: bold;
+  font-family: "Macondo", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 55px;
+  color: rgba(255, 193, 7, 0.7);
+  text-decoration: underline;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  width: 100%;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-family: "Macondo", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 28px;
+  text-align: left;
+  color: rgba(255, 193, 7, 0.7);
+  text-decoration: 2px underline;
+}
+
+.form-group textarea {
+  width: 100%;
+  padding: 15px;
+  border: 3px solid rgba(255, 193, 7, 0.7);
+  border-radius: 30px;
+  font-family: "Macondo", cursive;
+  font-weight: 400;
+  font-style: normal;
+  resize: vertical;
+  height: 65px;
+}
+
+.form-group textarea:hover {
+  border-color: #ffc107;
+  box-shadow: 0 0 60px rgba(255, 193, 7, 0.7);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 15px;
+  border: 3px solid rgba(255, 193, 7, 0.7);
+  border-radius: 30px;
+  font-family: "Macondo", cursive;
+  font-weight: 400;
+  font-style: normal;
+  height: 60px;
+}
+
+.form-group input:hover {
+  border-color: #ffc107;
+  box-shadow: 0 0 60px rgba(255, 193, 7, 0.7);
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 0px;
+  border: none;
+  border-radius: 50px;
+  background-color: rgba(255, 193, 7, 0.7);
+  color: black;
+  font-size: 30px;
+  text-align: center;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  font-family: "Macondo", cursive;
+  font-weight: 400;
+  font-style: normal;
+  margin-bottom: 15px;
+  height: 50px;
+}
+
+.btn-primary:hover {
+  background-color: #ffc107;
+  box-shadow: 10px 13px 16px rgba(255, 193, 7, 0.7);
+}
+
+.btn-secondary, .btn-danger, .btn-info {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 50px;
+  background-color: rgba(255, 193, 7, 0.7);
+  color: black;
+  font-size: 30px;
+  margin-top: 10px;
+  font-family: "Macondo", cursive;
+  font-weight: 400;
+  font-style: normal;
+  margin-bottom: 14px;
+  height: 50px;
+  padding: 0px;
+}
+
+.btn-secondary:hover, .btn-danger:hover, .btn-info:hover {
+  background-color: #ffc107;
+  box-shadow: 10px 13px 16px rgba(255, 193, 7, 0.7);
+}
+
+.error-message, .success-message {
+  margin-bottom: 10px;
+  color: red;
+  text-align: center;
+  font-family: "Macondo", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.success-message {
+  color: green;
+  font-family: "Macondo", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.profile-view {
+  text-align: left;
+  font-family: "Macondo", cursive;
+  font-weight: 400;
+  font-style: normal;
+  color: rgba(255, 193, 7, 0.7);
+  width: 100%;
+}
+
+.profile-group {
+  margin-bottom: 35px;
+}
+
+.profile-group label {
+  font-weight: bold;
+  font-size: 28px;
+  display: block;
+  text-decoration: 2px underline;
+}
+
+.profile-group p {
+  font-size: 25px;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 15px;
+}
+
+.profile-image-large {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  object-fit: cover;
+  border: 3px solid rgba(255, 193, 7, 0.7);
+  align-items: center;
+}
+
+.profile-image-large:hover {
+  box-shadow: 0 0 60px rgba(255, 193, 7, 0.7);
+}
+
+
+
+/* html, body {
     height: 100%;
     margin: 0;
     padding: 0;
@@ -225,6 +455,4 @@ html, body {
 .profile-image-large:hover {
     box-shadow: 0 0 60px rgba(255, 193, 7, 0.7);
 }
-
-
-  
+*/

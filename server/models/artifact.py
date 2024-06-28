@@ -9,4 +9,3 @@ class Artifact(db.Model):
 
 
 
-

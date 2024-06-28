@@ -31,9 +31,10 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log('Sending signup request with data:', formData);
-      await axios.post('/auth/signup', formData);
+      const response = await axios.post('/auth/signup', formData);
       setMessage('Welcome To Ancient Echoes!');
+      localStorage.setItem('access_token', response.data.access_token);
+      localStorage.setItem('refresh_token', response.data.refresh_token);
       setTimeout(() => {
         navigate('/login');
       }, 1000);

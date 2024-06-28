@@ -1,24 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import '../App.css';
+import './Civilization.css';
 
 const Civilization = () => {
   const { id } = useParams();
-  
-  // Fetch civilization details using the id
-  // For demonstration, using static content
+  const [civilization, setCivilization] = useState(null);
 
-  const civilization = {
-    1: {
-      name: 'Civilization 1',
-      region: 'Region 1',
-      description: 'Detailed description of Civilization 1.'
-    },
-    2: {
-      name: 'Civilization 2',
-      region: 'Region 2',
-      description: 'Detailed description of Civilization 2.'
-    }
-  }[id];
+  useEffect(() => {
+    const fetchCivilization = async () => {
+      try {
+        const response = await axios.get(`/api/civilizations/${id}`);
+        setCivilization(response.data);
+      } catch (error) {
+        console.error("Error fetching civilization:", error);
+      }
+    };
+    fetchCivilization();
+  }, [id]);
+
+  if (!civilization) return <div>Loading...</div>;
 
   return (
     <div>

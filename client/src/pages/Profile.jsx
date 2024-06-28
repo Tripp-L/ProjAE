@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axiosInstance from '../axiosInstance';
+import axios from 'axios'; 
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/images/AncientEchoes.png';
 import './Profile.css';
@@ -21,7 +21,7 @@ function Profile({ onProfileCompletion }) {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axiosInstance.get('/auth/profile', {
+        const response = await axios.get('/auth/profile', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('access_token')}`
           }
@@ -53,7 +53,7 @@ function Profile({ onProfileCompletion }) {
       const endpoint = profileExists ? '/auth/profile' : '/auth/profile';
       const method = profileExists ? 'patch' : 'post';
 
-      await axiosInstance({
+      await axios({
         method: method,
         url: endpoint,
         data: formData,
@@ -77,7 +77,7 @@ function Profile({ onProfileCompletion }) {
 
   const handleDelete = async () => {
     try {
-      await axiosInstance.delete('/auth/profile', {
+      await axios.delete('/auth/profile', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('access_token')}`
         }

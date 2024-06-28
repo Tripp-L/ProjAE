@@ -7,4 +7,3 @@ class Event(db.Model):
     date = db.Column(db.DateTime, default=datetime.utcnow)
     description = db.Column(db.Text, nullable=False)
     civilization_id = db.Column(db.Integer, db.ForeignKey('civilization.id'))
-

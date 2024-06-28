@@ -1,24 +1,115 @@
 /* Styling for the header */
 .header-container {
-    height: 110px; /* Fixed height for the header */
+  height: 110px;
+  position: relative;
+}
+
+/* Styling for the header logo */
+.header-logo {
+  max-height: 105px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.form-inline {
+  margin-left: auto;
+}
+
+.form-control {
+  width: 320px;
+  height: 40px;
+  font-family: "Macondo", cursive;
+  font-weight: 400;
+  font-style: normal;
+  color: rgba(255, 193, 7, 0.7);
+  font-size: 20px;
+  border: 1px solid;
+}
+
+.btn-outline-success {
+  height: 40px;
+  font-family: "Macondo", cursive;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 20px;
+}
+
+.home-container {
+  text-align: center;
+  font-family: "Macondo", cursive;
+  font-weight: 400;
+  font-style: normal;
+  color: rgba(255, 193, 7, 0.7);
+}
+
+.home-title {
+  font-family: "Macondo", cursive;
+  font-weight: 400;
+  font-style: normal;
+  color: rgba(255, 193, 7, 0.7);
+  text-decoration: underline;
+}
+
+p, h2, h3, h4, h5, h6, li, a {
+  font-family: "Macondo", cursive;
+  font-weight: 400;
+  font-style: normal;
+  color: rgba(255, 193, 7, 0.7);
+}
+
+button {
+  font-size: 1em;
+  font-family: "Macondo", cursive;
+  font-weight: 400;
+  font-style: normal;
+  color: rgba(255, 193, 7, 0.7);
+  border: 1px solid;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+}
+
+.profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.profile-name {
+  color: #ffc107;
+  font-family: "Macondo", cursive;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+
+
+
+
+/* 
+.header-container {
+    height: 110px; 
     position: relative;
   }
   
-  /* Styling for the header logo */
   .header-logo {
-    max-height: 105px; /* Adjust the height to make the logo smaller */
-    width: auto; /* Maintain aspect ratio */
+    max-height: 105px; 
+    width: auto; 
     display: block;
-    object-fit: contain; /* Ensure the image fits within the container */
+    object-fit: contain; 
   }
   
   .form-inline {
-    margin-left: auto; /* Push the form to the right */
+    margin-left: auto; 
   }
   
   .form-control {
-    width: 320px; /* Adjust width */
-    height: 40px; /* Adjust height */
+    width: 320px; 
+    height: 40px; 
     font-family: "Macondo", cursive;
     font-weight: 400;
     font-style: normal;
@@ -48,7 +139,7 @@
     font-weight: 400;
     font-style: normal;
     color: rgba(255, 193, 7, 0.7);
-    text-decoration: underline; /* Underline the text */
+    text-decoration: underline; 
   }
   
   p, h2, h3, h4, h5, h6, li, a {
@@ -59,7 +150,7 @@
   }
   
   button {
-    font-size: 1em; /* Adjust the button font size */
+    font-size: 1em; 
     font-family: "Macondo", cursive;
     font-weight: 400;
     font-style: normal;
@@ -84,5 +175,5 @@
     font-family: "Macondo", cursive;
     font-weight: 400;
     font-size: 20px;
-  }
+  } */
   

@@ -7,11 +7,3 @@ def register_api_blueprints(app):
 
     from .civilization_routes import civilization_bp
     app.register_blueprint(civilization_bp, url_prefix='/api/civilizations')
-
-
-
-
-
-
-
-

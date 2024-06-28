@@ -1,4 +1,154 @@
 html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.auth-logo {
+  width: 300px;
+  margin-bottom: 10px;
+  border-radius: 50px;
+}
+
+.auth-logo:hover {
+  background-color: #ffc107;
+  box-shadow: 10px 13px 16px rgba(255, 193, 7, 0.7);
+}
+
+.auth-form {
+  width: 100%;
+  max-width: 600px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 50px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+  font-weight: bold;
+  font-family: "Macondo", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 27px;
+  text-align: center;
+  color: rgba(255, 193, 7, 0.7);
+}
+
+.auth-form:hover {
+  box-shadow: 10px 13px 17px rgba(255, 193, 7, 0.7);
+}
+
+.auth-form h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: bold;
+  font-family: "Macondo", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 90px;
+  color: rgba(255, 193, 7, 0.7);
+  text-decoration: underline;
+}
+
+.form-group {
+  margin-bottom: 30px;
+  font-weight: bold;
+  font-family: "Macondo", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 25px;
+  text-align: center;
+  color: rgba(255, 193, 7, 0.7);
+  width: 100%;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-family: "Macondo", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 35px;
+  text-align: center;
+  color: rgba(255, 193, 7, 0.7);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 20px;
+  border: 4px solid rgba(255, 193, 7, 0.7);
+  border-radius: 30px;
+  font-family: "Macondo", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.form-group input:hover {
+  border-color: #ffc107;
+  box-shadow: 0 0 60px rgba(255, 193, 7, 0.7);
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 50px;
+  background-color: rgba(255, 193, 7, 0.7);
+  color: black;
+  font-size: 30px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  font-family: "Macondo", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.btn-primary:hover {
+  background-color: #ffc107;
+  box-shadow: 10px 13px 16px rgba(255, 193, 7, 0.7);
+}
+
+.error-message, .success-message {
+  margin-bottom: 10px;
+  color: red;
+  text-align: center;
+  font-family: "Macondo", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.success-message {
+  color: green;
+  font-family: "Macondo", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.password-group,
+.pin-group {
+  position: relative;
+}
+
+.password-toggle,
+.pin-toggle {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+
+
+
+/* html, body {
     height: 100%;
     margin: 0;
     padding: 0;
@@ -14,14 +164,14 @@ html, body {
   }
   
   .auth-logo {
-    width: 300px; /* Adjust this value to make the logo smaller */
+    width: 300px; 
     margin-bottom: 10px;
     border-radius: 50px;
   }
   
   .auth-logo:hover {
-    background-color: #ffc107; /* Change background color on hover */
-    box-shadow: 10px 13px 16px rgba(255, 193, 7, 0.7); /* Add shadow on hover */
+    background-color: #ffc107; 
+    box-shadow: 10px 13px 16px rgba(255, 193, 7, 0.7); 
   }
   
   .auth-form {
@@ -31,7 +181,7 @@ html, body {
     padding: 20px;
     border-radius: 50px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease-in-out; /* Smooth transition for box-shadow */
+    transition: box-shadow 0.3s ease-in-out; 
     font-weight: bold;
     font-family: "Macondo", cursive;
     font-weight: 400;
@@ -42,7 +192,7 @@ html, body {
   }
   
   .auth-form:hover {
-    box-shadow: 10px 13px 17px rgba(255, 193, 7, 0.7); /* Shadow similar to navbar */
+    box-shadow: 10px 13px 17px rgba(255, 193, 7, 0.7); 
   }
   
   .auth-form h2 {
@@ -78,7 +228,7 @@ html, body {
     font-style: normal;
     font-size: 35px;
     text-align: center;
-    color: rgba(255, 193, 7, 0.7); /* Change text color on hover */
+    color: rgba(255, 193, 7, 0.7); 
     height: 55px;
   }
   
@@ -93,8 +243,8 @@ html, body {
   }
   
   .form-group input:hover {
-    border-color: #ffc107; /* Change border color on hover */
-    box-shadow: 0 0 60px rgba(255, 193, 7, 0.7); /* Add shadow on hover */
+    border-color: #ffc107; 
+    box-shadow: 0 0 60px rgba(255, 193, 7, 0.7); 
   }
   
   .btn-primary {
@@ -105,15 +255,15 @@ html, body {
     background-color: rgba(255, 193, 7, 0.7);
     color: black;
     font-size: 30px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
     font-family: "Macondo", cursive;
     font-weight: 400;
     font-style: normal;
   }
   
   .btn-primary:hover {
-    background-color: #ffc107; /* Change background color on hover */
-    box-shadow: 10px 13px 16px rgba(255, 193, 7, 0.7); /* Add shadow on hover */
+    background-color: #ffc107; 
+    box-shadow: 10px 13px 16px rgba(255, 193, 7, 0.7); 
   }
   
   .error-message, .success-message {
@@ -144,4 +294,4 @@ html, body {
     right: 10px;
     transform: translateY(-50%);
     cursor: pointer;
-  }
+  } */
