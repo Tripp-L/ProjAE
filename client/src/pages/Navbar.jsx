@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../App.css';
 import './Navbar.css';
 
-import civilizationsIcon from '../assets/images/civ-icon.png';  // Correct the path if necessary
-import artifactsIcon from '../assets/images/artifacts-icon.png';  // Correct the path if necessary
-import timelineEventsIcon from '../assets/images/timeline-icon.png';  // Correct the path if necessary
-import regionsIcon from '../assets/images/regions-icon.png';  // Correct the path if necessary
+import civilizationsIcon from '../assets/images/civ-icon.png';  
+import artifactsIcon from '../assets/images/artifacts-icon.png';  
+import timelineEventsIcon from '../assets/images/timeline-icon.png';  
+import regionsIcon from '../assets/images/regions-icon.png';  
 
 const Navbar = () => {
   return (

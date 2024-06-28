@@ -50,12 +50,13 @@
 
 .navbar .nav-item:hover {
   color: rgba(255, 193, 7, 0.7);
-  box-shadow: 7px 10px 14px rgba(255, 193, 7, 0.7);
+  box-shadow: 10px 10px 20px rgba(255, 193, 7, 0.7); /* Offset the shadow to the right */
 }
 
 .navbar-nav .nav-link {
   font-size: 30px;
 }
+
 
 
 

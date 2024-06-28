@@ -49,20 +49,17 @@ def login():
 def verify_pin():
     data = request.json
     pin = data.get('pin')
-    user_id = session.get('user_id')
 
+    user_id = session.get('user_id')
     if not user_id:
         return jsonify({'message': 'User not logged in'}), 401
 
-    try:
-        user = User.query.get(user_id)
-        if user and user.check_pin(pin):
-            access_token = create_access_token(identity=user.id)
-            return jsonify({'access_token': access_token, 'message': 'PIN verified successfully'}), 200
-        else:
-            return jsonify({'message': 'Invalid PIN'}), 401
-    except Exception as e:
-        return jsonify({'message': str(e)}), 500
+    user = User.query.get(user_id)
+    if user and user.check_pin(pin):
+        access_token = create_access_token(identity=user.id)
+        return jsonify({'access_token': access_token, 'message': 'PIN verified successfully'}), 200
+    else:
+        return jsonify({'message': 'Invalid PIN'}), 401
 
 @user_bp.route('/profile', methods=['GET'])
 @cross_origin()

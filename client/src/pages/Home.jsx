@@ -8,8 +8,8 @@ function Home({ onLogout }) {
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
-    const isLoggedIn = !!localStorage.getItem('access_token');
-    setLoggedIn(isLoggedIn);
+    const isLoggedIn = localStorage.getItem('access_token');
+    setLoggedIn(!!isLoggedIn);
   }, []);
 
   return (

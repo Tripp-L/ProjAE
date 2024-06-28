@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom'; // Remove useNavigate import
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import logo from '../assets/images/AncientEchoes.png';
@@ -131,4 +131,6 @@ export default function Login({ onLoginSuccess }) {
     </div>
   );
 }
+
+
 

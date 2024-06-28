@@ -12,6 +12,3 @@ root.render(
     </Router>
   </React.StrictMode>
 );
-
-// Remove the following line
-// reportWebVitals();

@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Toggle from 'react-toggle';
 import logo from '../assets/images/AncientEchoes.png';
 import './Header.css';
+import 'react-toggle/style.css';
 
 function Header({ loggedIn, profile, onLogout }) {
+  const navigate = useNavigate();
   const [theme, setTheme] = useState('light');
 
   const handleLogout = () => {
     onLogout();
+    navigate('/login');
   };
 
   useEffect(() => {
@@ -70,3 +73,4 @@ function Header({ loggedIn, profile, onLogout }) {
 }
 
 export default Header;
+

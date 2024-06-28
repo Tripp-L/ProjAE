@@ -9,7 +9,7 @@ class User(db.Model):
     username = db.Column(db.String(100), unique=True, nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
-    pin = db.Column(db.String(4))
+    pin_hash = db.Column(db.String(128), nullable=False)
 
     def set_password(self, password):
         self.password_hash = bcrypt.generate_password_hash(password).decode('utf-8')
@@ -18,26 +18,25 @@ class User(db.Model):
         return bcrypt.check_password_hash(self.password_hash, password)
 
     def set_pin(self, pin):
-        self.pin = bcrypt.generate_password_hash(pin).decode('utf-8')
+        self.pin_hash = bcrypt.generate_password_hash(pin).decode('utf-8')
 
     def check_pin(self, pin):
-        return bcrypt.check_password_hash(self.pin, pin)
+        return bcrypt.check_password_hash(self.pin_hash, pin)
 
 class Profile(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    profile_name = db.Column(db.String(80), nullable=False)
-    profile_image = db.Column(db.String(200))
-    interests = db.Column(db.Text)
-    knowledge = db.Column(db.Text)
-    saved_civilizations = db.Column(db.Text)
+    profile_name = db.Column(db.String(120), nullable=True)
+    profile_image = db.Column(db.String(255))
+    interests = db.Column(db.String(255))
+    knowledge = db.Column(db.String(255))
+    saved_civilizations = db.Column(db.String(255))
 
-    def serialize(self):
+    def to_dict(self):
         return {
-            'profileName': self.profile_name,
-            'profileImage': self.profile_image,
+            'profile_name': self.profile_name,
+            'profile_image': self.profile_image,
             'interests': self.interests,
             'knowledge': self.knowledge,
-            'savedCivilizations': self.saved_civilizations
+            'saved_civilizations': self.saved_civilizations
         }
-
