@@ -1,6 +1,6 @@
 import logging
 from flask import Blueprint, request, jsonify, session
-from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token, create_refresh_token
 from models import db, User, Profile
 from flask_cors import cross_origin
 
@@ -186,3 +186,12 @@ def delete_profile():
     except Exception as e:
         logger.error(f"Error deleting profile: {str(e)}")
         return jsonify({'message': str(e)}), 500
+    
+@user_bp.route('/refresh', methods=['POST'])
+@cross_origin()
+@jwt_required(refresh=True)
+def refresh():
+    user_id = get_jwt_identity()
+    access_token = create_access_token(identity=user_id)
+    return jsonify({'access_token': access_token}), 200
+

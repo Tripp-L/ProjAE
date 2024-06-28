@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axiosInstance from '../axiosInstance'; // Use the new axios instance
+import axiosInstance from '../axiosInstance';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/images/AncientEchoes.png';
 import './Profile.css';
@@ -21,7 +21,11 @@ function Profile({ onProfileCompletion }) {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axiosInstance.get('/auth/profile');
+        const response = await axiosInstance.get('/auth/profile', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`
+          }
+        });
         setFormData(response.data);
         setProfileExists(true);
       } catch (error) {
@@ -52,7 +56,10 @@ function Profile({ onProfileCompletion }) {
       await axiosInstance({
         method: method,
         url: endpoint,
-        data: formData
+        data: formData,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('access_token')}`
+        }
       });
       setMessage('Profile updated successfully!');
       onProfileCompletion();
@@ -65,12 +72,16 @@ function Profile({ onProfileCompletion }) {
   };
 
   const handleSkip = () => {
-    navigate('/'); // Navigate to the home page
+    navigate('/');
   };
 
   const handleDelete = async () => {
     try {
-      await axiosInstance.delete('/auth/profile');
+      await axiosInstance.delete('/auth/profile', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('access_token')}`
+        }
+      });
       setMessage('Profile deleted successfully!');
       setFormData({
         profileName: '',
@@ -100,6 +111,7 @@ function Profile({ onProfileCompletion }) {
         {message && <p className="success-message">{message}</p>}
         {isEditing ? (
           <form onSubmit={handleSubmit}>
+            <img src={formData.profileImage} alt="Profile" className="profile-image-large" />
             <div className="form-group">
               <label htmlFor="profileName">Profile Name</label>
               <input
@@ -157,23 +169,20 @@ function Profile({ onProfileCompletion }) {
           </form>
         ) : (
           <div className="profile-view">
-            <div className="profile-field">
+            <img src={formData.profileImage} alt="Profile" className="profile-image-large" />
+            <div className="profile-group">
               <label>Profile Name:</label>
               <p>{formData.profileName}</p>
             </div>
-            <div className="profile-field">
-              <label>Profile Image:</label>
-              <img src={formData.profileImage} alt="Profile" className="profile-image" />
-            </div>
-            <div className="profile-field">
+            <div className="profile-group">
               <label>Interests:</label>
               <p>{formData.interests}</p>
             </div>
-            <div className="profile-field">
+            <div className="profile-group">
               <label>What You Want to Know More About:</label>
               <p>{formData.knowledge}</p>
             </div>
-            <div className="profile-field">
+            <div className="profile-group">
               <label>Saved Civilizations:</label>
               <p>{formData.savedCivilizations}</p>
             </div>

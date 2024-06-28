@@ -3,7 +3,7 @@ html, body {
     margin: 0;
     padding: 0;
 }
-  
+
 .auth-container {
     display: flex;
     flex-direction: column;
@@ -12,26 +12,26 @@ html, body {
     height: 100vh;
     background-color: #f8f9fa;
 }
-  
+
 .auth-logo {
-    width: 200px; /* Adjust this value to make the logo smaller */
+    width: 250px;
     margin-bottom: 10px;
     border-radius: 50px;
 }
-  
+
 .auth-logo:hover {
-    background-color: #ffc107; /* Change background color on hover */
-    box-shadow: 10px 13px 16px rgba(255, 193, 7, 0.7); /* Add shadow on hover */
+    background-color: #ffc107;
+    box-shadow: 10px 13px 16px rgba(255, 193, 7, 0.7);
 }
-  
+
 .auth-form {
     width: 100%;
     max-width: 700px;
     background: #fff;
-    padding: 20px;
+    padding: 25px;
     border-radius: 50px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease-in-out; /* Smooth transition for box-shadow */
+    transition: box-shadow 0.3s ease-in-out;
     font-weight: bold;
     font-family: "Macondo", cursive;
     font-weight: 400;
@@ -43,32 +43,32 @@ html, body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    overflow-y: auto; /* Add scroll if content overflows */
-    max-height: 80vh; /* Ensure the form does not take more than 80% of the viewport height */
+    overflow-y: auto;
+    max-height: 80vh;
 }
-  
+
 .auth-form:hover {
-    box-shadow: 10px 13px 17px rgba(255, 193, 7, 0.7); /* Shadow similar to navbar */
+    box-shadow: 10px 13px 17px rgba(255, 193, 7, 0.7);
 }
-  
+
 .auth-form h2 {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 18px;
     font-weight: bold;
     font-family: "Macondo", cursive;
     font-weight: 400;
     font-style: normal;
-    font-size: 70px;
+    font-size: 55px;
     color: rgba(255, 193, 7, 0.7);
     text-decoration: underline;
 }
-  
+
 .form-group {
-    margin-bottom: 20px; /* Adjusted margin for better spacing */
-    width: 100%; /* Ensure form-group takes full width */
-    text-align: left; /* Align labels and inputs to the left */
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: left;
 }
-  
+
 .form-group label {
     display: block;
     margin-bottom: 5px;
@@ -76,72 +76,74 @@ html, body {
     font-family: "Macondo", cursive;
     font-weight: 400;
     font-style: normal;
-    font-size: 25px;
+    font-size: 28px;
     text-align: left;
-    color: rgba(255, 193, 7, 0.7); /* Change text color on hover */
+    color: rgba(255, 193, 7, 0.7);
+    text-decoration: 2px underline;
 }
 
-/* Style for the multi-line text input (textarea) */
 .form-group textarea {
     width: 100%;
     padding: 15px;
-    border: 4px solid rgba(255, 193, 7, 0.7);
+    border: 3px solid rgba(255, 193, 7, 0.7);
     border-radius: 30px;
     font-family: "Macondo", cursive;
     font-weight: 400;
     font-style: normal;
-    resize: vertical; /* Allow vertical resizing */
-    height: 65px; /* Set initial height */
+    resize: vertical;
+    height: 65px;
 }
 
-/* Add hover effect to the textarea */
 .form-group textarea:hover {
-    border-color: #ffc107; /* Change border color on hover */
-    box-shadow: 0 0 60px rgba(255, 193, 7, 0.7); /* Add shadow on hover */
+    border-color: #ffc107;
+    box-shadow: 0 0 60px rgba(255, 193, 7, 0.7);
 }
-  
+
 .form-group input {
     width: 100%;
     padding: 15px;
-    border: 4px solid rgba(255, 193, 7, 0.7);
+    border: 3px solid rgba(255, 193, 7, 0.7);
     border-radius: 30px;
     font-family: "Macondo", cursive;
     font-weight: 400;
     font-style: normal;
+    height: 60px;
 }
 
-/* Add hover effect to the input */
 .form-group input:hover {
-    border-color: #ffc107; /* Change border color on hover */
-    box-shadow: 0 0 60px rgba(255, 193, 7, 0.7); /* Add shadow on hover */
+    border-color: #ffc107;
+    box-shadow: 0 0 60px rgba(255, 193, 7, 0.7);
 }
 
 .button-group {
     display: flex;
     flex-direction: column;
     width: 100%;
+    text-align: center;
 }
-  
+
 .btn-primary {
     width: 100%;
-    padding: 10px;
+    padding: 0px;
     border: none;
     border-radius: 50px;
     background-color: rgba(255, 193, 7, 0.7);
     color: black;
     font-size: 30px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    text-align: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
     font-family: "Macondo", cursive;
     font-weight: 400;
     font-style: normal;
-    margin-bottom: 15px; /* Added margin */
+    margin-bottom: 15px;
+    height: 50px;
 }
-  
+
 .btn-primary:hover {
-    background-color: #ffc107; /* Change background color on hover */
-    box-shadow: 10px 13px 16px rgba(255, 193, 7, 0.7); /* Add shadow on hover */
+    background-color: #ffc107;
+    box-shadow: 10px 13px 16px rgba(255, 193, 7, 0.7);
 }
-  
+
 .btn-secondary, .btn-danger, .btn-info {
     width: 100%;
     padding: 10px;
@@ -149,19 +151,21 @@ html, body {
     border-radius: 50px;
     background-color: rgba(255, 193, 7, 0.7);
     color: black;
-    font-size: 25px;
+    font-size: 30px;
     margin-top: 10px;
     font-family: "Macondo", cursive;
     font-weight: 400;
     font-style: normal;
-    margin-bottom: 14px; /* Added margin */
+    margin-bottom: 14px;
+    height: 50px;
+    padding: 0px;
 }
-  
+
 .btn-secondary:hover, .btn-danger:hover, .btn-info:hover {
-    background-color: #ffc107; /* Change background color on hover */
-    box-shadow: 10px 13px 16px rgba(255, 193, 7, 0.7); /* Add shadow on hover */
+    background-color: #ffc107;
+    box-shadow: 10px 13px 16px rgba(255, 193, 7, 0.7);
 }
-  
+
 .error-message, .success-message {
     margin-bottom: 10px;
     color: red;
@@ -170,7 +174,7 @@ html, body {
     font-weight: 400;
     font-style: normal;
 }
-  
+
 .success-message {
     color: green;
     font-family: "Macondo", cursive;
@@ -178,34 +182,49 @@ html, body {
     font-style: normal;
 }
 
-/* Additional styling for profile view mode */
 .profile-view {
-  text-align: left;
-  font-family: "Macondo", cursive;
-  font-weight: 400;
-  font-style: normal;
-  color: rgba(255, 193, 7, 0.7);
-  width: 100%; /* Ensure profile view takes full width */
+    text-align: left;
+    font-family: "Macondo", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: rgba(255, 193, 7, 0.7);
+    width: 100%;
 }
 
 .profile-group {
-  margin-bottom: 20px;
+    margin-bottom: 35px;
 }
 
 .profile-group label {
-  font-weight: bold;
-  font-size: 25px;
-  display: block;
+    font-weight: bold;
+    font-size: 28px;
+    display: block;
+    text-decoration: 2px underline;
 }
 
 .profile-group p {
-  font-size: 20px;
-  padding: 10px;
-  border: 2px solid rgba(255, 193, 7, 0.7);
-  border-radius: 10px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-top: 5px;
+    font-size: 25px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
 }
+
+.profile-image-large {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    object-fit: cover;
+    border: 3px solid rgba(255, 193, 7, 0.7);
+    align-items: center;
+}
+
+.profile-image-large:hover {
+    box-shadow: 0 0 60px rgba(255, 193, 7, 0.7);
+}
+
 
   

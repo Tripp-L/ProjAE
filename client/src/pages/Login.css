@@ -79,6 +79,7 @@ html, body {
     font-size: 35px;
     text-align: center;
     color: rgba(255, 193, 7, 0.7); /* Change text color on hover */
+    height: 55px;
   }
   
   .form-group input {
