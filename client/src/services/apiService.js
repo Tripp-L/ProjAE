@@ -1,44 +1,43 @@
 import axios from 'axios';
 
-const axiosInstance = axios.create({
-  baseURL: 'http://localhost:5555', // The base URL of your Flask backend
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
+const baseURL = 'http://localhost:5555'; // The base URL of your Flask backend
 
-axiosInstance.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    const originalRequest = error.config;
-    if (error.response && error.response.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true;
-      try {
-        const refreshTokenResponse = await axiosInstance.post('/auth/refresh', null, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('refresh_token')}`
-          }
-        });
-        const { access_token } = refreshTokenResponse.data;
-        localStorage.setItem('access_token', access_token);
-        originalRequest.headers['Authorization'] = `Bearer ${access_token}`;
-        return axiosInstance(originalRequest);
-      } catch (refreshError) {
-        console.error('Refresh token expired. Please log in again.');
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('refresh_token');
-        window.location.href = '/login';
-      }
+const getAuthHeaders = () => {
+  const accessToken = localStorage.getItem('access_token');
+  return accessToken ? { Authorization: `Bearer ${accessToken}` } : {};
+};
+
+const handleError = async (error) => {
+  if (error.response && error.response.status === 401 && !error.config._retry) {
+    error.config._retry = true;
+    try {
+      const refreshResponse = await axios.post(`${baseURL}/auth/refresh`, null, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('refresh_token')}`
+        }
+      });
+      const { access_token } = refreshResponse.data;
+      localStorage.setItem('access_token', access_token);
+      error.config.headers['Authorization'] = `Bearer ${access_token}`;
+      return axios(error.config);
+    } catch (refreshError) {
+      console.error('Refresh token expired. Please log in again.');
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('refresh_token');
+      window.location.href = '/login';
     }
-    return Promise.reject(error);
   }
-);
+  return Promise.reject(error);
+};
 
 export const getSmithsonianData = async () => {
   try {
-    const response = await axiosInstance.get('/api/smithsonian');
+    const response = await axios.get(`${baseURL}/api/smithsonian`, {
+      headers: getAuthHeaders()
+    });
     return response.data;
   } catch (error) {
+    handleError(error);
     console.error('Failed to fetch Smithsonian data:', error);
     throw error;
   }
@@ -46,9 +45,12 @@ export const getSmithsonianData = async () => {
 
 export const getRijksmuseumData = async () => {
   try {
-    const response = await axiosInstance.get('/api/rijksmuseum');
+    const response = await axios.get(`${baseURL}/api/rijksmuseum`, {
+      headers: getAuthHeaders()
+    });
     return response.data;
   } catch (error) {
+    handleError(error);
     console.error('Failed to fetch Rijksmuseum data:', error);
     throw error;
   }
@@ -56,9 +58,12 @@ export const getRijksmuseumData = async () => {
 
 export const getWikimediaArticle = async (name) => {
   try {
-    const response = await axiosInstance.get(`/api/wikimedia/articles/${name}`);
+    const response = await axios.get(`${baseURL}/api/wikimedia/articles/${name}`, {
+      headers: getAuthHeaders()
+    });
     return response.data;
   } catch (error) {
+    handleError(error);
     console.error('Failed to fetch Wikimedia article:', error);
     throw error;
   }
@@ -66,12 +71,13 @@ export const getWikimediaArticle = async (name) => {
 
 export const getWikimediaRealtime = async () => {
   try {
-    const response = await axiosInstance.get('/api/wikimedia/realtime');
+    const response = await axios.get(`${baseURL}/api/wikimedia/realtime`, {
+      headers: getAuthHeaders()
+    });
     return response.data;
   } catch (error) {
+    handleError(error);
     console.error('Failed to fetch Wikimedia realtime data:', error);
     throw error;
   }
 };
-
-export default axiosInstance;
