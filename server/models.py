@@ -1,10 +1,13 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
+from sqlalchemy.orm import relationship
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
 
 class User(db.Model):
+    __tablename__ = 'users'
+    
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), unique=True, nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
@@ -24,19 +27,14 @@ class User(db.Model):
         return bcrypt.check_password_hash(self.pin_hash, pin)
 
 class Profile(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    profile_name = db.Column(db.String(120), nullable=True)
-    profile_image = db.Column(db.String(255))
-    interests = db.Column(db.String(255))
-    knowledge = db.Column(db.String(255))
-    saved_civilizations = db.Column(db.String(255))
+    __tablename__ = 'profiles'
 
-    def to_dict(self):
-        return {
-            'profile_name': self.profile_name,
-            'profile_image': self.profile_image,
-            'interests': self.interests,
-            'knowledge': self.knowledge,
-            'saved_civilizations': self.saved_civilizations
-        }
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    profile_name = db.Column(db.String(100))
+    profile_image = db.Column(db.String(200))
+    interests = db.Column(db.Text)
+    knowledge = db.Column(db.Text)
+    saved_civilizations = db.Column(db.Text)
+    
+    user = relationship("User", backref="profile", uselist=False)

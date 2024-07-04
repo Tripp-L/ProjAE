@@ -6,12 +6,18 @@ def seed_data():
         db.drop_all()
         db.create_all()
 
+        # Create example users
         user1 = User(username='user1', email='user1@example.com')
         user1.set_password('password1')
         user1.set_pin('1234')
 
+        # Add users to session and commit to database
+        db.session.add(user1)
+        db.session.commit()
+
+        # Create example profiles linked to users
         profile1 = Profile(
-            user_id=1,
+            user_id=user1.id,  # Assign the id of the created user
             profile_name='User One',
             profile_image='https://example.com/image1.jpg',
             interests='History, Archaeology',
@@ -19,7 +25,7 @@ def seed_data():
             saved_civilizations='Egypt, Mesopotamia'
         )
 
-        db.session.add(user1)
+        # Add profiles to session and commit to database
         db.session.add(profile1)
         db.session.commit()
 
