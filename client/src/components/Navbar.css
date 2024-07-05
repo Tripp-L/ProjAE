@@ -58,68 +58,6 @@
 }
 
 
-
-
-
-/* .navbar {
-    margin-top: 20px;
-    padding: 20px;
-    border: 2px solid #fff;
-    border-radius: 10px;
-    font-family: "Macondo", cursive;
-    font-weight: 400;
-    font-style: normal;
-  }
-  
-  .navbar .nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin: 0 15px;
-    transition: color 0.3s, transform 0.3s; 
-    border-style: hidden;
-    border-color: rgba(255, 193, 7, 0.7);
-    border: 10px;
-  }
-  
-  .navbar .nav-icon {
-    height: 180px; 
-    width: 200px;
-    border-style: solid;
-    border-color: rgba(255, 193, 7, 0.7);
-    border: 10px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 10px;
-    transition: transform 0.3s; 
-  }
-  
-  .navbar .nav-text {
-    display: block;
-    font-size: 2rem; 
-    color: rgba(255, 193, 7, 0.7); 
-    transition: color 0.3s; 
-  }
-  
-  .navbar .nav-item:hover .nav-icon {
-    transform: scale(1.1); 
-  }
-  
-  .navbar .nav-item:hover .nav-text {
-    color: rgba(255, 193, 7, 0.7); 
-    text-shadow: 4px 4px 8px rgba(255, 193, 7, 0.7); 
-  }
-  
-  .navbar .nav-item:hover {
-    color: rgba(255, 193, 7, 0.7); 
-    box-shadow: 7px 10px 14px rgba(255, 193, 7, 0.7); 
-  }
-
-  .navbar-nav .nav-link {
-    font-size: 30px; 
-  } */
-
   
   
   
