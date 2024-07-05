@@ -5,7 +5,7 @@ import './Navbar.css';
 
 import civilizationsIcon from '../assets/images/civ-icon.png';  
 import artifactsIcon from '../assets/images/artifacts-icon.png';  
-import timelineEventsIcon from '../assets/images/timeline-icon.png';  
+import eventsIcon from '../assets/images/timeline-icon.png';  
 import regionsIcon from '../assets/images/regions-icon.png';  
 
 const Navbar = () => {
@@ -20,9 +20,9 @@ const Navbar = () => {
           <img src={artifactsIcon} alt="Artifacts" className="nav-icon" />
           <span className="nav-text">Artifacts</span>
         </Link>
-        <Link to="/timeline-events" className="nav-item">
-          <img src={timelineEventsIcon} alt="Timeline Events" className="nav-icon" />
-          <span className="nav-text">Timeline Events</span>
+        <Link to="/events" className="nav-item">
+          <img src={eventsIcon} alt="Events" className="nav-icon" />
+          <span className="nav-text">Events</span>
         </Link>
         <Link to="/regions" className="nav-item">
           <img src={regionsIcon} alt="Regions" className="nav-icon" />
@@ -34,3 +34,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

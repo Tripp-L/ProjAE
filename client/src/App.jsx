@@ -11,7 +11,7 @@ import PinConfirm from './components/PinConfirm';
 import Civilizations from './components/Civilizations';
 import Events from './components/Events';
 import Regions from './components/Regions';
-import Artifacts from './components/Artifacts';  // Import Artifacts component
+import Artifacts from './components/Artifacts';
 import axios from 'axios';
 
 function App() {
@@ -102,11 +102,10 @@ function App() {
         <Route path="/civilizations" element={loggedIn ? <Civilizations /> : <Navigate to="/login" />} />
         <Route path="/events" element={loggedIn ? <Events /> : <Navigate to="/login" />} />
         <Route path="/regions" element={loggedIn ? <Regions /> : <Navigate to="/login" />} />
-        <Route path="/artifacts" element={loggedIn ? <Artifacts /> : <Navigate to="/login" />} />  {/* Add this line */}
+        <Route path="/artifacts" element={loggedIn ? <Artifacts /> : <Navigate to="/login" />} />
       </Routes>
     </div>
   );
 }
 
 export default App;
-
