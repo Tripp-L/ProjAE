@@ -1,25 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Home from './pages/Home';
-import Signup from './pages/Signup';
-import Login from './pages/Login';
-import Profile from './pages/Profile';
-import PinConfirm from './pages/PinConfirm';
-import Civilization from './pages/Civilization';
+import Header from './components/Header';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import Signup from './components/Signup';
+import Login from './components/Login';
+import Profile from './components/Profile';
+import PinConfirm from './components/PinConfirm';
+import Civilizations from './components/Civilizations';
+import Events from './components/Events';
+import Regions from './components/Regions';
 import axios from 'axios';
 
 function App() {
+  const location = useLocation();
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(false);
-  const [loading, setLoading] = useState(true); // Add a loading state
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const checkLoginStatus = async () => {
       const accessToken = localStorage.getItem('access_token');
       if (accessToken) {
         try {
-          await axios.get('/auth/profile', {
+          const response = await axios.get('/auth/profile', {
             headers: {
               Authorization: `Bearer ${accessToken}`
             }
@@ -43,13 +48,13 @@ function App() {
               navigate('/login');
             }
           } else if (error.response && error.response.status === 404) {
-            setLoggedIn(true); // No profile exists, but the user is still logged in
+            setLoggedIn(true);
           }
         }
       } else {
         setLoggedIn(false);
       }
-      setLoading(false); // Update the loading state
+      setLoading(false);
     };
     checkLoginStatus();
   }, [navigate]);
@@ -75,22 +80,30 @@ function App() {
   };
 
   if (loading) {
-    return <div>Loading...</div>; // Show a loading indicator while checking login status
+    return <div>Loading...</div>;
   }
 
   return (
     <div>
+      {location.pathname !== '/signup' && location.pathname !== '/login' && location.pathname !== '/pin-confirm' && (
+        <>
+          <Header loggedIn={loggedIn} profile={null} onLogout={handleLogout} />
+          <Navbar />
+        </>
+      )}
+      
       <Routes>
         <Route path="/" element={loggedIn ? <Home onLogout={handleLogout} /> : <Navigate to="/login" />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
         <Route path="/pin-confirm" element={<PinConfirm onPinConfirmSuccess={handlePinConfirmSuccess} />} />
         <Route path="/profile" element={<Profile onProfileCompletion={handleProfileCompletion} />} />
-        <Route path="/civilization/:id" element={<Civilization />} />
+        <Route path="/civilizations" element={<Civilizations />} />
+        <Route path="/events" element={<Events />} />
+        <Route path="/regions" element={<Regions />} />
       </Routes>
     </div>
   );
 }
 
 export default App;
-

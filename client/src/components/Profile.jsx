@@ -50,8 +50,8 @@ function Profile({ onProfileCompletion }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const endpoint = profileExists ? '/auth/profile' : '/auth/profile';
-      const method = profileExists ? 'patch' : 'post';
+      const endpoint = '/auth/profile';
+      const method = profileExists ? 'PATCH' : 'POST';
 
       await axios({
         method: method,

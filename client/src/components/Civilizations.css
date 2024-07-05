@@ -1,0 +1,54 @@
+.card-custom {
+    font-size: 1.5rem; /* Adjust the font size as needed */
+    border: 3px solid rgba(255, 193, 7, 0.7); /* Thicker border */
+    transition: transform 0.2s, box-shadow 0.2s; /* Smooth transition for hover effect */
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container-custom {
+    padding: 20px; /* Add padding to the container */
+}
+
+.row-custom {
+    margin: 0 -270px; /* Negative margin to counteract padding on Col */
+}
+
+.col-custom {
+    padding: 0 25px; /* Add padding to columns for spacing */
+}
+  
+  .card-custom:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 10px 13px 16px rgba(255, 193, 7, 0.7); /* Background shadow */
+  }
+  
+  .card-img-top {
+    height: 270px; /* Fixed height for images */
+    object-fit: cover; /* Ensure image covers the area */
+  }
+  
+  .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .links-container {
+    margin-top: 10px;
+  }
+  
+  .expanded .card-body {
+    max-height: none; /* Allows full content to be visible when expanded */
+  }
+
+  .expanded-content {
+    max-height: 1000px; /* Allow for expansion */
+    transition: max-height 0.5s ease-in-out;
+  }
+
+  .expanded .card-custom {
+    border-color: rgba(255, 193, 7, 0.7); /* Change border color when expanded */
+  }
