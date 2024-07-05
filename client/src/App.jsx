@@ -11,6 +11,7 @@ import PinConfirm from './components/PinConfirm';
 import Civilizations from './components/Civilizations';
 import Events from './components/Events';
 import Regions from './components/Regions';
+import Artifacts from './components/Artifacts';  // Import Artifacts component
 import axios from 'axios';
 
 function App() {
@@ -98,12 +99,14 @@ function App() {
         <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
         <Route path="/pin-confirm" element={<PinConfirm onPinConfirmSuccess={handlePinConfirmSuccess} />} />
         <Route path="/profile" element={<Profile onProfileCompletion={handleProfileCompletion} />} />
-        <Route path="/civilizations" element={<Civilizations />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/regions" element={<Regions />} />
+        <Route path="/civilizations" element={loggedIn ? <Civilizations /> : <Navigate to="/login" />} />
+        <Route path="/events" element={loggedIn ? <Events /> : <Navigate to="/login" />} />
+        <Route path="/regions" element={loggedIn ? <Regions /> : <Navigate to="/login" />} />
+        <Route path="/artifacts" element={loggedIn ? <Artifacts /> : <Navigate to="/login" />} />  {/* Add this line */}
       </Routes>
     </div>
   );
 }
 
 export default App;
+
