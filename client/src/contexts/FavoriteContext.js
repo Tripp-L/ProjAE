@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const FavoriteContext = createContext();
 
@@ -6,24 +6,40 @@ export const useFavorites = () => {
     return useContext(FavoriteContext);
 };
 
-export const FavoriteProvider = ({ children }) => {
-    const [favorites, setFavorites] = useState([]);
+const FavoriteProvider = ({ children }) => {
+    const [favorites, setFavorites] = useState({
+        civilizations: [],
+        events: [],
+        artifacts: []
+    });
 
     useEffect(() => {
-        const savedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
-        setFavorites(savedFavorites);
+        const storedFavorites = localStorage.getItem('favorites');
+        if (storedFavorites) {
+            setFavorites(JSON.parse(storedFavorites));
+        }
     }, []);
 
-    useEffect(() => {
-        localStorage.setItem('favorites', JSON.stringify(favorites));
-    }, [favorites]);
-
-    const addFavorite = (item) => {
-        setFavorites((prevFavorites) => [...prevFavorites, item]);
+    const addFavorite = (item, type) => {
+        setFavorites((prevFavorites) => {
+            const updatedFavorites = {
+                ...prevFavorites,
+                [type]: [...prevFavorites[type], item]
+            };
+            localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+            return updatedFavorites;
+        });
     };
 
-    const removeFavorite = (id) => {
-        setFavorites((prevFavorites) => prevFavorites.filter((item) => item.id !== id));
+    const removeFavorite = (id, type) => {
+        setFavorites((prevFavorites) => {
+            const updatedFavorites = {
+                ...prevFavorites,
+                [type]: prevFavorites[type].filter(item => item.id !== id)
+            };
+            localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+            return updatedFavorites;
+        });
     };
 
     return (
@@ -32,3 +48,7 @@ export const FavoriteProvider = ({ children }) => {
         </FavoriteContext.Provider>
     );
 };
+
+export default FavoriteProvider;
+
+

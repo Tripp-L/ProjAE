@@ -13,7 +13,7 @@ import Events from './components/Events';
 import Regions from './components/Regions';
 import Artifacts from './components/Artifacts';
 import axios from 'axios';
-import { FavoriteProvider } from './contexts/FavoriteContext';
+import FavoriteProvider from './contexts/FavoriteContext';
 
 function App() {
   const location = useLocation();

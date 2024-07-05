@@ -73,66 +73,70 @@ const initialEvents = [
 ];
 
 const Events = () => {
-  const { favorites, addFavorite, removeFavorite } = useFavorites();
-  const [events, setEvents] = useState(initialEvents);
-  const [expandedEventId, setExpandedEventId] = useState(null);
+    const { favorites, addFavorite, removeFavorite } = useFavorites();
+    const [events, setEvents] = useState(initialEvents);
+    const [expandedEventId, setExpandedEventId] = useState(null);
 
-  const handleExpand = (id) => {
-      if (expandedEventId === id) {
-          setExpandedEventId(null);
-      } else {
-          setExpandedEventId(id);
-      }
-  };
+    const handleExpand = (id) => {
+        if (expandedEventId === id) {
+            setExpandedEventId(null);
+        } else {
+            setExpandedEventId(id);
+        }
+    };
 
-  const isFavorite = (id) => favorites.some(item => item.id === id);
+    const isFavorite = (id) => favorites.events.some(item => item.id === id);
 
-  return (
-      <Container className="container-custom">
-          <Row className="mt-4 row-custom">
-              {events.map(event => (
-                  <Col key={event.id} xs={12} sm={6} md={4} lg={3} className="mb-4 col-custom">
-                      <Card
-                          className={`mb-3 card-custom ${expandedEventId === event.id ? 'expanded' : ''}`}
-                          onClick={() => handleExpand(event.id)}
-                      >
-                          <Card.Img variant="top" src={event.imageurl} className="card-img-top" />
-                          <Card.Body>
-                              <Card.Title>{event.name}</Card.Title>
-                              <Card.Text>{event.date}</Card.Text>
-                              {expandedEventId === event.id && (
-                                  <div className="expanded-content">
-                                      <Card.Text>{event.description}</Card.Text>
-                                      <div className="mb-3">
-                                          <h5>Civilization:</h5>
-                                          <p>{event.civilization}</p>
-                                          <h5>Details:</h5>
-                                          <p>{event.details}</p>
-                                          <div className="links-container">
-                                              <Link to={`/events`}>Events</Link>
-                                              <span> | </span>
-                                              <Link to={`/artifacts`}>Artifacts</Link>
-                                              <span> | </span>
-                                              <Link to={`/regions/${event.id}`}>Regions</Link>
-                                          </div>
-                                          <button
-                                              onClick={(e) => {
-                                                  e.stopPropagation();
-                                                  isFavorite(event.id) ? removeFavorite(event.id) : addFavorite({ ...event, type: 'events' });
-                                              }}
-                                          >
-                                              {isFavorite(event.id) ? 'Unsave' : 'Save'}
-                                          </button>
-                                      </div>
-                                  </div>
-                              )}
-                          </Card.Body>
-                      </Card>
-                  </Col>
-              ))}
-          </Row>
-      </Container>
-  );
+    return (
+        <Container className="container-custom">
+            <Row className="mt-4 row-custom">
+                {events.map(event => (
+                    <Col key={event.id} xs={12} sm={6} md={4} lg={3} className="mb-4 col-custom">
+                        <Card
+                            className={`mb-3 card-custom ${expandedEventId === event.id ? 'expanded' : ''}`}
+                            onClick={() => handleExpand(event.id)}
+                        >
+                            <Card.Img variant="top" src={event.imageurl} className="card-img-top" />
+                            <Card.Body>
+                                <Card.Title>{event.name}</Card.Title>
+                                <Card.Text>{event.date}</Card.Text>
+                                {expandedEventId === event.id && (
+                                    <div className="expanded-content">
+                                        <Card.Text>{event.description}</Card.Text>
+                                        <div className="mb-3">
+                                            <h5>Civilization:</h5>
+                                            <p>{event.civilization}</p>
+                                            <h5>Details:</h5>
+                                            <p>{event.details}</p>
+                                            <div className="links-container">
+                                                <Link to={`/events`}>Events</Link>
+                                                <span> | </span>
+                                                <Link to={`/artifacts`}>Artifacts</Link>
+                                                <span> | </span>
+                                                <Link to={`/regions/${event.id}`}>Regions</Link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                                <Link
+                                    to="#"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        isFavorite(event.id)
+                                            ? removeFavorite(event.id, 'events')
+                                            : addFavorite(event, 'events');
+                                    }}
+                                    className="favorite-link"
+                                >
+                                    {isFavorite(event.id) ? 'Remove from Favorites' : 'Add to Favorites'}
+                                </Link>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                ))}
+            </Row>
+        </Container>
+    );
 };
 
 export default Events;

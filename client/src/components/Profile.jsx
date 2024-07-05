@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom';
-import logo from '../assets/images/AncientEchoes.png';
+import { Link } from 'react-router-dom';
 import { useFavorites } from '../contexts/FavoriteContext';
+import axios from 'axios';
+import logo from '../assets/images/AncientEchoes.png';
 import './Profile.css';
 
 function Profile({ onProfileCompletion }) {
-  const [formData, setFormData] = useState({
+  const { favorites } = useFavorites();
+  const [profileData, setProfileData] = useState({
     profileName: '',
     profileImage: '',
     interests: '',
     knowledge: '',
-    savedCivilizations: ''
   });
   const [profileExists, setProfileExists] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [message, setMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const navigate = useNavigate();
-  const { favorites } = useFavorites();
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -28,13 +26,13 @@ function Profile({ onProfileCompletion }) {
             Authorization: `Bearer ${localStorage.getItem('access_token')}`
           }
         });
-        setFormData(response.data);
+        setProfileData(response.data);
         setProfileExists(true);
       } catch (error) {
         if (error.response && error.response.status === 404) {
           setProfileExists(false);
         } else {
-          console.log('Error fetching profile:', error);
+          console.error('Error fetching profile:', error);
         }
       }
     };
@@ -43,8 +41,8 @@ function Profile({ onProfileCompletion }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setProfileData({
+      ...profileData,
       [name]: value,
     });
   };
@@ -58,7 +56,7 @@ function Profile({ onProfileCompletion }) {
       await axios({
         method: method,
         url: endpoint,
-        data: formData,
+        data: profileData,
         headers: {
           Authorization: `Bearer ${localStorage.getItem('access_token')}`
         }
@@ -73,10 +71,6 @@ function Profile({ onProfileCompletion }) {
     }
   };
 
-  const handleSkip = () => {
-    navigate('/');
-  };
-
   const handleDelete = async () => {
     try {
       await axios.delete('/auth/profile', {
@@ -85,19 +79,22 @@ function Profile({ onProfileCompletion }) {
         }
       });
       setMessage('Profile deleted successfully!');
-      setFormData({
+      setProfileData({
         profileName: '',
         profileImage: '',
         interests: '',
         knowledge: '',
-        savedCivilizations: ''
       });
       setProfileExists(false);
-      navigate('/');
+      onProfileCompletion();
     } catch (error) {
       console.error('Error deleting profile:', error.response);
       setErrorMessage(error.response?.data?.message || 'Profile deletion failed. Please try again.');
     }
+  };
+
+  const handleSkip = () => {
+    onProfileCompletion();
   };
 
   const handleEdit = () => {
@@ -113,14 +110,14 @@ function Profile({ onProfileCompletion }) {
         {message && <p className="success-message">{message}</p>}
         {isEditing ? (
           <form onSubmit={handleSubmit}>
-            <img src={formData.profileImage} alt="Profile" className="profile-image-large" />
+            <img src={profileData.profileImage} alt="Profile" className="profile-image-large" />
             <div className="form-group">
               <label htmlFor="profileName">Profile Name</label>
               <input
                 type="text"
                 id="profileName"
                 name="profileName"
-                value={formData.profileName}
+                value={profileData.profileName}
                 onChange={handleChange}
               />
             </div>
@@ -130,7 +127,7 @@ function Profile({ onProfileCompletion }) {
                 type="text"
                 id="profileImage"
                 name="profileImage"
-                value={formData.profileImage}
+                value={profileData.profileImage}
                 onChange={handleChange}
               />
             </div>
@@ -139,7 +136,7 @@ function Profile({ onProfileCompletion }) {
               <textarea
                 id="interests"
                 name="interests"
-                value={formData.interests}
+                value={profileData.interests}
                 onChange={handleChange}
               />
             </div>
@@ -148,16 +145,7 @@ function Profile({ onProfileCompletion }) {
               <textarea
                 id="knowledge"
                 name="knowledge"
-                value={formData.knowledge}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="savedCivilizations">Saved Civilizations</label>
-              <textarea
-                id="savedCivilizations"
-                name="savedCivilizations"
-                value={formData.savedCivilizations}
+                value={profileData.knowledge}
                 onChange={handleChange}
               />
             </div>
@@ -171,28 +159,48 @@ function Profile({ onProfileCompletion }) {
           </form>
         ) : (
           <div className="profile-view">
-            <img src={formData.profileImage} alt="Profile" className="profile-image-large" />
+            <img src={profileData.profileImage} alt="Profile" className="profile-image-large" />
             <div className="profile-group">
               <label>Profile Name:</label>
-              <p>{formData.profileName}</p>
+              <p>{profileData.profileName}</p>
             </div>
             <div className="profile-group">
               <label>Interests:</label>
-              <p>{formData.interests}</p>
+              <p>{profileData.interests}</p>
             </div>
             <div className="profile-group">
               <label>What You Want to Know More About:</label>
-              <p>{formData.knowledge}</p>
+              <p>{profileData.knowledge}</p>
             </div>
             <div className="profile-group">
-              <label>Saved Civilizations:</label>
-              <div>
-                {favorites.map((favorite) => (
-                  <div key={favorite.id}>
-                    <Link to={`/${favorite.type}/${favorite.id}`}>{favorite.name}</Link>
-                  </div>
+              <label>Civilizations:</label>
+              <ul>
+                {(favorites.civilizations || []).map((item) => (
+                  <li key={item.id}>
+                    <Link to={`/civilizations/${item.id}`}>{item.name}</Link>
+                  </li>
                 ))}
-              </div>
+              </ul>
+            </div>
+            <div className="profile-group">
+              <label>Events:</label>
+              <ul>
+                {(favorites.events || []).map((item) => (
+                  <li key={item.id}>
+                    <Link to={`/events/${item.id}`}>{item.name}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="profile-group">
+              <label>Artifacts:</label>
+              <ul>
+                {(favorites.artifacts || []).map((item) => (
+                  <li key={item.id}>
+                    <Link to={`/artifacts/${item.id}`}>{item.name}</Link>
+                  </li>
+                ))}
+              </ul>
             </div>
             <button type="button" className="btn btn-primary" onClick={handleEdit}>Edit Profile</button>
             <button type="button" className="btn btn-secondary" onClick={handleSkip}>Skip</button>

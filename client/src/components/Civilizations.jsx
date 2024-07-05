@@ -410,7 +410,7 @@ const Civilizations = () => {
         }
     };
 
-    const isFavorite = (id) => favorites.some(item => item.id === id);
+    const isFavorite = (id) => favorites.civilizations.some(item => item.id === id);
 
     return (
         <Container className="container-custom">
@@ -452,17 +452,21 @@ const Civilizations = () => {
                                                 <span> | </span>
                                                 <Link to={`/regions/${civilization.id}`}>Regions</Link>
                                             </div>
-                                            <button
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    isFavorite(civilization.id) ? removeFavorite(civilization.id) : addFavorite({ ...civilization, type: 'civilizations' });
-                                                }}
-                                            >
-                                                {isFavorite(civilization.id) ? 'Unsave' : 'Save'}
-                                            </button>
                                         </div>
                                     </div>
                                 )}
+                                <Link
+                                    to="#"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        isFavorite(civilization.id)
+                                            ? removeFavorite(civilization.id, 'civilizations')
+                                            : addFavorite(civilization, 'civilizations');
+                                    }}
+                                    className="favorite-link"
+                                >
+                                    {isFavorite(civilization.id) ? 'Remove from Favorites' : 'Add to Favorites'}
+                                </Link>
                             </Card.Body>
                         </Card>
                     </Col>

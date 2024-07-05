@@ -92,7 +92,7 @@ const Artifacts = () => {
         }
     };
 
-    const isFavorite = (id) => favorites.some(item => item.id === id);
+    const isFavorite = (id) => favorites.artifacts.some(item => item.id === id);
 
     return (
         <Container className="container-custom">
@@ -111,6 +111,8 @@ const Artifacts = () => {
                                     <div className="expanded-content">
                                         <Card.Text>{artifact.description}</Card.Text>
                                         <div className="mb-3">
+                                            <h5>Civilization:</h5>
+                                            <p>{artifact.civilization}</p>
                                             <h5>Details:</h5>
                                             <p>{artifact.details}</p>
                                             <div className="links-container">
@@ -120,17 +122,21 @@ const Artifacts = () => {
                                                 <span> | </span>
                                                 <Link to={`/regions/${artifact.id}`}>Regions</Link>
                                             </div>
-                                            <button
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    isFavorite(artifact.id) ? removeFavorite(artifact.id) : addFavorite({ ...artifact, type: 'artifacts' });
-                                                }}
-                                            >
-                                                {isFavorite(artifact.id) ? 'Unsave' : 'Save'}
-                                            </button>
                                         </div>
                                     </div>
                                 )}
+                                <Link
+                                    to="#"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        isFavorite(artifact.id)
+                                            ? removeFavorite(artifact.id, 'artifacts')
+                                            : addFavorite(artifact, 'artifacts');
+                                    }}
+                                    className="favorite-link"
+                                >
+                                    {isFavorite(artifact.id) ? 'Remove from Favorites' : 'Add to Favorites'}
+                                </Link>
                             </Card.Body>
                         </Card>
                     </Col>
