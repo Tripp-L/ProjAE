@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Card, Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useFavorites } from '../contexts/FavoriteContext';
+import './Events.css';
 
 const initialEvents = [
     {
@@ -71,6 +73,7 @@ const initialEvents = [
 ];
 
 const Events = () => {
+  const { favorites, addFavorite, removeFavorite } = useFavorites();
   const [events, setEvents] = useState(initialEvents);
   const [expandedEventId, setExpandedEventId] = useState(null);
 
@@ -81,6 +84,8 @@ const Events = () => {
           setExpandedEventId(id);
       }
   };
+
+  const isFavorite = (id) => favorites.some(item => item.id === id);
 
   return (
       <Container className="container-custom">
@@ -110,6 +115,14 @@ const Events = () => {
                                               <span> | </span>
                                               <Link to={`/regions/${event.id}`}>Regions</Link>
                                           </div>
+                                          <button
+                                              onClick={(e) => {
+                                                  e.stopPropagation();
+                                                  isFavorite(event.id) ? removeFavorite(event.id) : addFavorite({ ...event, type: 'events' });
+                                              }}
+                                          >
+                                              {isFavorite(event.id) ? 'Unsave' : 'Save'}
+                                          </button>
                                       </div>
                                   </div>
                               )}

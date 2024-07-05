@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Card, Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useFavorites } from '../contexts/FavoriteContext';
 import './Civilizations.css';
 
 const initialCivilizations = [
@@ -397,7 +398,8 @@ const initialCivilizations = [
 ];
 
 const Civilizations = () => {
-    const [civilizations] = useState(initialCivilizations);
+    const { favorites, addFavorite, removeFavorite } = useFavorites();
+    const [civilizations, setCivilizations] = useState(initialCivilizations);
     const [expandedCivilizationId, setExpandedCivilizationId] = useState(null);
 
     const handleExpand = (id) => {
@@ -407,6 +409,8 @@ const Civilizations = () => {
             setExpandedCivilizationId(id);
         }
     };
+
+    const isFavorite = (id) => favorites.some(item => item.id === id);
 
     return (
         <Container className="container-custom">
@@ -448,6 +452,14 @@ const Civilizations = () => {
                                                 <span> | </span>
                                                 <Link to={`/regions/${civilization.id}`}>Regions</Link>
                                             </div>
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    isFavorite(civilization.id) ? removeFavorite(civilization.id) : addFavorite({ ...civilization, type: 'civilizations' });
+                                                }}
+                                            >
+                                                {isFavorite(civilization.id) ? 'Unsave' : 'Save'}
+                                            </button>
                                         </div>
                                     </div>
                                 )}

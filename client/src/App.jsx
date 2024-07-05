@@ -13,6 +13,7 @@ import Events from './components/Events';
 import Regions from './components/Regions';
 import Artifacts from './components/Artifacts';
 import axios from 'axios';
+import { FavoriteProvider } from './contexts/FavoriteContext';
 
 function App() {
   const location = useLocation();
@@ -85,27 +86,31 @@ function App() {
   }
 
   return (
-    <div>
-      {location.pathname !== '/signup' && location.pathname !== '/login' && location.pathname !== '/pin-confirm' && (
-        <>
-          <Header loggedIn={loggedIn} profile={null} onLogout={handleLogout} />
-          <Navbar />
-        </>
-      )}
-      
-      <Routes>
-        <Route path="/" element={loggedIn ? <Home onLogout={handleLogout} /> : <Navigate to="/login" />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
-        <Route path="/pin-confirm" element={<PinConfirm onPinConfirmSuccess={handlePinConfirmSuccess} />} />
-        <Route path="/profile" element={<Profile onProfileCompletion={handleProfileCompletion} />} />
-        <Route path="/civilizations" element={loggedIn ? <Civilizations /> : <Navigate to="/login" />} />
-        <Route path="/events" element={loggedIn ? <Events /> : <Navigate to="/login" />} />
-        <Route path="/regions" element={loggedIn ? <Regions /> : <Navigate to="/login" />} />
-        <Route path="/artifacts" element={loggedIn ? <Artifacts /> : <Navigate to="/login" />} />
-      </Routes>
-    </div>
+    <FavoriteProvider>
+      <div>
+        {location.pathname !== '/signup' && location.pathname !== '/login' && location.pathname !== '/pin-confirm' && (
+          <>
+            <Header loggedIn={loggedIn} profile={null} onLogout={handleLogout} />
+            <Navbar />
+          </>
+        )}
+        
+        <Routes>
+          <Route path="/" element={loggedIn ? <Home onLogout={handleLogout} /> : <Navigate to="/login" />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
+          <Route path="/pin-confirm" element={<PinConfirm onPinConfirmSuccess={handlePinConfirmSuccess} />} />
+          <Route path="/profile" element={<Profile onProfileCompletion={handleProfileCompletion} />} />
+          <Route path="/civilizations" element={loggedIn ? <Civilizations /> : <Navigate to="/login" />} />
+          <Route path="/events" element={loggedIn ? <Events /> : <Navigate to="/login" />} />
+          <Route path="/regions" element={loggedIn ? <Regions /> : <Navigate to="/login" />} />
+          <Route path="/artifacts" element={loggedIn ? <Artifacts /> : <Navigate to="/login" />} />
+        </Routes>
+      </div>
+    </FavoriteProvider>
   );
 }
 
 export default App;
+
+

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import logo from '../assets/images/AncientEchoes.png';
+import { useFavorites } from '../contexts/FavoriteContext';
 import './Profile.css';
 
 function Profile({ onProfileCompletion }) {
@@ -17,6 +18,7 @@ function Profile({ onProfileCompletion }) {
   const [message, setMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
+  const { favorites } = useFavorites();
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -184,7 +186,13 @@ function Profile({ onProfileCompletion }) {
             </div>
             <div className="profile-group">
               <label>Saved Civilizations:</label>
-              <p>{formData.savedCivilizations}</p>
+              <div>
+                {favorites.map((favorite) => (
+                  <div key={favorite.id}>
+                    <Link to={`/${favorite.type}/${favorite.id}`}>{favorite.name}</Link>
+                  </div>
+                ))}
+              </div>
             </div>
             <button type="button" className="btn btn-primary" onClick={handleEdit}>Edit Profile</button>
             <button type="button" className="btn btn-secondary" onClick={handleSkip}>Skip</button>

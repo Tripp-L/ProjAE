@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Card, Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useFavorites } from '../contexts/FavoriteContext';
 import './Artifacts.css';
 
 const initialArtifacts = [
@@ -79,6 +80,7 @@ const initialArtifacts = [
 ];
 
 const Artifacts = () => {
+    const { favorites, addFavorite, removeFavorite } = useFavorites();
     const [artifacts, setArtifacts] = useState(initialArtifacts);
     const [expandedArtifactId, setExpandedArtifactId] = useState(null);
 
@@ -89,6 +91,8 @@ const Artifacts = () => {
             setExpandedArtifactId(id);
         }
     };
+
+    const isFavorite = (id) => favorites.some(item => item.id === id);
 
     return (
         <Container className="container-custom">
@@ -107,8 +111,6 @@ const Artifacts = () => {
                                     <div className="expanded-content">
                                         <Card.Text>{artifact.description}</Card.Text>
                                         <div className="mb-3">
-                                            <h5>Civilization:</h5>
-                                            <p>{artifact.civilization}</p>
                                             <h5>Details:</h5>
                                             <p>{artifact.details}</p>
                                             <div className="links-container">
@@ -118,6 +120,14 @@ const Artifacts = () => {
                                                 <span> | </span>
                                                 <Link to={`/regions/${artifact.id}`}>Regions</Link>
                                             </div>
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    isFavorite(artifact.id) ? removeFavorite(artifact.id) : addFavorite({ ...artifact, type: 'artifacts' });
+                                                }}
+                                            >
+                                                {isFavorite(artifact.id) ? 'Unsave' : 'Save'}
+                                            </button>
                                         </div>
                                     </div>
                                 )}
