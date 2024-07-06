@@ -1,0 +1,23 @@
+.globe-container { /* Container for the globe */
+    width: 800px; 
+    height: 400px;
+  }
+  
+  .react-globe { /* Style the globe itself */
+    fill: #222; /* Dark blue fill color */
+  }
+  
+  .react-globe__marker { /* Style the markers */
+    fill: orange;
+    stroke: white;
+  }
+  
+  /* Other potential styles */
+  .react-globe__rings { /* Style rings around the globe */
+    stroke: #ccc; 
+    stroke-width: 0.5px;
+  }
+  
+  .react-globe__glow { /* Style the atmospheric glow */
+    opacity: 2;
+  }

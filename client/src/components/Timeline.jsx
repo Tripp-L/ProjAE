@@ -274,9 +274,10 @@ const TimelineComponent = () => {
         <div style={{ width: "100%", height: "800px" }}>
             <Chrono
                 items={combinedItems}
+                slideShow
+                slideItemDuration={3000}
                 mode="HORIZONTAL"
                 cardHeight={250}
-                scrollable={{ scrollbar: true }}
             />
         </div>
     );

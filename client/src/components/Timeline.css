@@ -1,22 +1,29 @@
-.chrono-icons {
-    display: none;
+.chrono-list {
+  display: flex;
+  overflow-x: auto;
+  padding: 30px;  /* More padding for better spacing */
 }
 
-.chrono-timeline {
-    margin: auto;
+.chrono-item {
+  margin: 0 40px; /* Increased spacing between items */
 }
 
-.chrono-icons .chrono-icons-circle {
-    background: #e6e6e6;
+.chrono-card-title {
+  font-size: 1.2rem;  /* Larger title font */
+  font-weight: bold;
 }
 
-.chrono-icons .chrono-icons-circle img {
-    filter: grayscale(100%);
+.chrono-card-subtitle {
+  font-size: 1rem;  /* Increased subtitle font */
+  color: #555;
 }
 
-.chrono-card {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+.chrono-card-content p {
+  font-size: 1rem; /* Increased text font */
+  line-height: 1.6; /* Better readability */
+}
+
+.chrono-card-media img {
+  max-height: 180px; /* Adjust for optimal image display */
+  object-fit: cover; 
 }
