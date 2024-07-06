@@ -2,7 +2,7 @@ import openai
 import json
 import os
 
-openai.api_key = os.getenv("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")  
+openai.api_key = os.getenv("")  
 def get_historical_event(civilization):
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
