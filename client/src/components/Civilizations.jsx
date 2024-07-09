@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { Card, Container, Row, Col, Modal } from 'react-bootstrap';  
+import React, { useState } from 'react';
+import { Card, Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useFavorites } from '../contexts/FavoriteContext';
-import Regions from './Regions'; 
 import './Civilizations.css';
+
+
 
 const initialCivilizations = [
     {
@@ -13,6 +14,8 @@ const initialCivilizations = [
         imageurl: "https://images.nationalgeographic.org/image/upload/t_edhub_resource_key_image/v1638892506/EducationHub/photos/the-great-wall-of-china.jpg",
         dates: "2070 BC – 1912 AD",
         regions: "China, East Asia",
+        latitude: 35.8617,
+        longitude: 104.1954,
         leaders: [
             {
                 name: "Qin Shi Huang",
@@ -398,6 +401,7 @@ const initialCivilizations = [
     }
 ];
 
+
 const Civilizations = () => {
     const { favorites, addFavorite, removeFavorite } = useFavorites();
     const [civilizations, setCivilizations] = useState(initialCivilizations);
@@ -451,16 +455,8 @@ const Civilizations = () => {
                                                 <span> | </span>
                                                 <Link to={`/artifacts`}>Artifacts</Link>
                                                 <span> | </span>
-                                                <Link to="#" onClick={() => handleExpand(civilization.id)}>Regions</Link> 
-                                                <Modal show={expandedCivilizationId === civilization.id} onHide={() => handleExpand(civilization.id)}>
-                                                    <Modal.Header closeButton>
-                                                        <Modal.Title>{civilization.name} - Regions</Modal.Title>
-                                                    </Modal.Header>
-                                                    <Modal.Body style={{ height: '500px' }}>
-                                                        <Regions civilizations={[civilization]} /> {/* Pass the current civilization data */}
-                                                    </Modal.Body>
-                                                </Modal>                                            
-                                            </div>                                            
+                                                <Link to={`/regions/${civilization.id}`}>Regions</Link>
+                                            </div>
                                         </div>
                                     </div>
                                 )}

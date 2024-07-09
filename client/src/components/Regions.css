@@ -8,8 +8,8 @@
   }
   
   .react-globe__marker { /* Style the markers */
-    fill: orange;
-    stroke: white;
+    fill: rgba(255, 193, 7, 0.7);
+    stroke: rgba(255, 193, 7, 0.7);
   }
   
   /* Other potential styles */
@@ -19,5 +19,59 @@
   }
   
   .react-globe__glow { /* Style the atmospheric glow */
-    opacity: 2;
+    opacity: 10;
   }
+
+  .info-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 20px; /* Increased padding for more space */
+    background-color: white;
+    border: 3px solid rgba(255, 193, 7, 0.7);
+    border-radius: 10px; /* Increased border radius for smoother corners */
+    z-index: 1000;
+    max-width: 550px; /* Increased max width */
+    box-shadow: 10px 13px 16px rgba(255, 193, 7, 0.7); /* Box shadow for elevation */
+    font-size: 35px;
+  }
+  
+  .info-container:hover {
+    transform: translateY(-5px);
+    border: 3px solid rgba(255, 193, 7, 0.7);
+    box-shadow: 20px 26px 32px rgba(255, 193, 7, 0.7); /* Larger shadow on hover */
+  }
+  
+  .info-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 5px; /* Optional: Add some radius to the image */
+  }
+  
+  .info-container h2 {
+    margin-top: 0;
+  }
+  
+  .info-container p {
+    margin: 10px 0;
+  }
+  
+  .info-container button {
+    background-color: rgba(255, 193, 7, 0.7);
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: rgba(255, 193, 7, 0.7);
+  }
+  
+  .info-container button:hover {
+    background-color: rgba(255, 193, 7, 0.7);
+    border: 3px solid rgba(255, 193, 7, 0.7);
+    transform: translateY(-5px);
+    box-shadow: 10px 13px 16px rgba(255, 193, 7, 0.7);
+  }
+  

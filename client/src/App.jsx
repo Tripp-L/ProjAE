@@ -103,6 +103,7 @@ function App() {
           <Route path="/profile" element={<Profile onProfileCompletion={handleProfileCompletion} />} />
           <Route path="/civilizations" element={loggedIn ? <Civilizations /> : <Navigate to="/login" />} />
           <Route path="/events" element={loggedIn ? <Events /> : <Navigate to="/login" />} />
+          <Route path="/regions/:id" element={loggedIn ? <Regions /> : <Navigate to="/login" />} />
           <Route path="/regions" element={loggedIn ? <Regions /> : <Navigate to="/login" />} />
           <Route path="/artifacts" element={loggedIn ? <Artifacts /> : <Navigate to="/login" />} />
         </Routes>
@@ -112,5 +113,3 @@ function App() {
 }
 
 export default App;
-
-
