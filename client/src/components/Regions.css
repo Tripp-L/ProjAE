@@ -1,77 +1,133 @@
-.globe-container { /* Container for the globe */
-    width: 800px; 
-    height: 400px;
-  }
-  
-  .react-globe { /* Style the globe itself */
-    fill: #222; /* Dark blue fill color */
-  }
-  
-  .react-globe__marker { /* Style the markers */
-    fill: rgba(255, 193, 7, 0.7);
-    stroke: rgba(255, 193, 7, 0.7);
-  }
-  
-  /* Other potential styles */
-  .react-globe__rings { /* Style rings around the globe */
-    stroke: #ccc; 
-    stroke-width: 0.5px;
-  }
-  
-  .react-globe__glow { /* Style the atmospheric glow */
-    opacity: 10;
-  }
+.globe-container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
 
-  .info-container {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    padding: 20px; /* Increased padding for more space */
-    background-color: white;
-    border: 3px solid rgba(255, 193, 7, 0.7);
-    border-radius: 10px; /* Increased border radius for smoother corners */
-    z-index: 1000;
-    max-width: 550px; /* Increased max width */
-    box-shadow: 10px 13px 16px rgba(255, 193, 7, 0.7); /* Box shadow for elevation */
-    font-size: 35px;
+
+.react-globe__marker {
+  /* Style the markers */
+  fill: rgba(255, 193, 7, 0.7);
+  stroke: rgba(255, 193, 7, 0.7);
+}
+
+.react-globe__rings {
+  /* Style rings around the globe */
+  stroke: #00ff00; /* Bright green stroke color */
+  stroke-width: 2px; /* Increase stroke width for better visibility */
+  stroke-dasharray: 5, 5; /* Create a dashed line effect */
+  opacity: 0.7; /* Add some transparency */
+  animation: rotateRings 10s linear infinite; /* Animate the rings */
+}
+
+@keyframes rotateRings {
+  from {
+    transform: rotate(0deg);
   }
-  
-  .info-container:hover {
-    transform: translateY(-5px);
-    border: 3px solid rgba(255, 193, 7, 0.7);
-    box-shadow: 20px 26px 32px rgba(255, 193, 7, 0.7); /* Larger shadow on hover */
+  to {
+    transform: rotate(360deg);
   }
-  
-  .info-image {
-    width: 100%;
-    height: auto;
-    margin-bottom: 10px;
-    border-radius: 5px; /* Optional: Add some radius to the image */
+}
+
+.react-globe__glow {
+  /* Style the atmospheric glow */
+  opacity: 0.8; /* Make the glow more visible */
+  filter: blur(10px); /* Add a blur effect for a soft glow */
+  mix-blend-mode: screen; /* Blend the glow with the background */
+  transition: opacity 0.3s ease-in-out; /* Smooth transition on hover */
+}
+
+.react-globe__glow:hover {
+  opacity: 1; /* Increase glow on hover */
+}
+
+.react-globe {
+  /* Style the globe itself */
+  fill: #00008b; /* Dark blue fill color */
+  stroke: #ffffff; /* White stroke around the globe */
+  stroke-width: 0.5px; /* Thin stroke width */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Add a shadow for depth */
+  animation: rotateGlobe 60s linear infinite; /* Rotate the globe */
+}
+
+@keyframes rotateGlobe {
+  from {
+    transform: rotate(0deg);
   }
-  
-  .info-container h2 {
-    margin-top: 0;
+  to {
+    transform: rotate(360deg);
   }
-  
-  .info-container p {
-    margin: 10px 0;
-  }
-  
-  .info-container button {
-    background-color: rgba(255, 193, 7, 0.7);
-    color: black;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    background-color: rgba(255, 193, 7, 0.7);
-  }
-  
-  .info-container button:hover {
-    background-color: rgba(255, 193, 7, 0.7);
-    border: 3px solid rgba(255, 193, 7, 0.7);
-    transform: translateY(-5px);
-    box-shadow: 10px 13px 16px rgba(255, 193, 7, 0.7);
-  }
-  
+}
+
+
+.info-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 20px;
+  /* Increased padding for more space */
+  background-color: white;
+  border: 3px solid rgba(255, 193, 7, 0.7);
+  border-radius: 10px;
+  /* Increased border radius for smoother corners */
+  z-index: 1000;
+  max-width: 550px;
+  /* Increased max width */
+  box-shadow: 10px 13px 16px rgba(255, 193, 7, 0.7);
+  /* Box shadow for elevation */
+  font-size: 35px;
+}
+
+.info-container:hover {
+  transform: translateY(-5px);
+  border: 3px solid rgba(255, 193, 7, 0.7);
+  box-shadow: 20px 26px 32px rgba(255, 193, 7, 0.7);
+  /* Larger shadow on hover */
+}
+
+.info-image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  /* Optional: Add some radius to the image */
+}
+
+.info-container h2 {
+  margin-top: 0;
+}
+
+.info-container p {
+  margin: 10px 0;
+}
+
+.info-container button {
+  background-color: rgba(255, 193, 7, 0.7);
+  color: rgba(255, 193, 7, 0.7);
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: rgba(255, 193, 7, 0.7);
+}
+
+.info-container button:hover {
+  background-color: rgba(255, 193, 7, 0.7);
+  border: 3px solid rgba(255, 193, 7, 0.7);
+  transform: translateY(-5px);
+  box-shadow: 10px 13px 16px rgba(255, 193, 7, 0.7);
+}
+
+.custom-label {
+  color: rgba(255, 193, 7, 0.7);
+  background: white;
+  padding: 2px 4px;
+  border-radius: 13px;
+  font-weight: bold;
+  font-family: "Macondo", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 30px;
+  opacity: .695;
+}

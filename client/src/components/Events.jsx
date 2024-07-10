@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Card, Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import YouTube from 'react-youtube';
 import { useFavorites } from '../contexts/FavoriteContext';
 import './Events.css';
+
 
 const initialEvents = [
     {
@@ -12,7 +14,8 @@ const initialEvents = [
         imageurl: "https://i.natgeofe.com/n/54dc5398-d8f5-482d-81da-43ff8f78832f/RSThermopylae7_4x3.jpg",
         date: "480 BC",
         civilization: "Ancient Greece",
-        details: "The battle was part of the second Persian invasion of Greece and has become a symbol of courage against overwhelming odds."
+        details: "The battle was part of the second Persian invasion of Greece and has become a symbol of courage against overwhelming odds.",
+        videoUrl: "https://www.youtube.com/shorts/QuXRIW7tH6A"
     },
     {
         id: 2,
@@ -67,10 +70,101 @@ const initialEvents = [
         date: "1519-1521",
         civilization: "Aztec",
         details: "This conquest marked the end of the Aztec Empire and the beginning of Spanish colonial rule in Mexico."
+    },
+    {
+        id: 8,
+        name: "Aksumite-Persian Wars",
+        description: "A series of conflicts between the Aksumite Empire and the Sasanian Persian Empire over control of Yemen.",
+        imageurl: "https://edsitement.neh.gov/sites/default/files/resource/Persian%20War.jpg", 
+        date: "c. 520–575 AD",
+        civilization: "Aksumite Empire",
+        details: "These wars had a significant impact on the trade routes and political landscape of the Red Sea region."
+    },
+    {
+        id: 9,
+        name: "Nika Riots",
+        description: "A massive riot in Constantinople that nearly overthrew Emperor Justinian I.",
+        imageurl: "https://cdn.historycollection.com/wp-content/uploads/2017/10/Untitled-1-9.jpg", 
+        date: "532 AD",
+        civilization: "Byzantine Empire",
+        details: "The riots were fueled by discontent with high taxes and political factions, and resulted in widespread destruction and loss of life."
+    },
+    {
+        id: 10,
+        name: "Battle of Cannae",
+        description: "A major battle of the Second Punic War in which Hannibal decisively defeated a larger Roman army.",
+        imageurl: "https://www.culturefrontier.com/wp-content/uploads/2024/02/Punic-Wars-Cover.jpg",
+        date: "216 BC",
+        civilization: "Carthage",
+        details: "This battle is considered one of the greatest tactical victories in military history and a major turning point in the Second Punic War."
+    },
+    {
+        id: 11,
+        name: "The Hajj of Mansa Musa",
+        description: "Mansa Musa, the ruler of the Mali Empire, made a famous pilgrimage to Mecca, showcasing the empire's immense wealth.",
+        imageurl: "https://images.squarespace-cdn.com/content/v1/5ae79b0d3c3a535560ce1849/99b132d1-8dd8-46ca-bd40-b442ce4bcc44/Mansa+Musa.jpeg",
+        date: "1324–1325 AD",
+        civilization: "Mali Empire",
+        details: "His lavish procession and distribution of gold left a lasting impression on the world and cemented Mali's reputation as a prosperous kingdom."
+    },
+    {
+        id: 12,
+        name: "Sack of Angkor",
+        description: "The Ayutthaya Kingdom of Siam captured and sacked Angkor, the capital of the Khmer Empire, leading to its decline.",
+        imageurl: "https://cdn.angkordatabase.asia/imager/images/publications/siamese-attacks-on-angkor-before-1430/3206/Siamese-attacks_5ae402c9837860cd6e4f65e304b3a5fa.jpg", 
+        date: "1431 AD",
+        civilization: "Khmer Empire",
+        details: "This event marked the end of the Khmer Empire's political and cultural dominance in Southeast Asia."
+    },
+    {
+        id: 13,
+        name: "Minoan Eruption of Thera",
+        description: "A catastrophic volcanic eruption that devastated the Minoan civilization on the island of Crete.",
+        imageurl: "https://i.natgeofe.com/n/6609fc9c-5145-4acb-a128-9c8136c49580/BAL_532073.jpg", 
+        date: "c. 1620 BC",
+        civilization: "Minoan Civilization",
+        details: "This eruption is considered one of the largest volcanic events in recorded history and is believed to have triggered a series of tsunamis that devastated coastal settlements."
+    },
+    {
+        id: 14,
+        name: "Rise of La Venta",
+        description: "The emergence of La Venta as a major Olmec ceremonial center, marked by the construction of large pyramids, plazas, and colossal heads.",
+        imageurl: "https://mexicanroutes.com/wp-content/uploads/2019/11/MexicanRoutes-Olmecs.jpg",
+        date: "c. 900 BC",
+        civilization: "Olmec Civilization",
+        details: "La Venta served as a political and religious center for the Olmec and is considered a significant site in the development of Mesoamerican civilizations."
+    },
+    {
+        id: 15,
+        name: "Building of Tikal Temple I",
+        description: "The construction of Tikal Temple I, a massive pyramid in the heart of the Maya city of Tikal.",
+        imageurl: "https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/tikal-at-apogee-illustration-christian-jegou.jpg",
+        date: "c. 734 AD",
+        civilization: "Maya Civilization",
+        details: "Temple I is a testament to Maya architectural and engineering prowess, and served as a burial site for one of Tikal's rulers."
+    },
+    {
+        id: 16,
+        name: "Decline of Mohenjo-daro",
+        description: "The gradual abandonment of Mohenjo-daro, one of the largest cities of the Indus Valley Civilization.",
+        imageurl: "https://www.worldhistory.org/img/r/p/500x600/12856.jpg?v=1656242470",
+        date: "c. 1900 BC",
+        civilization: "Indus Valley Civilization",
+        details: "The reasons for the decline remain unclear, with theories ranging from climate change and environmental degradation to shifts in trade routes and invasions."
+    },
+    {
+        id: 17,
+        name: "Founding of Tenochtitlan",
+        description: "The Aztecs founded their capital city, Tenochtitlan, on an island in Lake Texcoco.",
+        imageurl: "https://www.researchgate.net/publication/332157783/figure/fig1/AS:743418837880833@1554256271641/The-great-Tenochtitlan-mural-by-Diego-Rivera-Exhibited-in-the-Palacio-Nacional-in-Mexico.ppm",
+        date: "1325 AD",
+        civilization: "Aztec Civilization",
+        details: "Tenochtitlan became the center of the Aztec Empire and a marvel of engineering, with causeways, canals, and impressive architecture."
     }
-
-
 ];
+
+
+
 
 const Events = () => {
     const { favorites, addFavorite, removeFavorite } = useFavorites();

@@ -1,12 +1,4 @@
-import React, { useState } from 'react';
-import { Card, Container, Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import YouTube from 'react-youtube';
-import { useFavorites } from '../contexts/FavoriteContext';
-import './Civilizations.css';
-
-
-const initialCivilizations = [
+export const initialCivilizations = [
     {
         id: 1,
         name: "Ancient China",
@@ -16,7 +8,6 @@ const initialCivilizations = [
         regions: "China, East Asia",
         latitude: 35.8617,
         longitude: 104.1954,
-        videoUrl: "https://www.youtube.com/shorts/662DeiZOIic",
         leaders: [
             {
                 name: "Qin Shi Huang",
@@ -590,83 +581,446 @@ const initialCivilizations = [
 
 
 
-const Civilizations = () => {
-    const { favorites, addFavorite, removeFavorite } = useFavorites();
-    const [civilizations, setCivilizations] = useState(initialCivilizations);
-    const [expandedCivilizationId, setExpandedCivilizationId] = useState(null);
+export const initialEvents = [
+    {
+        id: 1,
+        name: "Battle of Thermopylae",
+        description: "A famous battle in 480 BC during the Greco-Persian Wars where 300 Spartans and their allies made a heroic stand against a much larger Persian army.",
+        imageurl: "https://i.natgeofe.com/n/54dc5398-d8f5-482d-81da-43ff8f78832f/RSThermopylae7_4x3.jpg",
+        date: "480 BC",
+        civilization: "Ancient Greece",
+        details: "The battle was part of the second Persian invasion of Greece and has become a symbol of courage against overwhelming odds."
+    },
+    {
+        id: 2,
+        name: "Battle of Marathon",
+        description: "A decisive battle in 490 BC where the Athenians defeated the Persians, marking a turning point in the Greco-Persian Wars.",
+        imageurl: "https://i.natgeofe.com/n/4fb4b638-3c21-4af1-9c3c-b82854b0ec00/roman-sarcophagus-persians-flee_16x9.jpg",
+        date: "490 BC",
+        civilization: "Ancient Greece",
+        details: "The Athenian victory was crucial in preserving Greek independence and culture."
+    },
+    {
+        id: 3,
+        name: "Fall of the Western Roman Empire",
+        description: "The collapse of the Western Roman Empire in 476 AD, leading to the end of ancient Rome and the beginning of the Middle Ages.",
+        imageurl: "https://assets.editorial.aetnd.com/uploads/2014/01/gettyimages-802428712.jpg",
+        date: "476 AD",
+        civilization: "Roman Empire",
+        details: "The fall of Rome marked the transition from classical antiquity to the medieval period in Europe."
+    },
+    {
+        id: 4,
+        name: "Warring States Period",
+        description: "A period of intense political and military conflict among seven major Chinese states vying for dominance.",
+        imageurl: "https://cf.geekdo-images.com/8pa0aykUKcn-uJGvTeOy8A__itemrep/img/GO0w7qKfl4CBNAFpGjysF8FUu38=/fit-in/246x300/filters:strip_icc()/pic5027104.jpg",
+        date: "475-221 BC",
+        civilization: "Ancient China",
+        details: "This era saw significant advancements in philosophy, military strategy, and technology, ultimately leading to the unification of China under the Qin dynasty."
+    },
+    {
+        id: 5,
+        name: "Rise of the Akkadian Empire",
+        description: "Sargon of Akkad conquered Sumerian city-states, establishing the first known empire in history.",
+        imageurl: "https://cdn.thecollector.com/wp-content/uploads/2023/09/akkadian-empire-rise-fall-768x442.jpg",
+        date: "c. 2334-2279 BC",
+        civilization: "Mesopotamia",
+        details: "The Akkadian Empire unified the region under a single ruler, marking a significant shift in political organization and control."
+    },
+    {
+        id: 6,
+        name: "Peloponnesian War",
+        description: "A protracted conflict between the Peloponnesian League (led by Sparta) and the Delian League (led by Athens).",
+        imageurl: "https://images.nationalgeographic.org/image/upload/v1638891964/EducationHub/photos/peloponnesian-war.jpg",
+        date: "431-404 BC",
+        civilization: "Ancient Greece",
+        details: "This war reshaped the ancient Greek world, weakening Athens and paving the way for Macedonian dominance."
+    },
+    {
+        id: 7,
+        name: "Spanish Conquest of the Aztec Empire",
+        description: "Hernán Cortés and his Spanish conquistadors, aided by indigenous allies, conquered the Aztec Empire.",
+        imageurl: "https://i.natgeofe.com/n/b0debc40-a0eb-440c-8b81-40f871e53250/spanish-siege.jpg",
+        date: "1519-1521",
+        civilization: "Aztec",
+        details: "This conquest marked the end of the Aztec Empire and the beginning of Spanish colonial rule in Mexico."
+    },
+    {
+        id: 8,
+        name: "Aksumite-Persian Wars",
+        description: "A series of conflicts between the Aksumite Empire and the Sasanian Persian Empire over control of Yemen.",
+        imageurl: "https://edsitement.neh.gov/sites/default/files/resource/Persian%20War.jpg", 
+        date: "c. 520–575 AD",
+        civilization: "Aksumite Empire",
+        details: "These wars had a significant impact on the trade routes and political landscape of the Red Sea region."
+    },
+    {
+        id: 9,
+        name: "Nika Riots",
+        description: "A massive riot in Constantinople that nearly overthrew Emperor Justinian I.",
+        imageurl: "https://cdn.historycollection.com/wp-content/uploads/2017/10/Untitled-1-9.jpg", 
+        date: "532 AD",
+        civilization: "Byzantine Empire",
+        details: "The riots were fueled by discontent with high taxes and political factions, and resulted in widespread destruction and loss of life."
+    },
+    {
+        id: 10,
+        name: "Battle of Cannae",
+        description: "A major battle of the Second Punic War in which Hannibal decisively defeated a larger Roman army.",
+        imageurl: "https://www.culturefrontier.com/wp-content/uploads/2024/02/Punic-Wars-Cover.jpg",
+        date: "216 BC",
+        civilization: "Carthage",
+        details: "This battle is considered one of the greatest tactical victories in military history and a major turning point in the Second Punic War."
+    },
+    {
+        id: 11,
+        name: "The Hajj of Mansa Musa",
+        description: "Mansa Musa, the ruler of the Mali Empire, made a famous pilgrimage to Mecca, showcasing the empire's immense wealth.",
+        imageurl: "https://images.squarespace-cdn.com/content/v1/5ae79b0d3c3a535560ce1849/99b132d1-8dd8-46ca-bd40-b442ce4bcc44/Mansa+Musa.jpeg",
+        date: "1324–1325 AD",
+        civilization: "Mali Empire",
+        details: "His lavish procession and distribution of gold left a lasting impression on the world and cemented Mali's reputation as a prosperous kingdom."
+    },
+    {
+        id: 12,
+        name: "Sack of Angkor",
+        description: "The Ayutthaya Kingdom of Siam captured and sacked Angkor, the capital of the Khmer Empire, leading to its decline.",
+        imageurl: "https://cdn.angkordatabase.asia/imager/images/publications/siamese-attacks-on-angkor-before-1430/3206/Siamese-attacks_5ae402c9837860cd6e4f65e304b3a5fa.jpg", 
+        date: "1431 AD",
+        civilization: "Khmer Empire",
+        details: "This event marked the end of the Khmer Empire's political and cultural dominance in Southeast Asia."
+    },
+    {
+        id: 13,
+        name: "Minoan Eruption of Thera",
+        description: "A catastrophic volcanic eruption that devastated the Minoan civilization on the island of Crete.",
+        imageurl: "https://i.natgeofe.com/n/6609fc9c-5145-4acb-a128-9c8136c49580/BAL_532073.jpg", 
+        date: "c. 1620 BC",
+        civilization: "Minoan Civilization",
+        details: "This eruption is considered one of the largest volcanic events in recorded history and is believed to have triggered a series of tsunamis that devastated coastal settlements."
+    },
+    {
+        id: 14,
+        name: "Rise of La Venta",
+        description: "The emergence of La Venta as a major Olmec ceremonial center, marked by the construction of large pyramids, plazas, and colossal heads.",
+        imageurl: "https://mexicanroutes.com/wp-content/uploads/2019/11/MexicanRoutes-Olmecs.jpg",
+        date: "c. 900 BC",
+        civilization: "Olmec Civilization",
+        details: "La Venta served as a political and religious center for the Olmec and is considered a significant site in the development of Mesoamerican civilizations."
+    },
+    {
+        id: 15,
+        name: "Building of Tikal Temple I",
+        description: "The construction of Tikal Temple I, a massive pyramid in the heart of the Maya city of Tikal.",
+        imageurl: "https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/tikal-at-apogee-illustration-christian-jegou.jpg",
+        date: "c. 734 AD",
+        civilization: "Maya Civilization",
+        details: "Temple I is a testament to Maya architectural and engineering prowess, and served as a burial site for one of Tikal's rulers."
+    },
+    {
+        id: 16,
+        name: "Decline of Mohenjo-daro",
+        description: "The gradual abandonment of Mohenjo-daro, one of the largest cities of the Indus Valley Civilization.",
+        imageurl: "https://www.worldhistory.org/img/r/p/500x600/12856.jpg?v=1656242470",
+        date: "c. 1900 BC",
+        civilization: "Indus Valley Civilization",
+        details: "The reasons for the decline remain unclear, with theories ranging from climate change and environmental degradation to shifts in trade routes and invasions."
+    },
+    {
+        id: 17,
+        name: "Founding of Tenochtitlan",
+        description: "The Aztecs founded their capital city, Tenochtitlan, on an island in Lake Texcoco.",
+        imageurl: "https://www.researchgate.net/publication/332157783/figure/fig1/AS:743418837880833@1554256271641/The-great-Tenochtitlan-mural-by-Diego-Rivera-Exhibited-in-the-Palacio-Nacional-in-Mexico.ppm",
+        date: "1325 AD",
+        civilization: "Aztec Civilization",
+        details: "Tenochtitlan became the center of the Aztec Empire and a marvel of engineering, with causeways, canals, and impressive architecture."
+    }
+];
 
-    const handleExpand = (id) => {
-        if (expandedCivilizationId === id) {
-            setExpandedCivilizationId(null);
-        } else {
-            setExpandedCivilizationId(id);
+
+
+
+
+export const initialArtifacts = [
+    {
+        id: 1,
+        name: "Terracotta Army",
+        description: "A collection of terracotta sculptures depicting the armies of Qin Shi Huang, the first Emperor of China.",
+        imageurl: "https://assets.editorial.aetnd.com/uploads/2014/03/gettyimages-1236172686.jpg",
+        civilization: "Ancient China",
+        discovery_date: "1974",
+        location: "Shaanxi, China"
+    },
+    {
+        id: 2,
+        name: "Standard of Ur",
+        description: "A wooden box inlaid with shell, lapis lazuli, and red limestone, depicting scenes of war and peace.",
+        imageurl: "https://cdn.kastatic.org/ka-content-images/0e6c402af2d565815af848737bf663c799daae88.jpg",
+        discovery_date: "1927-1928",
+        location: "Royal Cemetery of Ur, Iraq"
+    },
+    {
+        id: 3,
+        name: "Mask of Tutankhamun",
+        description: "A gold mask discovered in the tomb of the young pharaoh Tutankhamun.",
+        imageurl: "https://egyptianmuseumcairo.eg/wp-content/uploads/2021/06/Tutankhamon-funerary-mask.jpg",
+        civilization: "Ancient Egypt",
+        discovery_date: "1925",
+        location: "Valley of the Kings, Egypt"
+    },
+    {
+        id: 4,
+        name: "Venus de Milo",
+        description: "A Hellenistic statue of the goddess Aphrodite (Venus in Roman mythology).",
+        imageurl: "https://greekreporter.com/wp-content/uploads/2018/06/Venus-de-Milo-ancient-sculpture-credit-Bradley-N-Weber-CC2.jpg",
+        civilization: "Ancient Greece",
+        discovery_date: "1820",
+        location: "Island of Milos, Greece"
+    },
+    {
+        id: 5,
+        name: "Coyolxauhqui Stone",
+        description: "A massive stone sculpture depicting the dismembered body of the moon goddess Coyolxauhqui.",
+        imageurl: "https://i0.wp.com/arthistorywithalder.com/wp-content/uploads/2021/04/Coyolxauhqui_4095977415_b89d64f008-2.jpg?resize=482%2C482&ssl=1",
+        civilization: "Aztec",
+        discovery_date: "1978",
+        location: "Templo Mayor, Mexico City, Mexico"
+    },
+    {
+        id: 6,
+        name: "Priest-King Sculpture",
+        description: "A soapstone sculpture depicting a bearded figure adorned with jewelry and a headband.",
+        imageurl: "https://t4.ftcdn.net/jpg/02/87/58/75/360_F_287587553_ARtpLHaD7mHYGRD6nbkvPKzKjmnsdwwd.webp",
+        civilization: "Indus Valley",
+        discovery_date: "1927",
+        location: "Mohenjo-daro, Pakistan"
+    },
+    {
+        id: 7,
+        name: "Jade Head of the Maya Maize God",
+        description: "A carved jade head depicting the Maya maize god, a symbol of fertility and abundance.",
+        imageurl: "https://www.worldhistory.org/uploads/images/16234.png",
+        civilization: "Maya",
+        discovery_date: "1984",
+        location: "Temple of the Inscriptions, Palenque, Mexico"
+    },
+    {
+        id: 8,
+        name: "Phaistos Disc",
+        description: "A clay disc with stamped symbols, its purpose and meaning remain a mystery.",
+        imageurl: "https://greekreporter.com/wp-content/uploads/2018/02/Phaistos-Disc-Credit-cc-by-sa-4.0-c-messier.jpg",
+        civilization: "Minoan",
+        discovery_date: "1908",
+        location: "Phaistos Palace, Crete, Greece"
+    },
+    {
+        id: 9,
+        name: "Colossal Olmec Head",
+        description: "Massive stone sculptures of human heads, a hallmark of the Olmec civilization.",
+        imageurl: "https://www.worldhistory.org/uploads/images/2408.jpg?v=1618627504",
+        civilization: "Olmec",
+        discovery_date: "Late 19th century",
+        location: "Various sites in the Gulf Coast of Mexico"
+    },
+    {
+        id: 10,
+        name: "Cyrus Cylinder",
+        description: "An ancient clay cylinder inscribed with a declaration by Cyrus the Great, often considered the first charter of human rights.",
+        imageurl: "https://i0.wp.com/asia-archive.si.edu/wp-content/uploads/2017/10/banner-cyrus-cylinder.jpg?resize=2555%2C1095&ssl=1",
+        civilization: "Persian Empire",
+        discovery_date: "1879",
+        location: "Babylon, Iraq"
+    },
+    {
+        id: 11,
+        name: "Sarcophagus of Ahiram",
+        description: "A Phoenician sarcophagus with the earliest known inscription using the Phoenician alphabet.",
+        imageurl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkZUOmSm4cE6J1xkXUFbGco-D5kvAtJiOq3TO_8KTdsTR7n245WfLIcvnSyCk72vrYVj4&usqp=CAU",
+        civilization: "Phoenician",
+        discovery_date: "1923",
+        location: "Byblos, Lebanon"
+    },
+    {
+        id: 12,
+        name: "Rosetta Stone",
+        description: "A stone slab with inscriptions in three scripts (Egyptian hieroglyphs, Demotic script, and Ancient Greek), key to deciphering Egyptian hieroglyphs.",
+        imageurl: "https://globalnews.ca/wp-content/uploads/2022/10/rosetta-stone-british-museum-e1664986071507.jpg?quality=85&strip=all",
+        civilization: "Ancient Egypt",
+        discovery_date: "1799",
+        location: "Rosetta, Egypt"
+    },
+    {
+        id: 13,
+        name: "Parthenon Marbles (Elgin Marbles)",
+        description: "A collection of Classical Greek marble sculptures from the Parthenon in Athens, currently housed in the British Museum.",
+        imageurl: "https://static.independent.co.uk/2023/03/13/07/a85d9cc9412ea91e22e45b90a64f544bY29udGVudHNlYXJjaGFwaSwxNjc4NzI4MjY3-2.1248587.jpg",
+        civilization: "Ancient Greece",
+        discovery_date: "Early 19th century",
+        location: "Originally Parthenon, Athens; now British Museum, London"
+    },
+    {
+        id: 14,
+        name: "Law Code of Gortyn",
+        description: "The earliest known legal code from ancient Greece, inscribed on a stone wall.",
+        imageurl: "https://i0.wp.com/the-past.com/wp-content/uploads/2022/02/post-1_image0-38.jpg?resize=1024%2C684&ssl=1",
+        civilization: "Ancient Greece",
+        discovery_date: "1884",
+        location: "Gortyn, Crete, Greece"
+    },
+    {
+        id: 15,
+        name: "Epic of Gilgamesh",
+        description: "An epic poem from ancient Mesopotamia, one of the earliest known works of literature.",
+        imageurl: "https://media.britishmuseum.org/media/Repository/Documents/2014_11/12_14/c9f43da8_d416_45aa_aaf3_a3e100f6908c/mid_00107404_001.jpg",
+        civilization: "Mesopotamia",
+        discovery_date: "19th century",
+        location: "Various sites in Iraq"
+    },
+    {
+        id: 16,
+        name: "Bust of Nefertiti",
+        description: "A painted stucco-coated limestone bust of Nefertiti, the Great Royal Wife of the Egyptian Pharaoh Akhenaten.",
+        imageurl: "https://news.artnet.com/app/news-upload/2016/02/nefertiti-bust-2-1024x682.jpg",
+        civilization: "Ancient Egypt",
+        discovery_date: "1912",
+        location: "Amarna, Egypt"
+    },
+    {
+        id: 17,
+        name: "Lycurgus Cup",
+        description: "A Roman cage cup made of dichroic glass, changing color depending on the lighting.",
+        imageurl: "https://lh3.googleusercontent.com/-vijG5D5WBAw/WFOLCoTg68I/AAAAAAABRBM/igZh01Qp2RM/lycurgus-cup-32.jpg?imgmax=1600",
+        civilization: "Roman Republic/Empire",
+        discovery_date: "19th century",
+        location: "British Museum, London"
+    },
+    {
+        id: 18,
+        name: "Qin Dynasty Bronze Chariot",
+        description: "An intricate bronze chariot model found in the tomb of Qin Shi Huang.",
+        imageurl: "https://www.chinaxiantour.com/media/2017/08/terracotta-warriors-cover.jpg",
+        civilization: "Qin Dynasty",
+        discovery_date: "1980",
+        location: "Mausoleum of the First Qin Emperor, Xi'an, China"
+    }
+
+];
+
+
+
+
+
+export const events = [
+    {
+      title: "Battle of Thermopylae",
+      latitude: 38.7931,
+      longitude: 22.5309,
+      cardTitle: "480 BC",
+      cardDetailedText: "A famous battle in 480 BC during the Greco-Persian Wars where 300 Spartans and their allies made a heroic stand against a much larger Persian army.",
+      cardSubtitle: "Symbol of courage against overwhelming odds.",
+      media: {
+        type: "IMAGE",
+        source: {
+          url: "https://i.natgeofe.com/n/54dc5398-d8f5-482d-81da-43ff8f78832f/RSThermopylae7_4x3.jpg"
         }
-    };
-
-    const isFavorite = (id) => favorites.civilizations.some(item => item.id === id);
-
-    return (
-        <Container className="container-custom">
-            <Row className="mt-4 row-custom">
-                {civilizations.map(civilization => (
-                    <Col key={civilization.id} xs={12} sm={6} md={4} lg={3} className="mb-4 col-custom">
-                        <Card
-                            className={`mb-3 card-custom ${expandedCivilizationId === civilization.id ? 'expanded' : ''}`}
-                            onClick={() => handleExpand(civilization.id)}
-                        >
-                            <Card.Img variant="top" src={civilization.imageurl} className="card-img-top" />
-                            <Card.Body>
-                                <Card.Title>{civilization.name}</Card.Title>
-                                <Card.Text>{civilization.dates}</Card.Text>
-                                {expandedCivilizationId === civilization.id && (
-                                    <div className="expanded-content">
-                                        <Card.Text>{civilization.description}</Card.Text>
-                                        <div className="mb-3">
-                                            <h5>Leaders:</h5>
-                                            <ul>
-                                                {(civilization.leaders || []).map(leader => (
-                                                    <li key={leader.name}>
-                                                        <strong>{leader.name}</strong> - {leader.title}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                            <h5>Deities:</h5>
-                                            <ul>
-                                                {(civilization.deities || []).map(deity => (
-                                                    <li key={deity.name}>
-                                                        <strong>{deity.name}</strong> - {deity.description}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                            <div className="links-container">
-                                                <Link to={`/events`}>Events</Link>
-                                                <span> | </span>
-                                                <Link to={`/artifacts`}>Artifacts</Link>
-                                                <span> | </span>
-                                                <Link to={`/regions/${civilization.id}`}>Regions</Link>
-                                            </div>
-                                        </div>
-                                    </div>
-                                )}
-                                <Link
-                                    to="#"
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        isFavorite(civilization.id)
-                                            ? removeFavorite(civilization.id, 'civilizations')
-                                            : addFavorite(civilization, 'civilizations');
-                                    }}
-                                    className="favorite-link"
-                                >
-                                    {isFavorite(civilization.id) ? 'Remove from Favorites' : 'Add to Favorites'}
-                                </Link>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                ))}
-            </Row>
-        </Container>
-    );
-};
-
-export default Civilizations;
+      }
+    },
+    {
+      title: "Battle of Marathon",
+      latitude: 38.1483,
+      longitude: 24.0139,
+      cardTitle: "490 BC",
+      cardDetailedText: "A decisive battle in 490 BC where the Athenians defeated the Persians, marking a turning point in the Greco-Persian Wars.",
+      cardSubtitle: "Crucial in preserving Greek independence and culture.",
+      media: {
+        type: "IMAGE",
+        source: {
+          url: "https://i.natgeofe.com/n/4fb4b638-3c21-4af1-9c3c-b82854b0ec00/roman-sarcophagus-persians-flee_16x9.jpg"
+        }
+      }
+    },
+    {
+      title: "Fall of the Western Roman Empire",
+      latitude: 41.9028,
+      longitude: 12.4964,
+      cardTitle: "476 AD",
+      cardDetailedText: "The collapse of the Western Roman Empire in 476 AD, leading to the end of ancient Rome and the beginning of the Middle Ages.",
+      cardSubtitle: "Transition from classical antiquity to the medieval period.",
+      media: {
+        type: "IMAGE",
+        source: {
+          url: "https://assets.editorial.aetnd.com/uploads/2014/01/gettyimages-802428712.jpg"
+        }
+      }
+    },
+    {
+      title: "Warring States Period",
+      latitude: 34.0522,
+      longitude: 118.2437,
+      cardTitle: "475-221 BC",
+      cardDetailedText: "A period of intense political and military conflict among seven major Chinese states vying for dominance.",
+      cardSubtitle: "Significant advancements in philosophy, military strategy, and technology.",
+      media: {
+        type: "IMAGE",
+        source: {
+          url: "https://cf.geekdo-images.com/8pa0aykUKcn-uJGvTeOy8A__itemrep/img/GO0w7qKfl4CBNAFpGjysF8FUu38=/fit-in/246x300/filters:strip_icc()/pic5027104.jpg"
+        }
+      }
+    },
+    {
+      title: "Rise of the Akkadian Empire",
+      latitude: 33.3152,
+      longitude: 44.3661,
+      cardTitle: "c. 2334-2279 BC",
+      cardDetailedText: "Sargon of Akkad conquered Sumerian city-states, establishing the first known empire in history.",
+      cardSubtitle: "Unified the region under a single ruler.",
+      media: {
+        type: "IMAGE",
+        source: {
+          url: "https://cdn.thecollector.com/wp-content/uploads/2023/09/akkadian-empire-rise-fall-768x442.jpg"
+        }
+      }
+    },
+    {
+      title: "Peloponnesian War",
+      latitude: 37.9838,
+      longitude: 23.7275,
+      cardTitle: "431-404 BC",
+      cardDetailedText: "A protracted conflict between the Peloponnesian League (led by Sparta) and the Delian League (led by Athens).",
+      cardSubtitle: "Reshaped the ancient Greek world.",
+      media: {
+        type: "IMAGE",
+        source: {
+          url: "https://images.nationalgeographic.org/image/upload/v1638891964/EducationHub/photos/peloponnesian-war.jpg"
+        }
+      }
+    },
+    {
+      title: "Spanish Conquest of the Aztec Empire",
+      latitude: 19.4326,
+      longitude: -99.1332,
+      cardTitle: "1519-1521",
+      cardDetailedText: "Hernán Cortés and his Spanish conquistadors, aided by indigenous allies, conquered the Aztec Empire.",
+      cardSubtitle: "Marked the end of the Aztec Empire and the beginning of Spanish colonial rule in Mexico.",
+      media: {
+        type: "IMAGE",
+        source: {
+          url: "https://i.natgeofe.com/n/b0debc40-a0eb-440c-8b81-40f871e53250/spanish-siege.jpg"
+        }
+      }
+    }
+  ];
+  
+  export const labels = [
+    { text: 'Asia', coordinates: [55, 85] },
+    { text: 'Africa', coordinates: [13, 20] },
+    { text: 'Europe', coordinates: [55, 30] },
+    { text: 'North America', coordinates: [48, -105] },
+    { text: 'South America', coordinates: [-6, -60] },
+    { text: 'Australia', coordinates: [-20, 132] },
+    { text: 'Antarctica', coordinates: [-80, 75] },
+    { text: 'Pacific Ocean', coordinates: [0.0000, -160.0000] },
+    { text: 'Atlantic Ocean', coordinates: [5.5, -30] },
+    { text: 'Indian Ocean', coordinates: [-20, 80] },
+    { text: 'Arctic Ocean', coordinates: [90.0000, 0.0000] },
+  ];
