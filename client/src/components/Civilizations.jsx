@@ -16,7 +16,7 @@ const initialCivilizations = [
         regions: "China, East Asia",
         latitude: 35.8617,
         longitude: 104.1954,
-        videoUrl: "https://www.youtube.com/shorts/662DeiZOIic",
+        videoUrl: "662DeiZOIic",
         leaders: [
             {
                 name: "Qin Shi Huang",
@@ -51,8 +51,9 @@ const initialCivilizations = [
         name: "Atlantis",
         description: "A legendary island civilization mentioned in Plato's dialogues, often depicted as an advanced society with unique technology and architecture.",
         imageurl: "https://vvikipedia.co/images/thumb/2/24/Faeland_Alth%C3%B3an_artist_depiction_as_atlantis.jpg/800px-Faeland_Alth%C3%B3an_artist_depiction_as_atlantis.jpg", 
-        dates: "Unknown (mythological)",
-        regions: "Unknown (possibly the Atlantic Ocean)",
+        dates: "~9,600 BC ",
+        regions: "Atlantic Ocean, Richat Structure (Sahara)",
+        videoUrl: "ZMgGO_RR6HY",
         leaders: [],
         deities: [
             {
@@ -72,6 +73,7 @@ const initialCivilizations = [
         imageurl: "https://cdn.britannica.com/20/13720-050-6ED7921E/reconstruction-ruins-Ishtar-Gate-Babylon-Al-Hillah-Iraq.jpg?w=300",
         dates: "c. 3500 BC – 539 BC",
         regions: "Modern-day Iraq, Kuwait, parts of Syria, Turkey, and Iran",
+        videoUrl: "a8TKv6eYV0w",
         leaders: [
             {
                 name: "Sargon of Akkad",
@@ -108,6 +110,7 @@ const initialCivilizations = [
         imageurl: "https://i.natgeofe.com/n/535f3cba-f8bb-4df2-b0c5-aaca16e9ff31/giza-plateau-pyramids.jpg?w=1280&h=853",
         dates: "c. 3100 BC – 30 BC",
         regions: "Nile River Valley, Northeast Africa",
+        videoUrl: "-qe__mVcfTY",
         leaders: [
             {
                 name: "Khufu",
@@ -150,6 +153,7 @@ const initialCivilizations = [
         imageurl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/The_Parthenon_in_Athens.jpg/300px-The_Parthenon_in_Athens.jpg",
         dates: "c. 2700 BC – 146 BC",
         regions: "Greece, Aegean Islands, Asia Minor, Southern Italy",
+        videoUrl: "f8LvgnMPJOg",
         leaders: [
             {
                 name: "Pericles",
@@ -186,6 +190,7 @@ const initialCivilizations = [
         imageurl: "https://cdn.britannica.com/24/171124-131-E50C5C3D/Chichen-Itza.jpg",
         dates: "c. 1345 – 1521 AD",
         regions: "Central Mexico",
+        videoUrl: "xxjRLMlW-Ng",
         leaders: [
             {
                 name: "Moctezuma II",
@@ -216,6 +221,7 @@ const initialCivilizations = [
         imageurl: "https://ruchikaliveblog.wordpress.com/wp-content/uploads/2017/09/untitled-design-3-2.png?w=1088",
         dates: "c. 3300 – 1300 BC",
         regions: "Northwest India and Pakistan",
+        videoUrl: "drortffMKvA",
         leaders: [],
         deities: [],
         events: []
@@ -227,6 +233,7 @@ const initialCivilizations = [
         imageurl: "https://media.licdn.com/dms/image/D4E12AQHS7Q_rGl4UMg/article-cover_image-shrink_720_1280/0/1680859965457?e=2147483647&v=beta&t=vVSG3aClqjPYiKrWVYpbHOfhpCCNlyjbDDjacxJ_HEA",
         dates: "c. 2600 BC – 900 AD",
         regions: "Southern Mexico, Guatemala, Belize, Honduras, El Salvador",
+        videoUrl: "7xLRPYb0egQ",
         leaders: [
             {
                 name: "K'inich Janaab' Pakal",
@@ -257,6 +264,7 @@ const initialCivilizations = [
         imageurl: "https://cdn.sci.news/images/enlarge2/image_3552e-Knossos.jpg",
         dates: "c. 2700 – 1450 BC",
         regions: "Crete, Aegean Islands",
+        videoUrl: "IdaqdHGV-k4",
         leaders: [],
         deities: [
             {
@@ -277,6 +285,7 @@ const initialCivilizations = [
         imageurl: "https://images.nationalgeographic.org/image/upload/v1638892498/EducationHub/photos/olmec-head-statue.jpg",
         dates: "c. 1200 – 400 BC",
         regions: "Gulf Coast of Mexico",
+        videoUrl: "KTwsaHw3eeM",
         leaders: [],
         deities: [
             {
@@ -293,6 +302,7 @@ const initialCivilizations = [
         imageurl: "https://www.thoughtco.com/thmb/83lCUttgqWpVtlbKjOUkP1GG3uo=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/6th-century-bc-darius-palace-ruins-in-persepolis--iran-693931982-5b943c2e46e0fb0025fb8c94.jpg",
         dates: "c. 550 – 330 BC",
         regions: "Iran, Mesopotamia, Egypt, Asia Minor",
+        videoUrl: "p_HCLCXWZwg",
         leaders: [
             {
                 name: "Cyrus the Great",
@@ -329,6 +339,7 @@ const initialCivilizations = [
         imageurl: "https://cdn.thecollector.com/wp-content/uploads/2020/09/oldest-written-phoenician-text-byblos.jpg?width=1400&quality=55",
         dates: "c. 1550 – 300 BC",
         regions: "Coastal Lebanon, Syria, and parts of North Africa",
+        videoUrl: "0nEsiJxtuD8",
         leaders: [],
         deities: [
             {
@@ -353,6 +364,7 @@ const initialCivilizations = [
         imageurl: "https://assets.editorial.aetnd.com/uploads/2017/12/terracotta-soldiers-gettyimages-534904337.jpg",
         dates: "221 – 206 BC",
         regions: "China",
+        videoUrl: "ZVFNJLMo4Kk",
         leaders: [
             {
                 name: "Qin Shi Huang",
@@ -371,6 +383,7 @@ const initialCivilizations = [
         imageurl: "https://images.nationalgeographic.org/image/upload/v1638891605/EducationHub/photos/roman-forum.jpg",
         dates: "509 BC – 476 AD (Western Roman Empire)",
         regions: "Italy, Mediterranean, Western Europe, North Africa, Near East",
+        videoUrl: "Yd2Zkn2LRwo",
         leaders: [
             {
                 name: "Julius Caesar",
@@ -409,6 +422,7 @@ const initialCivilizations = [
         regions: "Northern Ethiopia, Eritrea, parts of Sudan, Yemen, and Saudi Arabia",
         latitude: 14.1273,
         longitude: 38.7025,
+        videoUrl: "diXZTlhruP8",
         leaders: [
             {
                 name: "Ezana",
@@ -442,6 +456,7 @@ const initialCivilizations = [
         regions: "Eastern Mediterranean, Balkans, Anatolia",
         latitude: 41.0082,
         longitude: 28.9784,
+        videoUrl: "0YtjMYlmGMk",
         leaders: [
             {
                 name: "Justinian I",
@@ -466,6 +481,7 @@ const initialCivilizations = [
         regions: "North Africa (modern-day Tunisia)",
         latitude: 36.8565,
         longitude: 10.3375,
+        videoUrl: "oXJVhh6Jxrw",
         leaders: [
             {
                 name: "Hannibal Barca",
@@ -499,6 +515,7 @@ const initialCivilizations = [
         regions: "Parts of modern-day Mauritania, Mali, and Senegal",
         latitude: 13.7537,
         longitude: -9.1850,
+        videoUrl: "rxFhszrisoU",
         leaders: [
             {
                 name: "Tunka Manin",
@@ -523,6 +540,7 @@ const initialCivilizations = [
         regions: "Cambodia, parts of Thailand, Laos, and Vietnam",
         latitude: 13.4125,
         longitude: 103.8670,
+        videoUrl: "FO0m0PMhuXE",
         leaders: [
             {
                 name: "Jayavarman II",
@@ -561,6 +579,7 @@ const initialCivilizations = [
         regions: "Parts of modern-day Mali, Senegal, The Gambia, Guinea, Niger, Nigeria, Chad, and Mauritania",
         latitude: 17.5707,
         longitude: -3.9962,
+        videoUrl: "xoNrR1vKCr8",
         leaders: [
             {
                 name: "Mansa Musa",
@@ -582,11 +601,211 @@ const initialCivilizations = [
         description: "A Native American civilization in the Mississippi River Valley, known for its large earthen mounds and complex social structures.",
         imageurl: "https://cdn.britannica.com/55/66455-050-4CD7C423/Cahokia-Michael-Hampshire-painting-1150.jpg",
         dates: "c. 800 – c. 1600 AD",
-        regions: "Mississippi River Valley, Eastern North"
+        regions: "Mississippi River Valley, Eastern North",
+        videoUrl: "AV6wdz8tQTI"
+    },
+    {
+        id: 22,
+        name: "Ancient Nubia",
+        description: "An ancient civilization located in what is now northern Sudan and southern Egypt, known for its pyramids, powerful queens, and advanced culture.",
+        imageurl: "https://qph.cf2.quoracdn.net/main-qimg-9d85791471f0e5d03ae5f714343a17eb-lq",
+        dates: "c. 2500 BC – 350 AD",
+        regions: "Nile River Valley (Nubia)",
+        latitude: 18.5609,
+        longitude: 31.8103,
+        videoUrl: "Tn9TU1Gen7k",
+        leaders: [
+            {
+                name: "Amanirenas",
+                title: "Kandake (Queen)",
+                reign: "c. 40–10 BC"
+            }
+        ],
+        deities: [
+            {
+                name: "Apedemak",
+                description: "Lion-headed warrior god"
+            }
+        ],
+        events: [
+            {
+                name: "Meroitic script development",
+                description: "Development of their own unique writing system."
+            }
+        ]
+    },
+    {
+        id: 23,
+        name: "Inca Empire",
+        description: "The largest empire in pre-Columbian America, known for its advanced road systems, terraced agriculture, and impressive architecture like Machu Picchu.",
+        imageurl: "https://www.willkatravel.com/wp-content/uploads/2020/12/inperio-inca-1024x683.jpg",
+        dates: "c. 1438 – 1533 AD",
+        regions: "Andes Mountains, South America",
+        latitude: -13.1631,
+        longitude: -72.5450,
+        videoUrl: "P3HKATyBye4",
+        leaders: [
+            {
+                name: "Pachacuti",
+                title: "Sapa Inca (Emperor)",
+                reign: "1438–1471/1472"
+            }
+        ],
+        deities: [
+            {
+                name: "Inti",
+                description: "Sun god and patron deity of the Inca Empire"
+            }
+        ],
+        events: [
+            {
+                name: "Spanish conquest",
+                description: "Conquest by the Spanish led by Francisco Pizarro, leading to the empire's fall."
+            }
+        ]
+    },
+    {
+        id: 24,
+        name: "Nok Culture",
+        description: "An ancient civilization known for its remarkable terracotta sculptures, some of the oldest in Africa.",
+        imageurl: "https://theafricanhistory.com/wp-content/uploads/2021/11/nok-culture-fr-img.jpg",
+        dates: "c. 1000 BC – c. 300 AD",
+        regions: "West Africa (modern-day Nigeria)",
+        latitude: 9.5000,
+        longitude: 8.0000,
+        videoUrl: "YeyjAbPIgp4",
+        leaders: [],
+        deities: [],
+        events: [
+            {
+                name: "Terracotta sculpture production",
+                description: "The Nok people created elaborate terracotta sculptures, including human figures and animals."
+            }
+        ]
+    },
+    {
+        id: 25,
+        name: "Moche Culture",
+        description: "A pre-Inca civilization in northern Peru known for its elaborate pottery, gold artifacts, and monumental pyramids.",
+        imageurl: "https://www.peru.travel/contenido/experiencia/imagen/en/225/1.1/archaeological%20sites%20in%20chiclayo%20and%20surroundings.jpg",
+        dates: "c. 100 – 800 AD",
+        regions: "Northern coast of Peru",
+        latitude: -7.7496,
+        longitude: -79.1899,
+        videoUrl: "yddY4830IYE",
+        leaders: [],
+        deities: [
+            {
+                name: "Ai Apaec",
+                description: "A major deity, often depicted as a fanged figure"
+            }
+        ],
+        events: [
+            {
+                name: "Construction of Huacas del Sol y de la Luna",
+                description: "Massive adobe pyramid complexes."
+            }
+        ]
+    },
+    {
+        id: 26,
+        name: "Kingdom of Kush",
+        description: "An ancient kingdom in Nubia, known for its pyramids, ironworking, and its powerful queens, or kandakes.",
+        imageurl: "https://wildfiregames.com/forum/uploads/monthly_2018_03/5a9f42184b4de_Pharaohkingpiyepiankhi25thdynastyreceivingtributefromprinces1.thumb.jpg.1a682b41b98e70efa24e50ca3b1975a9.jpg",
+        dates: "c. 1070 BC – c. 350 AD",
+        regions: "Nubia (modern-day Sudan)",
+        latitude: 18.5609,
+        longitude: 31.8103,
+        videoUrl: "CgLySwtZ9YU",
+        leaders: [
+            {
+                name: "Amanitore",
+                title: "Kandake (Queen)",
+                reign: "c. 1–20 AD"
+            }
+        ],
+        deities: [
+            {
+                name: "Amun",
+                description: "Egyptian god, adopted by the Kushites"
+            },
+            {
+                name: "Isis",
+                description: "Egyptian goddess, adopted by the Kushites"
+            }
+        ],
+        events: [
+            {
+                name: "Conquest of Egypt",
+                description: "Kush briefly ruled over Egypt as the 25th Dynasty."
+            }
+        ]
+    },
+    {
+        id: 27,
+        name: "Sumerian Civilization",
+        description: "One of the earliest civilizations in Mesopotamia, known for its cuneiform script, ziggurat temples, and city-states.",
+        imageurl: "https://assets.editorial.aetnd.com/uploads/2017/12/sumer-gettyimages-122216938.jpg",
+        dates: "c. 4500 – 1900 BC",
+        regions: "Southern Mesopotamia (modern-day Iraq)",
+        latitude: 31.0000,
+        longitude: 45.5000,
+        videoUrl: "ogvfAWcp_UI",
+        leaders: [
+            {
+                name: "Gilgamesh",
+                title: "King of Uruk (semi-legendary)",
+                reign: "c. 2700 BC"
+            }
+        ],
+        deities: [
+            {
+                name: "An",
+                description: "Sky god"
+            },
+            {
+                name: "Enlil",
+                description: "God of wind and air"
+            },
+            {
+                name: "Inanna/Ishtar",
+                description: "Goddess of love and war"
+            }
+        ],
+        events: [
+            {
+                name: "Invention of cuneiform script",
+                description: "Development of the first writing system."
+            }
+        ]
+    },
+    {
+        id: 28,
+        name: "Atrahasis",
+        description: "A Mesopotamian epic that recounts the creation of humankind and the Great Flood.",
+        imageurl: "https://static.wikia.nocookie.net/jabibbles/images/5/53/Tiamat_and_Marduk.jpg/revision/latest?cb=20190321091549",
+        dates: "c. 18th century BC", 
+        regions: "Mesopotamia",
+        latitude: 31.0000, 
+        longitude: 45.5000,
+        videoUrl: "xEokfCORmQw",
+        leaders: [],
+        deities: [],
+        events: [
+            {
+                name: "The Great Flood",
+                description: "A central event in the Atrahasis epic, mirroring other flood narratives."
+            }
+        ]
+    },
+    {
+        id: 29,
+        name: "Enuma Elish",
+        description: "The Babylonian creation myth, recounting the birth of the gods and the creation of the world.",
+        imageurl: "https://www.learnreligions.com/thmb/7cFW60oCtHz8rE-H9-ahEYwYquo=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/clay-impression-of-a-cylinder-seal-depicting-adoration-scene-from-nippur-iraq-detail-akkadian-civilization-2330-2150-b-c-102520124-58988e835f9b5874ee8c3e31.jpg",
+        videoUrl: "Q1Zj1Ttg3vM"
     }
 ];
-
-
 
 
 
@@ -605,6 +824,13 @@ const Civilizations = () => {
 
     const isFavorite = (id) => favorites.civilizations.some(item => item.id === id);
 
+    const videoOptions = {
+        width: '100%',
+        playerVars: {
+            autoplay: 0,
+        },
+    };
+
     return (
         <Container className="container-custom">
             <Row className="mt-4 row-custom">
@@ -614,7 +840,11 @@ const Civilizations = () => {
                             className={`mb-3 card-custom ${expandedCivilizationId === civilization.id ? 'expanded' : ''}`}
                             onClick={() => handleExpand(civilization.id)}
                         >
-                            <Card.Img variant="top" src={civilization.imageurl} className="card-img-top" />
+                            {expandedCivilizationId === civilization.id ? (
+                                <YouTube videoId={civilization.videoUrl} opts={videoOptions} className="youtube-video" />
+                            ) : (
+                                <Card.Img variant="top" src={civilization.imageurl} className="card-img-top" />
+                            )}
                             <Card.Body>
                                 <Card.Title>{civilization.name}</Card.Title>
                                 <Card.Text>{civilization.dates}</Card.Text>
@@ -670,3 +900,4 @@ const Civilizations = () => {
 };
 
 export default Civilizations;
+

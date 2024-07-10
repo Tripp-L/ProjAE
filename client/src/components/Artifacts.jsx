@@ -14,7 +14,7 @@ const initialArtifacts = [
         civilization: "Ancient China",
         discovery_date: "1974",
         location: "Shaanxi, China",
-        videoUrl: "https://www.youtube.com/shorts/TFNhRUOo_A0"
+        videoUrl: "TFNhRUOo_A0"
     },
     {
         id: 2,
@@ -22,7 +22,8 @@ const initialArtifacts = [
         description: "A wooden box inlaid with shell, lapis lazuli, and red limestone, depicting scenes of war and peace.",
         imageurl: "https://cdn.kastatic.org/ka-content-images/0e6c402af2d565815af848737bf663c799daae88.jpg",
         discovery_date: "1927-1928",
-        location: "Royal Cemetery of Ur, Iraq"
+        location: "Royal Cemetery of Ur, Iraq",
+        videoUrl: "MWDVWz-8M4g"
     },
     {
         id: 3,
@@ -31,7 +32,8 @@ const initialArtifacts = [
         imageurl: "https://egyptianmuseumcairo.eg/wp-content/uploads/2021/06/Tutankhamon-funerary-mask.jpg",
         civilization: "Ancient Egypt",
         discovery_date: "1925",
-        location: "Valley of the Kings, Egypt"
+        location: "Valley of the Kings, Egypt",
+        videoUrl: "y7YCkYJerqE"
     },
     {
         id: 4,
@@ -40,7 +42,8 @@ const initialArtifacts = [
         imageurl: "https://greekreporter.com/wp-content/uploads/2018/06/Venus-de-Milo-ancient-sculpture-credit-Bradley-N-Weber-CC2.jpg",
         civilization: "Ancient Greece",
         discovery_date: "1820",
-        location: "Island of Milos, Greece"
+        location: "Island of Milos, Greece",
+        videoUrl: "kFFL3CtuOE4"
     },
     {
         id: 5,
@@ -49,7 +52,8 @@ const initialArtifacts = [
         imageurl: "https://i0.wp.com/arthistorywithalder.com/wp-content/uploads/2021/04/Coyolxauhqui_4095977415_b89d64f008-2.jpg?resize=482%2C482&ssl=1",
         civilization: "Aztec",
         discovery_date: "1978",
-        location: "Templo Mayor, Mexico City, Mexico"
+        location: "Templo Mayor, Mexico City, Mexico",
+        videoUrl: "Z1rqLNz8Zo0"
     },
     {
         id: 6,
@@ -58,7 +62,9 @@ const initialArtifacts = [
         imageurl: "https://t4.ftcdn.net/jpg/02/87/58/75/360_F_287587553_ARtpLHaD7mHYGRD6nbkvPKzKjmnsdwwd.webp",
         civilization: "Indus Valley",
         discovery_date: "1927",
-        location: "Mohenjo-daro, Pakistan"
+        location: "Mohenjo-daro, Pakistan",
+        videoUrl: "GvjewZp7mXM"
+
     },
     {
         id: 7,
@@ -171,7 +177,6 @@ const initialArtifacts = [
 ];
 
 
-
 const Artifacts = () => {
     const { favorites, addFavorite, removeFavorite } = useFavorites();
     const [artifacts, setArtifacts] = useState(initialArtifacts);
@@ -187,6 +192,13 @@ const Artifacts = () => {
 
     const isFavorite = (id) => favorites.artifacts.some(item => item.id === id);
 
+    const videoOptions = {
+        width: '100%',
+        playerVars: {
+            autoplay: 0,
+        },
+    };
+
     return (
         <Container className="container-custom">
             <Row className="mt-4 row-custom">
@@ -196,7 +208,11 @@ const Artifacts = () => {
                             className={`mb-3 card-custom ${expandedArtifactId === artifact.id ? 'expanded' : ''}`}
                             onClick={() => handleExpand(artifact.id)}
                         >
-                            <Card.Img variant="top" src={artifact.imageurl} className="card-img-top" />
+                            {expandedArtifactId === artifact.id ? (
+                                <YouTube videoId={artifact.videoUrl} opts={videoOptions} className="youtube-video" />
+                            ) : (
+                                <Card.Img variant="top" src={artifact.imageurl} className="card-img-top" />
+                            )}
                             <Card.Body>
                                 <Card.Title>{artifact.name}</Card.Title>
                                 <Card.Text>{artifact.discovery_date}</Card.Text>
@@ -208,9 +224,6 @@ const Artifacts = () => {
                                             <p>{artifact.civilization}</p>
                                             <h5>Location:</h5>
                                             <p>{artifact.location}</p>
-                                            {artifact.videoUrl && (
-                                                <YouTube videoId={artifact.videoUrl} className="youtube-video" />
-                                            )}
                                         </div>
                                     </div>
                                 )}

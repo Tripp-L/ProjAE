@@ -15,7 +15,7 @@ const initialEvents = [
         date: "480 BC",
         civilization: "Ancient Greece",
         details: "The battle was part of the second Persian invasion of Greece and has become a symbol of courage against overwhelming odds.",
-        videoUrl: "https://www.youtube.com/shorts/QuXRIW7tH6A"
+        videoUrl: "QuXRIW7tH6A"
     },
     {
         id: 2,
@@ -24,7 +24,8 @@ const initialEvents = [
         imageurl: "https://i.natgeofe.com/n/4fb4b638-3c21-4af1-9c3c-b82854b0ec00/roman-sarcophagus-persians-flee_16x9.jpg",
         date: "490 BC",
         civilization: "Ancient Greece",
-        details: "The Athenian victory was crucial in preserving Greek independence and culture."
+        details: "The Athenian victory was crucial in preserving Greek independence and culture.",
+        videoUrl: "IRmjbhYSYgo"
     },
     {
         id: 3,
@@ -33,7 +34,8 @@ const initialEvents = [
         imageurl: "https://assets.editorial.aetnd.com/uploads/2014/01/gettyimages-802428712.jpg",
         date: "476 AD",
         civilization: "Roman Empire",
-        details: "The fall of Rome marked the transition from classical antiquity to the medieval period in Europe."
+        details: "The fall of Rome marked the transition from classical antiquity to the medieval period in Europe.",
+        videoUrl: "4B-HU0yrfxw"
     },
     {
         id: 4,
@@ -42,7 +44,8 @@ const initialEvents = [
         imageurl: "https://cf.geekdo-images.com/8pa0aykUKcn-uJGvTeOy8A__itemrep/img/GO0w7qKfl4CBNAFpGjysF8FUu38=/fit-in/246x300/filters:strip_icc()/pic5027104.jpg",
         date: "475-221 BC",
         civilization: "Ancient China",
-        details: "This era saw significant advancements in philosophy, military strategy, and technology, ultimately leading to the unification of China under the Qin dynasty."
+        details: "This era saw significant advancements in philosophy, military strategy, and technology, ultimately leading to the unification of China under the Qin dynasty.",
+        videoUrl: "_yqyCUcUjV0"
     },
     {
         id: 5,
@@ -51,7 +54,8 @@ const initialEvents = [
         imageurl: "https://cdn.thecollector.com/wp-content/uploads/2023/09/akkadian-empire-rise-fall-768x442.jpg",
         date: "c. 2334-2279 BC",
         civilization: "Mesopotamia",
-        details: "The Akkadian Empire unified the region under a single ruler, marking a significant shift in political organization and control."
+        details: "The Akkadian Empire unified the region under a single ruler, marking a significant shift in political organization and control.",
+        videoUrl: "D8YzvZRT5ko"
     },
     {
         id: 6,
@@ -60,7 +64,8 @@ const initialEvents = [
         imageurl: "https://images.nationalgeographic.org/image/upload/v1638891964/EducationHub/photos/peloponnesian-war.jpg",
         date: "431-404 BC",
         civilization: "Ancient Greece",
-        details: "This war reshaped the ancient Greek world, weakening Athens and paving the way for Macedonian dominance."
+        details: "This war reshaped the ancient Greek world, weakening Athens and paving the way for Macedonian dominance.",
+        videoUrl: "5_xNrMcsVW8"
     },
     {
         id: 7,
@@ -164,8 +169,6 @@ const initialEvents = [
 ];
 
 
-
-
 const Events = () => {
     const { favorites, addFavorite, removeFavorite } = useFavorites();
     const [events, setEvents] = useState(initialEvents);
@@ -181,6 +184,13 @@ const Events = () => {
 
     const isFavorite = (id) => favorites.events.some(item => item.id === id);
 
+    const videoOptions = {
+        width: '100%',
+        playerVars: {
+            autoplay: 0,
+        },
+    };
+
     return (
         <Container className="container-custom">
             <Row className="mt-4 row-custom">
@@ -190,7 +200,11 @@ const Events = () => {
                             className={`mb-3 card-custom ${expandedEventId === event.id ? 'expanded' : ''}`}
                             onClick={() => handleExpand(event.id)}
                         >
-                            <Card.Img variant="top" src={event.imageurl} className="card-img-top" />
+                            {expandedEventId === event.id ? (
+                                <YouTube videoId={event.videoUrl} opts={videoOptions} className="youtube-video" />
+                            ) : (
+                                <Card.Img variant="top" src={event.imageurl} className="card-img-top" />
+                            )}
                             <Card.Body>
                                 <Card.Title>{event.name}</Card.Title>
                                 <Card.Text>{event.date}</Card.Text>
@@ -202,13 +216,6 @@ const Events = () => {
                                             <p>{event.civilization}</p>
                                             <h5>Details:</h5>
                                             <p>{event.details}</p>
-                                            <div className="links-container">
-                                                <Link to={`/events`}>Events</Link>
-                                                <span> | </span>
-                                                <Link to={`/artifacts`}>Artifacts</Link>
-                                                <span> | </span>
-                                                <Link to={`/regions/${event.id}`}>Regions</Link>
-                                            </div>
                                         </div>
                                     </div>
                                 )}
