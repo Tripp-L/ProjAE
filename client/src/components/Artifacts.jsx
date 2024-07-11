@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import YouTube from 'react-youtube';
 import { useFavorites } from '../contexts/FavoriteContext';
-import BookRecommendation from './BookRecommendation';
+import { useSearch } from '../contexts/SearchContext';
 import './Artifacts.css';
 
 const initialArtifacts = [
@@ -405,6 +405,7 @@ const Artifacts = ({ onExpand }) => {
     const { favorites, addFavorite, removeFavorite } = useFavorites();
     const [artifacts, setArtifacts] = useState(initialArtifacts);
     const [expandedArtifactId, setExpandedArtifactId] = useState(null);
+    const { searchQuery } = useSearch();
 
     const handleExpand = (id, books) => {
         if (expandedArtifactId === id) {
@@ -425,10 +426,16 @@ const Artifacts = ({ onExpand }) => {
         },
     };
 
+    const filteredArtifacts = artifacts.filter(artifact =>
+        artifact.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        artifact.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        artifact.civilization.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <Container className="container-custom">
             <Row className="mt-4 row-custom">
-                {artifacts.map(artifact => (
+                {filteredArtifacts.map(artifact => (
                     <Col key={artifact.id} xs={12} sm={6} md={4} lg={3} className="mb-4 col-custom">
                         <Card
                             className={`mb-3 card-custom ${expandedArtifactId === artifact.id ? 'expanded' : ''}`}

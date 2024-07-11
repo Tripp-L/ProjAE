@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import YouTube from 'react-youtube';
 import { useFavorites } from '../contexts/FavoriteContext';
-import BookRecommendation from './BookRecommendation';
+import { useSearch } from '../contexts/SearchContext';
 import './Civilizations.css';
 
 
@@ -1172,6 +1172,7 @@ const Civilizations = ({ onExpand }) => {
     const { favorites, addFavorite, removeFavorite } = useFavorites();
     const [civilizations, setCivilizations] = useState(initialCivilizations);
     const [expandedCivilizationId, setExpandedCivilizationId] = useState(null);
+    const { searchQuery } = useSearch();
 
     const handleExpand = (id, books) => {
         if (expandedCivilizationId === id) {
@@ -1192,10 +1193,16 @@ const Civilizations = ({ onExpand }) => {
         },
     };
 
+    const filteredCivilizations = civilizations.filter(civilization =>
+        civilization.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        civilization.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        civilization.dates.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <Container className="container-custom">
             <Row className="mt-4 row-custom">
-                {civilizations.map(civilization => (
+                {filteredCivilizations.map(civilization => (
                     <Col key={civilization.id} xs={12} sm={6} md={4} lg={3} className="mb-4 col-custom">
                         <Card
                             className={`mb-3 card-custom ${expandedCivilizationId === civilization.id ? 'expanded' : ''}`}

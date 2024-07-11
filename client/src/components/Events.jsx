@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import YouTube from 'react-youtube';
 import { useFavorites } from '../contexts/FavoriteContext';
-import BookRecommendation from './BookRecommendation';
+import { useSearch } from '../contexts/SearchContext';
 import './Events.css';
 
 
@@ -399,6 +399,7 @@ const Events = ({ onExpand }) => {
     const { favorites, addFavorite, removeFavorite } = useFavorites();
     const [events, setEvents] = useState(initialEvents);
     const [expandedEventId, setExpandedEventId] = useState(null);
+    const { searchQuery } = useSearch();
 
     const handleExpand = (id, books) => {
         if (expandedEventId === id) {
@@ -419,10 +420,16 @@ const Events = ({ onExpand }) => {
         },
     };
 
+    const filteredEvents = events.filter(event =>
+        event.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        event.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        event.civilization.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <Container className="container-custom">
             <Row className="mt-4 row-custom">
-                {events.map(event => (
+                {filteredEvents.map(event => (
                     <Col key={event.id} xs={12} sm={6} md={4} lg={3} className="mb-4 col-custom">
                         <Card
                             className={`mb-3 card-custom ${expandedEventId === event.id ? 'expanded' : ''}`}

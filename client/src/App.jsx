@@ -16,6 +16,8 @@ import BookRecommendation from './components/BookRecommendation';
 import axios from 'axios';
 import FavoriteProvider from './contexts/FavoriteContext';
 
+
+
 const initialCivilizations = [
     {
       id: 1,
@@ -1958,149 +1960,149 @@ const initialEvents = [
 ];
 
 function App() {
-    const location = useLocation();
-    const navigate = useNavigate();
-    const [loggedIn, setLoggedIn] = useState(false);
-    const [loading, setLoading] = useState(true);
-    const [bookRecommendations, setBookRecommendations] = useState([]);
-    const [showBookRecommendations, setShowBookRecommendations] = useState(true);
-    const [searchResults, setSearchResults] = useState([]);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [bookRecommendations, setBookRecommendations] = useState([]);
+  const [showBookRecommendations, setShowBookRecommendations] = useState(true);
+  const [searchResults, setSearchResults] = useState([]);
 
-    useEffect(() => {
-        const checkLoginStatus = async () => {
-            const accessToken = localStorage.getItem('access_token');
-            if (accessToken) {
-                try {
-                    const response = await axios.get('/auth/profile', {
-                        headers: {
-                            Authorization: `Bearer ${accessToken}`
-                        }
-                    });
-                    setLoggedIn(true);
-                } catch (error) {
-                    if (error.response && error.response.status === 401) {
-                        try {
-                            const refreshResponse = await axios.post('/auth/refresh', null, {
-                                headers: {
-                                    Authorization: `Bearer ${localStorage.getItem('refresh_token')}`
-                                }
-                            });
-                            const { access_token } = refreshResponse.data;
-                            localStorage.setItem('access_token', access_token);
-                            setLoggedIn(true);
-                        } catch (refreshError) {
-                            setLoggedIn(false);
-                            localStorage.removeItem('access_token');
-                            localStorage.removeItem('refresh_token');
-                            navigate('/login');
-                        }
-                    } else if (error.response && error.response.status === 404) {
-                        setLoggedIn(true);
-                    }
-                }
-            } else {
-                setLoggedIn(false);
-            }
-            setLoading(false);
-        };
-        checkLoginStatus();
-    }, [navigate]);
+  useEffect(() => {
+      const checkLoginStatus = async () => {
+          const accessToken = localStorage.getItem('access_token');
+          if (accessToken) {
+              try {
+                  const response = await axios.get('/auth/profile', {
+                      headers: {
+                          Authorization: `Bearer ${accessToken}`
+                      }
+                  });
+                  setLoggedIn(true);
+              } catch (error) {
+                  if (error.response && error.response.status === 401) {
+                      try {
+                          const refreshResponse = await axios.post('/auth/refresh', null, {
+                              headers: {
+                                  Authorization: `Bearer ${localStorage.getItem('refresh_token')}`
+                              }
+                          });
+                          const { access_token } = refreshResponse.data;
+                          localStorage.setItem('access_token', access_token);
+                          setLoggedIn(true);
+                      } catch (refreshError) {
+                          setLoggedIn(false);
+                          localStorage.removeItem('access_token');
+                          localStorage.removeItem('refresh_token');
+                          navigate('/login');
+                      }
+                  } else if (error.response && error.response.status === 404) {
+                      setLoggedIn(true);
+                  }
+              }
+          } else {
+              setLoggedIn(false);
+          }
+          setLoading(false);
+      };
+      checkLoginStatus();
+  }, [navigate]);
 
-    const handleLoginSuccess = () => {
-        setLoggedIn(true);
-        navigate('/');
-    };
+  const handleLoginSuccess = () => {
+      setLoggedIn(true);
+      navigate('/');
+  };
 
-    const handleLogout = () => {
-        setLoggedIn(false);
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('refresh_token');
-        navigate('/login');
-    };
+  const handleLogout = () => {
+      setLoggedIn(false);
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('refresh_token');
+      navigate('/login');
+  };
 
-    const handlePinConfirmSuccess = () => {
-        navigate('/profile');
-    };
+  const handlePinConfirmSuccess = () => {
+      navigate('/profile');
+  };
 
-    const handleProfileCompletion = () => {
-        navigate('/');
-    };
+  const handleProfileCompletion = () => {
+      navigate('/');
+  };
 
-    const handleExpandBooks = (books) => {
-        setBookRecommendations(books);
-    };
+  const handleExpandBooks = (books) => {
+      setBookRecommendations(books);
+  };
 
-    const hideBookRecommendations = () => {
-        setShowBookRecommendations(false);
-    };
+  const hideBookRecommendations = () => {
+      setShowBookRecommendations(false);
+  };
 
-    const handleSearch = (query) => {
-        if (!query) {
-            setSearchResults([]);
-            return;
-        }
+  const handleSearch = (query) => {
+      if (!query) {
+          setSearchResults([]);
+          return;
+      }
 
-        const civilizations = initialCivilizations; 
-        const artifacts = initialArtifacts; 
-        const events = initialEvents; 
-        const books = bookRecommendations;
+      const civilizations = initialCivilizations; 
+      const artifacts = initialArtifacts; 
+      const events = initialEvents; 
+      const books = bookRecommendations;
 
-        const results = [
-            ...civilizations.filter(civilization =>
-                civilization.name.toLowerCase().includes(query.toLowerCase())
-            ).map(civilization => ({ ...civilization, type: 'civilization' })),
+      const results = [
+          ...civilizations.filter(civilization =>
+              civilization.name.toLowerCase().includes(query.toLowerCase())
+          ).map(civilization => ({ ...civilization, type: 'civilization' })),
 
-            ...artifacts.filter(artifact =>
-                artifact.name.toLowerCase().includes(query.toLowerCase())
-            ).map(artifact => ({ ...artifact, type: 'artifact' })),
+          ...artifacts.filter(artifact =>
+              artifact.name.toLowerCase().includes(query.toLowerCase())
+          ).map(artifact => ({ ...artifact, type: 'artifact' })),
 
-            ...events.filter(event =>
-                event.name.toLowerCase().includes(query.toLowerCase())
-            ).map(event => ({ ...event, type: 'event' })),
+          ...events.filter(event =>
+              event.name.toLowerCase().includes(query.toLowerCase())
+          ).map(event => ({ ...event, type: 'event' })),
 
-            ...books.filter(book =>
-                book.title.toLowerCase().includes(query.toLowerCase())
-            ).map(book => ({ ...book, type: 'book' }))
-        ];
+          ...books.filter(book =>
+              book.title.toLowerCase().includes(query.toLowerCase())
+          ).map(book => ({ ...book, type: 'book' }))
+      ];
 
-        setSearchResults(results);
-    };
+      setSearchResults(results);
+  };
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+  if (loading) {
+      return <div>Loading...</div>;
+  }
 
-    const renderBookRecommendations = location.pathname.includes('/civilizations') || location.pathname.includes('/artifacts') || location.pathname.includes('/events');
+  const renderBookRecommendations = location.pathname.includes('/civilizations') || location.pathname.includes('/artifacts') || location.pathname.includes('/events');
 
-    return (
-        <FavoriteProvider>
-            <div>
-                {location.pathname !== '/signup' && location.pathname !== '/login' && location.pathname !== '/pin-confirm' && (
-                    <>
-                        <Header loggedIn={loggedIn} profile={null} onLogout={handleLogout} onSearch={handleSearch} />
-                        <Navbar />
-                    </>
-                )}
-                
-                <Routes>
-                    <Route path="/" element={loggedIn ? <Home onLogout={handleLogout} searchResults={searchResults} /> : <Navigate to="/login" />} />
-                    <Route path="/signup" element={<Signup />} />
-                    <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
-                    <Route path="/pin-confirm" element={<PinConfirm onPinConfirmSuccess={handlePinConfirmSuccess} />} />
-                    <Route path="/profile" element={<Profile onProfileCompletion={handleProfileCompletion} />} />
-                    <Route path="/civilizations" element={loggedIn ? <Civilizations onExpand={handleExpandBooks} /> : <Navigate to="/login" />} />
-                    <Route path="/events" element={loggedIn ? <Events onExpand={handleExpandBooks} /> : <Navigate to="/login" />} />
-                    <Route path="/regions/:id" element={loggedIn ? <Regions /> : <Navigate to="/login" />} />
-                    <Route path="/regions" element={loggedIn ? <Regions /> : <Navigate to="/login" />} />
-                    <Route path="/artifacts" element={loggedIn ? <Artifacts onExpand={handleExpandBooks} /> : <Navigate to="/login" />} />
-                </Routes>
+  return (
+      <FavoriteProvider>
+          <div>
+              {location.pathname !== '/signup' && location.pathname !== '/login' && location.pathname !== '/pin-confirm' && (
+                  <>
+                      <Header loggedIn={loggedIn} profile={null} onLogout={handleLogout} onSearch={handleSearch} />
+                      <Navbar />
+                  </>
+              )}
+              
+              <Routes>
+                  <Route path="/" element={loggedIn ? <Home onLogout={handleLogout} searchResults={searchResults} /> : <Navigate to="/login" />} />
+                  <Route path="/signup" element={<Signup />} />
+                  <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
+                  <Route path="/pin-confirm" element={<PinConfirm onPinConfirmSuccess={handlePinConfirmSuccess} />} />
+                  <Route path="/profile" element={<Profile onProfileCompletion={handleProfileCompletion} />} />
+                  <Route path="/civilizations" element={loggedIn ? <Civilizations searchResults={searchResults} onExpand={handleExpandBooks} /> : <Navigate to="/login" />} />
+                  <Route path="/events" element={loggedIn ? <Events searchResults={searchResults} onExpand={handleExpandBooks} /> : <Navigate to="/login" />} />
+                  <Route path="/regions/:id" element={loggedIn ? <Regions /> : <Navigate to="/login" />} />
+                  <Route path="/regions" element={loggedIn ? <Regions /> : <Navigate to="/login" />} />
+                  <Route path="/artifacts" element={loggedIn ? <Artifacts searchResults={searchResults} onExpand={handleExpandBooks} /> : <Navigate to="/login" />} />
+              </Routes>
 
-                {renderBookRecommendations && showBookRecommendations && (
-                    <BookRecommendation books={bookRecommendations} onClose={hideBookRecommendations} />
-                )}
-            </div>
-        </FavoriteProvider>
-    );
+              {renderBookRecommendations && showBookRecommendations && (
+                  <BookRecommendation books={bookRecommendations} onClose={hideBookRecommendations} />
+              )}
+          </div>
+      </FavoriteProvider>
+  );
 }
 
 export default App;
