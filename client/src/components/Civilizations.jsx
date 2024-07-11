@@ -3,6 +3,7 @@ import { Card, Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import YouTube from 'react-youtube';
 import { useFavorites } from '../contexts/FavoriteContext';
+import BookRecommendation from './BookRecommendation';
 import './Civilizations.css';
 
 
@@ -44,6 +45,20 @@ const initialCivilizations = [
         events: [
             { name: "Battle of Red Cliffs" },
             { name: "Yellow Turban Rebellion" }
+        ],
+        books: [
+            {
+                title: "The Early Chinese Empires: Qin and Han (History of Imperial China)",
+                author: "Mark Edward Lewis ",
+                link: "https://www.amazon.com/Early-Chinese-Empires-History-Imperial/dp/0674057341/ref=asc_df_0674057341/?tag=hyprod-20&linkCode=df0&hvadid=693309416374&hvpos=&hvnetw=g&hvrand=13361493681087050168&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9193459&hvtargid=pla-468991133702&psc=1&mcid=e07790fa9bf43e6db4af389d165f6527&gad_source=1",
+                image: "https://m.media-amazon.com/images/I/91JOa3pZm5L._SY466_.jpg"
+            },
+            {
+                title: "China's First Emperor and His Terracotta Warriors",
+                author: "Frances Wood",
+                link: "https://www.amazon.com/Chinas-First-Emperor-Terracotta-Warriors/dp/1250029759/ref=asc_df_1250029759/?tag=hyprod-20&linkCode=df0&hvadid=693341079312&hvpos=&hvnetw=g&hvrand=13361493681087050168&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9193459&hvtargid=pla-636329552812&psc=1&mcid=5f8f1dd4eb583787be9325c91c44fd23&gad_source=1",
+                image: "https://m.media-amazon.com/images/I/91L1PuvEeLL._SY466_.jpg"
+            }
         ]
     },
     {
@@ -51,7 +66,7 @@ const initialCivilizations = [
         name: "Atlantis",
         description: "A legendary island civilization mentioned in Plato's dialogues, often depicted as an advanced society with unique technology and architecture.",
         imageurl: "https://vvikipedia.co/images/thumb/2/24/Faeland_Alth%C3%B3an_artist_depiction_as_atlantis.jpg/800px-Faeland_Alth%C3%B3an_artist_depiction_as_atlantis.jpg", 
-        dates: "~9,600 BC ",
+        dates: "~9,600 BC",
         regions: "Atlantic Ocean, Richat Structure (Sahara)",
         videoUrl: "ZMgGO_RR6HY",
         leaders: [],
@@ -63,6 +78,20 @@ const initialCivilizations = [
             {
                 name: "Cleito",
                 description: "Mortal woman in Atlantean mythology, mother of Atlas and his brothers."
+            }
+        ],
+        books: [
+            {
+                title: "Atlantis Solved: The Final Definitive Proof",
+                author: "David Edward",
+                link: "https://www.amazon.com/Atlantis-Solved-Final-Definitive-History/dp/B09Z9JG6R8",
+                image: "https://m.media-amazon.com/images/I/714UvC+PqtL._SY466_.jpg"
+            },
+            {
+                title: "Timaeus & Critias",
+                author: "Plato",
+                link: "https://www.amazon.com/Timaeus-Critias-Plato/dp/1978028504/ref=asc_df_1978028504/?tag=hyprod-20&linkCode=df0&hvadid=693308329801&hvpos=&hvnetw=g&hvrand=9456223400767347864&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9193459&hvtargid=pla-878456109839&psc=1&mcid=0983a42f5bc03c49b9b3f039c09225a1&gad_source=1",
+                image: "https://m.media-amazon.com/images/I/41hONHiMGQL._SY466_.jpg"
             }
         ]
     },
@@ -100,6 +129,20 @@ const initialCivilizations = [
             {
                 name: "Ishtar",
                 description: "Goddess of love, fertility, and war"
+            }
+        ],
+        books: [
+            {
+                title: "Babylon: Mesopotamia and the Birth of Civilization",
+                author: "Paul Kriwaczek ",
+                link: "https://www.amazon.com/Babylon-Mesopotamia-Civilization-Paul-Kriwaczek/dp/1250054168/ref=asc_df_1250054168/?tag=hyprod-20&linkCode=df0&hvadid=693308329660&hvpos=&hvnetw=g&hvrand=1709752939551357690&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9193459&hvtargid=pla-417307127938&psc=1&mcid=a269cfe77d3d3433a58e15d11071a4f6&gad_source=1",
+                image: "https://m.media-amazon.com/images/I/71nETmd1mIL._SY466_.jpg"
+            },
+            {
+                title: "Ancient Mesopotamia: An Enthralling Overview of Mesopotamian History, Starting from Eridu through the Sumerians, Akkadians, Assyrians, Hittites, and Persians to Alexander the Great (History of Mesopotamia)",
+                author: "Enthralling History",
+                link: "https://www.amazon.com/Ancient-Mesopotamia-Enthralling-Mesopotamian-Sumerians/dp/1956296573/ref=asc_df_1956296573/?tag=hyprod-20&linkCode=df0&hvadid=693611442412&hvpos=&hvnetw=g&hvrand=1709752939551357690&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9193459&hvtargid=pla-1657479564135&psc=1&mcid=6278aa9245d733f48a02302dea34cca4&gad_source=1",
+                image: "https://m.media-amazon.com/images/I/71F6TsExXYL._SY466_.jpg"
             }
         ]
     },
@@ -144,6 +187,20 @@ const initialCivilizations = [
                 name: "Isis",
                 description: "Goddess of magic, healing, and motherhood"
             }
+        ],
+        books: [
+            {
+                title: "History of Egypt: An Enthralling Overview of Egyptian History",
+                author: "Enthralling History ",
+                link: "https://www.amazon.com/History-Egypt-Enthralling-Overview-Mythology/dp/B0B5KNTVB9/ref=sims_dp_d_dex_ai_speed_loc_mtl_v4_d_sccl_2_5/146-6572004-7304720?pd_rd_w=2a12i&content-id=amzn1.sym.dbded1ad-8495-4a8e-9906-011c3df3dc92&pf_rd_p=dbded1ad-8495-4a8e-9906-011c3df3dc92&pf_rd_r=B9D9HJZNKRDC88C23P2C&pd_rd_wg=03tHD&pd_rd_r=2ae07186-85b2-406e-bf95-9986b9ac841f&pd_rd_i=B0B5KNTVB9&psc=1",
+                image: "https://m.media-amazon.com/images/I/71IugARucfL._SY466_.jpg"
+            },
+            {
+                title: "Ancient Egypt: The Definitive Visual History (DK Classic History)",
+                author: "DK",
+                link: "https://www.amazon.com/Ancient-Egypt-Definitive-Visual-History/dp/0744029244/ref=asc_df_0744029244/?tag=hyprod-20&linkCode=df0&hvadid=693589349926&hvpos=&hvnetw=g&hvrand=2635894515951248551&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9193459&hvtargid=pla-1189353706297&psc=1&mcid=d4cbe237d3a93e5d96843278ab08290d&gad_source=1",
+                image: "https://m.media-amazon.com/images/I/81vYUppoopL._SY466_.jpg"
+            }
         ]
     },
     {
@@ -181,6 +238,18 @@ const initialCivilizations = [
                 name: "Athena",
                 description: "Goddess of wisdom, handicraft, and warfare"
             }
+        ],
+        books: [
+            {
+                title: "The Iliad",
+                author: "Homer",
+                link: "https://www.goodreads.com/book/show/1371.The_Iliad"
+            },
+            {
+                title: "The Histories",
+                author: "Herodotus",
+                link: "https://www.goodreads.com/book/show/3882.The_Histories"
+            }
         ]
     },
     {
@@ -212,6 +281,18 @@ const initialCivilizations = [
                 name: "Tlaloc",
                 description: "God of rain, fertility, and water"
             }
+        ],
+        books: [
+            {
+                title: "The Broken Spears: The Aztec Account of the Conquest of Mexico",
+                author: "Miguel León-Portilla",
+                link: "https://www.goodreads.com/book/show/101621.The_Broken_Spears"
+            },
+            {
+                title: "Aztec Thought and Culture: A Study of the Ancient Nahuatl Mind",
+                author: "Miguel León-Portilla",
+                link: "https://www.goodreads.com/book/show/194318.Aztec_Thought_and_Culture"
+            }
         ]
     },
     {
@@ -224,7 +305,19 @@ const initialCivilizations = [
         videoUrl: "drortffMKvA",
         leaders: [],
         deities: [],
-        events: []
+        events: [],
+        books: [
+            {
+                title: "The Indus: Lost Civilizations",
+                author: "Andrew Robinson",
+                link: "https://www.goodreads.com/book/show/25893971-the-indus"
+            },
+            {
+                title: "The Indus Civilization: A Contemporary Perspective",
+                author: "Gregory L. Possehl",
+                link: "https://www.goodreads.com/book/show/436928.The_Indus_Civilization"
+            }
+        ]
     },
     {
         id: 8,
@@ -255,6 +348,18 @@ const initialCivilizations = [
                 name: "Chaac",
                 description: "God of rain and lightning"
             }
+        ],
+        books: [
+            {
+                title: "The Maya",
+                author: "Michael D. Coe",
+                link: "https://www.goodreads.com/book/show/23956.The_Maya"
+            },
+            {
+                title: "Maya Civilization: A Captivating Guide to Maya History and Maya Mythology",
+                author: "Captivating History",
+                link: "https://www.goodreads.com/book/show/45289757-maya-civilization"
+            }
         ]
     },
     {
@@ -276,7 +381,19 @@ const initialCivilizations = [
                 description: "Goddess associated with snakes, fertility, and household protection"
             }
         ],
-        events: []
+        events: [],
+        books: [
+            {
+                title: "The Minoans",
+                author: "Rodney Castleden",
+                link: "https://www.goodreads.com/book/show/162114.The_Minoans"
+            },
+            {
+                title: "The Knossos Labyrinth: A New View of the `Palace of Minos' at Knossos",
+                author: "Hugo Blake",
+                link: "https://www.goodreads.com/book/show/393586.The_Knossos_Labyrinth"
+            }
+        ]
     },
     {
         id: 10,
@@ -293,7 +410,19 @@ const initialCivilizations = [
                 description: "A powerful deity often depicted as a hybrid creature with feline and human features."
             }
         ],
-        events: []
+        events: [],
+        books: [
+            {
+                title: "The Olmecs: America's First Civilization",
+                author: "Richard A. Diehl",
+                link: "https://www.goodreads.com/book/show/865657.The_Olmecs"
+            },
+            {
+                title: "The Olmec World: Ritual and Rulership",
+                author: "Jill Guthrie",
+                link: "https://www.goodreads.com/book/show/2463308.The_Olmec_World"
+            }
+        ]
     },
     {
         id: 11,
@@ -330,6 +459,18 @@ const initialCivilizations = [
                 name: "Mithra",
                 description: "God of light, contracts, and friendship"
             }
+        ],
+        books: [
+            {
+                title: "Persepolis: The Story of a Childhood",
+                author: "Marjane Satrapi",
+                link: "https://www.goodreads.com/book/show/9516.Persepolis"
+            },
+            {
+                title: "The Persian Empire: A History",
+                author: "Lindsay Allen",
+                link: "https://www.goodreads.com/book/show/1728838.The_Persian_Empire"
+            }
         ]
     },
     {
@@ -355,7 +496,19 @@ const initialCivilizations = [
                 description: "God of the city of Tyre, associated with the sun, healing, and navigation"
             }
         ],
-        events: []
+        events: [],
+        books: [
+            {
+                title: "Carthage Must Be Destroyed: The Rise and Fall of an Ancient Civilization",
+                author: "Richard Miles",
+                link: "https://www.goodreads.com/book/show/8948154-carthage-must-be-destroyed"
+            },
+            {
+                title: "The Phoenicians",
+                author: "Gerhard Herm",
+                link: "https://www.goodreads.com/book/show/162117.The_Phoenicians"
+            }
+        ]
     },
     {
         id: 13,
@@ -374,7 +527,19 @@ const initialCivilizations = [
             }
         ],
         deities: [],
-        events: []
+        events: [],
+        books: [
+            {
+                title: "The First Emperor of China",
+                author: "Jonathan Clements",
+                link: "https://www.goodreads.com/book/show/771257.The_First_Emperor_of_China"
+            },
+            {
+                title: "Qin: A Captivating Guide to the First Imperial Dynasty of China and the Ruler, Emperor Qin Shi Huang",
+                author: "Captivating History",
+                link: "https://www.goodreads.com/book/show/45155723-qin"
+            }
+        ]
     },
     {
         id: 14,
@@ -411,6 +576,18 @@ const initialCivilizations = [
                 name: "Mars",
                 description: "God of war"
             }
+        ],
+        books: [
+            {
+                title: "SPQR: A History of Ancient Rome",
+                author: "Mary Beard",
+                link: "https://www.goodreads.com/book/show/25666063-spqr"
+            },
+            {
+                title: "Rubicon: The Last Years of the Roman Republic",
+                author: "Tom Holland",
+                link: "https://www.goodreads.com/book/show/314352.Rubicon"
+            }
         ]
     },
     {
@@ -445,6 +622,18 @@ const initialCivilizations = [
                 name: "Conversion to Christianity",
                 description: "King Ezana adopted Christianity as the state religion."
             }
+        ],
+        books: [
+            {
+                title: "Aksum: An African Civilisation of Late Antiquity",
+                author: "Stuart Munro-Hay",
+                link: "https://www.goodreads.com/book/show/374451.Aksum"
+            },
+            {
+                title: "The Ancient African Kingdom of Axum",
+                author: "Stanley Mayer Burstein",
+                link: "https://www.goodreads.com/book/show/5417625-the-ancient-african-kingdom-of-axum"
+            }
         ]
     },
     {
@@ -469,6 +658,18 @@ const initialCivilizations = [
             {
                 name: "Construction of the Hagia Sophia",
                 description: "A masterpiece of Byzantine architecture, completed in 537 AD."
+            }
+        ],
+        books: [
+            {
+                title: "Byzantium: The Surprising Life of a Medieval Empire",
+                author: "Judith Herrin",
+                link: "https://www.goodreads.com/book/show/3077692-byzantium"
+            },
+            {
+                title: "A Short History of Byzantium",
+                author: "John Julius Norwich",
+                link: "https://www.goodreads.com/book/show/55048.A_Short_History_of_Byzantium"
             }
         ]
     },
@@ -504,6 +705,18 @@ const initialCivilizations = [
                 name: "Punic Wars",
                 description: "A series of three wars fought between Rome and Carthage."
             }
+        ],
+        books: [
+            {
+                title: "Carthage Must Be Destroyed: The Rise and Fall of an Ancient Civilization",
+                author: "Richard Miles",
+                link: "https://www.goodreads.com/book/show/8948154-carthage-must-be-destroyed"
+            },
+            {
+                title: "Hannibal: A History of the Art of War Among the Carthaginians and Romans Down to the Battle of Pydna, 168 B.C.",
+                author: "Theodore Ayrault Dodge",
+                link: "https://www.goodreads.com/book/show/350686.Hannibal"
+            }
         ]
     },
     {
@@ -528,6 +741,18 @@ const initialCivilizations = [
             {
                 name: "Peak of the Gold Trade",
                 description: "Ghana became a major center for the trans-Saharan gold trade."
+            }
+        ],
+        books: [
+            {
+                title: "Ancient Ghana and Mali",
+                author: "Nehemia Levtzion",
+                link: "https://www.goodreads.com/book/show/239117.Ancient_Ghana_and_Mali"
+            },
+            {
+                title: "Kingdom of Gold: Ghana's Ancient Empire",
+                author: "Tracey Baptiste",
+                link: "https://www.goodreads.com/book/show/54436842-kingdom-of-gold"
             }
         ]
     },
@@ -568,6 +793,18 @@ const initialCivilizations = [
                 name: "Construction of Angkor Wat",
                 description: "Built as a Hindu temple, later transformed into a Buddhist temple."
             }
+        ],
+        books: [
+            {
+                title: "Angkor and the Khmer Civilization",
+                author: "Michael D. Coe",
+                link: "https://www.goodreads.com/book/show/311293.Angkor_and_the_Khmer_Civilization"
+            },
+            {
+                title: "Khmer Mythology",
+                author: "Sam",
+                link: "https://www.goodreads.com/book/show/3548980-khmer-mythology"
+            }
         ]
     },
     {
@@ -593,6 +830,18 @@ const initialCivilizations = [
                 name: "Mansa Musa's Pilgrimage to Mecca",
                 description: "Showcased the empire's wealth and brought Islamic scholars to Mali."
             }
+        ],
+        books: [
+            {
+                title: "Sundiata: An Epic of Old Mali",
+                author: "D. T. Niane",
+                link: "https://www.goodreads.com/book/show/134298.Sundiata"
+            },
+            {
+                title: "The History of Africa: The Quest for Eternal Harmony",
+                author: "Molefi Kete Asante",
+                link: "https://www.goodreads.com/book/show/561731.The_History_of_Africa"
+            }
         ]
     },
     {
@@ -601,8 +850,23 @@ const initialCivilizations = [
         description: "A Native American civilization in the Mississippi River Valley, known for its large earthen mounds and complex social structures.",
         imageurl: "https://cdn.britannica.com/55/66455-050-4CD7C423/Cahokia-Michael-Hampshire-painting-1150.jpg",
         dates: "c. 800 – c. 1600 AD",
-        regions: "Mississippi River Valley, Eastern North",
-        videoUrl: "AV6wdz8tQTI"
+        regions: "Mississippi River Valley, Eastern North America",
+        videoUrl: "AV6wdz8tQTI",
+        leaders: [],
+        deities: [],
+        events: [],
+        books: [
+            {
+                title: "Cahokia: Ancient America's Great City on the Mississippi",
+                author: "Timothy R. Pauketat",
+                link: "https://www.goodreads.com/book/show/6403080-cahokia"
+            },
+            {
+                title: "The Mississippian Emergence",
+                author: "Bruce D. Smith",
+                link: "https://www.goodreads.com/book/show/2743053-the-mississippian-emergence"
+            }
+        ]
     },
     {
         id: 22,
@@ -631,6 +895,18 @@ const initialCivilizations = [
             {
                 name: "Meroitic script development",
                 description: "Development of their own unique writing system."
+            }
+        ],
+        books: [
+            {
+                title: "Ancient Nubia: African Kingdoms on the Nile",
+                author: "Marjorie M. Fisher",
+                link: "https://www.goodreads.com/book/show/23719316-ancient-nubia"
+            },
+            {
+                title: "Nubia: Ancient Kingdoms of Africa",
+                author: "Joyce Tyldesley",
+                link: "https://www.goodreads.com/book/show/120843.Nubia"
             }
         ]
     },
@@ -662,6 +938,18 @@ const initialCivilizations = [
                 name: "Spanish conquest",
                 description: "Conquest by the Spanish led by Francisco Pizarro, leading to the empire's fall."
             }
+        ],
+        books: [
+            {
+                title: "The Last Days of the Incas",
+                author: "Kim MacQuarrie",
+                link: "https://www.goodreads.com/book/show/1077143.The_Last_Days_of_the_Incas"
+            },
+            {
+                title: "Turn Right at Machu Picchu: Rediscovering the Lost City One Step at a Time",
+                author: "Mark Adams",
+                link: "https://www.goodreads.com/book/show/9808525-turn-right-at-machu-picchu"
+            }
         ]
     },
     {
@@ -680,6 +968,18 @@ const initialCivilizations = [
             {
                 name: "Terracotta sculpture production",
                 description: "The Nok people created elaborate terracotta sculptures, including human figures and animals."
+            }
+        ],
+        books: [
+            {
+                title: "Nok: African Sculpture in Archaeological Context",
+                author: "Peter Breunig",
+                link: "https://www.goodreads.com/book/show/17342407-nok"
+            },
+            {
+                title: "Nok Terracottas",
+                author: "Ekpo Eyo",
+                link: "https://www.goodreads.com/book/show/11959802-nok-terracottas"
             }
         ]
     },
@@ -704,6 +1004,18 @@ const initialCivilizations = [
             {
                 name: "Construction of Huacas del Sol y de la Luna",
                 description: "Massive adobe pyramid complexes."
+            }
+        ],
+        books: [
+            {
+                title: "Moche Art and Archaeology in Ancient Peru",
+                author: "Joanne Pillsbury",
+                link: "https://www.goodreads.com/book/show/2668991-moche-art-and-archaeology-in-ancient-peru"
+            },
+            {
+                title: "The Moche of Ancient Peru: Media and Messages",
+                author: "Jeffrey Quilter",
+                link: "https://www.goodreads.com/book/show/276231.The_Moche_of_Ancient_Peru"
             }
         ]
     },
@@ -738,6 +1050,18 @@ const initialCivilizations = [
             {
                 name: "Conquest of Egypt",
                 description: "Kush briefly ruled over Egypt as the 25th Dynasty."
+            }
+        ],
+        books: [
+            {
+                title: "The Kingdom of Kush: Handbook of the Napatan-Meroitic Civilization",
+                author: "László Török",
+                link: "https://www.goodreads.com/book/show/4552635-the-kingdom-of-kush"
+            },
+            {
+                title: "The Kingdom of Kush: The Napatan and Meroitic Empires",
+                author: "Derek A. Welsby",
+                link: "https://www.goodreads.com/book/show/3784251-the-kingdom-of-kush"
             }
         ]
     },
@@ -777,6 +1101,18 @@ const initialCivilizations = [
                 name: "Invention of cuneiform script",
                 description: "Development of the first writing system."
             }
+        ],
+        books: [
+            {
+                title: "The Sumerians: Their History, Culture, and Character",
+                author: "Samuel Noah Kramer",
+                link: "https://www.goodreads.com/book/show/278694.The_Sumerians"
+            },
+            {
+                title: "The Sumerian World",
+                author: "Harriet Crawford",
+                link: "https://www.goodreads.com/book/show/15954367-the-sumerian-world"
+            }
         ]
     },
     {
@@ -796,6 +1132,18 @@ const initialCivilizations = [
                 name: "The Great Flood",
                 description: "A central event in the Atrahasis epic, mirroring other flood narratives."
             }
+        ],
+        books: [
+            {
+                title: "Myths from Mesopotamia: Creation, the Flood, Gilgamesh, and Others",
+                author: "Stephanie Dalley",
+                link: "https://www.goodreads.com/book/show/192609.Myths_from_Mesopotamia"
+            },
+            {
+                title: "Atrahasis: The Babylonian Story of the Flood",
+                author: "W. G. Lambert",
+                link: "https://www.goodreads.com/book/show/1165898.Atrahasis"
+            }
         ]
     },
     {
@@ -803,22 +1151,35 @@ const initialCivilizations = [
         name: "Enuma Elish",
         description: "The Babylonian creation myth, recounting the birth of the gods and the creation of the world.",
         imageurl: "https://www.learnreligions.com/thmb/7cFW60oCtHz8rE-H9-ahEYwYquo=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/clay-impression-of-a-cylinder-seal-depicting-adoration-scene-from-nippur-iraq-detail-akkadian-civilization-2330-2150-b-c-102520124-58988e835f9b5874ee8c3e31.jpg",
-        videoUrl: "Q1Zj1Ttg3vM"
+        videoUrl: "Q1Zj1Ttg3vM",
+        books: [
+            {
+                title: "Myths from Mesopotamia: Creation, the Flood, Gilgamesh, and Others",
+                author: "Stephanie Dalley",
+                link: "https://www.goodreads.com/book/show/192609.Myths_from_Mesopotamia"
+            },
+            {
+                title: "Enuma Elish: The Babylonian Creation Epic",
+                author: "Timothy J. Stephany",
+                link: "https://www.goodreads.com/book/show/23704643-enuma-elish"
+            }
+        ]
     }
 ];
 
 
-
-const Civilizations = () => {
+const Civilizations = ({ onExpand }) => {
     const { favorites, addFavorite, removeFavorite } = useFavorites();
     const [civilizations, setCivilizations] = useState(initialCivilizations);
     const [expandedCivilizationId, setExpandedCivilizationId] = useState(null);
 
-    const handleExpand = (id) => {
+    const handleExpand = (id, books) => {
         if (expandedCivilizationId === id) {
             setExpandedCivilizationId(null);
+            onExpand([]);
         } else {
             setExpandedCivilizationId(id);
+            onExpand(books);
         }
     };
 
@@ -838,7 +1199,7 @@ const Civilizations = () => {
                     <Col key={civilization.id} xs={12} sm={6} md={4} lg={3} className="mb-4 col-custom">
                         <Card
                             className={`mb-3 card-custom ${expandedCivilizationId === civilization.id ? 'expanded' : ''}`}
-                            onClick={() => handleExpand(civilization.id)}
+                            onClick={() => handleExpand(civilization.id, civilization.books)}
                         >
                             {expandedCivilizationId === civilization.id ? (
                                 <YouTube videoId={civilization.videoUrl} opts={videoOptions} className="youtube-video" />
@@ -900,4 +1261,3 @@ const Civilizations = () => {
 };
 
 export default Civilizations;
-
