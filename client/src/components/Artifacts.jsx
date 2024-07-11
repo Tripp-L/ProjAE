@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, Suspense, useEffect } from 'react';
 import { Card, Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import YouTube from 'react-youtube';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls, useGLTF } from '@react-three/drei';
 import { useFavorites } from '../contexts/FavoriteContext';
 import { useSearch } from '../contexts/SearchContext';
 import './Artifacts.css';
+
+
 
 const initialArtifacts = [
     {
@@ -16,6 +20,7 @@ const initialArtifacts = [
         discovery_date: "1974",
         location: "Shaanxi, China",
         videoUrl: "TFNhRUOo_A0",
+        iframeUrl: "https://sketchfab.com/models/d600165cec2c465ba0dfe03b8e7c5fbb/embed",
         books: [
             {
                 title: "The Terra Cotta Army: China’s First Emperor and the Birth of a Nation",
@@ -63,6 +68,7 @@ const initialArtifacts = [
         discovery_date: "1925",
         location: "Valley of the Kings, Egypt",
         videoUrl: "y7YCkYJerqE",
+        iframeUrl: "https://sketchfab.com/models/48d116dde18c4f6c813fe26feb9c6a0c/embed",
         books: [
             {
                 title: "The Complete Tutankhamun: The King, the Tomb, the Royal Treasure",
@@ -397,7 +403,44 @@ const initialArtifacts = [
                 link: "https://www.goodreads.com/book/show/795347.The_Terracotta_Army_of_the_First_Emperor_of_China"
             }
         ]
-    }
+    },
+    {
+        id: 19,
+        name: "Ballcourt Markers",
+        description: "Stone markers used to delineate the playing field of the Mesoamerican ballgame, a ritual sport with religious and political significance.",
+        imageurl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Ballcourt_marker_Chich%C3%A9n_Itz%C3%A1_2011.jpg/1280px-Ballcourt_marker_Chich%C3%A9n_Itz%C3%A1_2011.jpg",
+        civilization: "Maya Civilization",
+        discovery_date: "Various discoveries throughout the 20th century",
+        location: "Various Mayan sites"
+    },
+    {
+        id: 20,
+        name: "Bactrian Gold",
+        description: "A collection of over 20,000 gold and silver artifacts found in six burial mounds at Tillya Tepe, Afghanistan.",
+        imageurl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Bactrian_gold_crown_1.jpg/1280px-Bactrian_gold_crown_1.jpg",
+        civilization: "Bactrian Civilization",
+        discovery_date: "1978",
+        location: "Tillya Tepe, Afghanistan"
+    },
+    {
+        id: 21,
+        name: "Terracotta Warriors",
+        description: "A collection of terracotta sculptures depicting the armies of Qin Shi Huang, the first Emperor of China.",
+        imageurl: "https://cdn.britannica.com/95/17295-050-89F82952/Terra-cotta-army-China-Qin-dynasty-Emperor.jpg?w=800&h=450&c=crop",
+        civilization: "Qin Dynasty",
+        discovery_date: "1974",
+        location: "Lintong District, Xi'an, Shaanxi province, China"
+    },
+    {
+        id: 22,
+        name: "Stele of Ezana",
+        description: "A stele inscribed in Ge'ez, Greek, and Sabaean, recording the military conquests of the Aksumite king Ezana.",
+        imageurl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/The_Obelisk_of_Axum.jpg/800px-The_Obelisk_of_Axum.jpg",
+        civilization: "Aksumite Empire",
+        discovery_date: "1902",
+        location: "Axum, Ethiopia"
+    },
+
 ];
 
 
@@ -422,7 +465,7 @@ const Artifacts = ({ onExpand }) => {
     const videoOptions = {
         width: '100%',
         playerVars: {
-            autoplay: 0,
+            autoplay: 1,
         },
     };
 
@@ -441,10 +484,25 @@ const Artifacts = ({ onExpand }) => {
                             className={`mb-3 card-custom ${expandedArtifactId === artifact.id ? 'expanded' : ''}`}
                             onClick={() => handleExpand(artifact.id, artifact.books)}
                         >
-                            {expandedArtifactId === artifact.id ? (
-                                <YouTube videoId={artifact.videoUrl} opts={videoOptions} className="youtube-video" />
+                            {expandedArtifactId !== artifact.id ? (
+                                artifact.iframeUrl ? (
+                                    <div className="sketchfab-embed-wrapper">
+                                        <iframe
+                                            title={artifact.name}
+                                            frameBorder="0"
+                                            allowFullScreen
+                                            mozallowfullscreen="true"
+                                            webkitallowfullscreen="true"
+                                            allow="autoplay; fullscreen; xr-spatial-tracking"
+                                            src={artifact.iframeUrl}
+                                            style={{ width: '100%', height: '300px' }}
+                                        ></iframe>
+                                    </div>
+                                ) : (
+                                    <Card.Img variant="top" src={artifact.imageurl} className="card-img-top" />
+                                )
                             ) : (
-                                <Card.Img variant="top" src={artifact.imageurl} className="card-img-top" />
+                                <YouTube videoId={artifact.videoUrl} opts={videoOptions} className="youtube-video" />
                             )}
                             <Card.Body>
                                 <Card.Title>{artifact.name}</Card.Title>

@@ -1164,6 +1164,151 @@ const initialCivilizations = [
                 link: "https://www.goodreads.com/book/show/23704643-enuma-elish"
             }
         ]
+    },
+    {
+        id: 30,
+        name: "Aboriginal Australians",
+        description: "The Indigenous peoples of Australia with the oldest continuous culture on Earth, known for their Dreamtime stories, art, and deep connection to the land.",
+        imageurl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Aboriginal_rock_painting_Nourlangie_Rock.jpg/1280px-Aboriginal_rock_painting_Nourlangie_Rock.jpg",
+        dates: "65,000 BC – Present",
+        regions: "Australia",
+        latitude: -25.2744, 
+        longitude: 133.7751,
+        leaders: [],
+        deities: [
+            { name: "Baiame", description: "Creator god and sky father" },
+            { name: "Bunjil", description: "Creator god and sky father (Kulin nation)" }
+        ],
+        events: [
+            { name: "Arrival of First Peoples", description: "The first humans arrive in Australia, estimated around 65,000 years ago." }
+        ]
+    },
+    {
+        id: 31,
+        name: "Tiwanaku",
+        description: "A pre-Inca civilization in the Andes, known for its monumental architecture, including the Akapana pyramid and the Gate of the Sun.",
+        imageurl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Akapana_pyramid_tiwanaku.jpg/1280px-Akapana_pyramid_tiwanaku.jpg",
+        dates: "c. 500 – 1000 AD",
+        regions: "Bolivia and Peru",
+        latitude: -16.5561,
+        longitude: -68.6675,
+        leaders: [],
+        deities: [],
+        events: [
+            { name: "Construction of Akapana Pyramid", description: "Built as a massive terraced platform for religious and ceremonial purposes." }
+        ]
+    },
+    {
+        id: 32,
+        name: "Chimu Culture",
+        description: "A pre-Inca civilization on the coast of Peru, known for its extensive irrigation systems, adobe cities, and intricate metalwork.",
+        imageurl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Chan_Chan_overview.jpg/1280px-Chan_Chan_overview.jpg",
+        dates: "c. 900 – 1470 AD",
+        regions: "Northern coast of Peru",
+        latitude: -8.1113,
+        longitude: -79.0752,
+        leaders: [],
+        deities: [
+            { name: "Shi", description: "Moon god" },
+            { name: "Si", description: "Sea god" }
+        ],
+        events: [
+            { name: "Construction of Chan Chan", description: "The largest adobe city in the Americas and the capital of the Chimu kingdom." }
+        ]
+    },
+    {
+        id: 33,
+        name: "Hopewell Culture",
+        description: "A prehistoric culture in eastern North America known for its elaborate burial mounds, extensive trade networks, and sophisticated artwork.",
+        imageurl: "https://ohiohistorycentral.org/images/935.jpg?v=1659163294",
+        dates: "c. 200 BC – 500 AD",
+        regions: "Eastern United States",
+        latitude: 40.6331,
+        longitude: -89.3985,
+        leaders: [],
+        deities: [],
+        events: [
+            { name: "Mound Construction", description: "Construction of large geometric and effigy mounds for burial and ceremonial purposes." }
+        ]
+    },
+    {
+        id: 34,
+        name: "Nazca Culture",
+        description: "A pre-Columbian civilization in southern Peru, known for its enigmatic Nazca Lines, large geoglyphs etched into the desert floor.",
+        imageurl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Nazca_Lines_-_Astronaut.jpg/1280px-Nazca_Lines_-_Astronaut.jpg",
+        dates: "c. 100 BC – 800 AD",
+        regions: "Southern Peru",
+        latitude: -14.7350,
+        longitude: -75.1250,
+        leaders: [],
+        deities: [],
+        events: [
+            { name: "Creation of Nazca Lines", description: "The creation of massive geoglyphs with unknown purposes, possibly related to astronomy or rituals." }
+        ]
+    },
+    {
+        id: 35,
+        name: "Ancestral Puebloans",
+        description: "A prehistoric culture in the southwestern United States, known for their cliff dwellings and multi-story adobe buildings.",
+        imageurl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Cliff_Palace_in_Mesa_Verde_National_Park.jpg/1280px-Cliff_Palace_in_Mesa_Verde_National_Park.jpg",
+        dates: "c. 1 AD – 1300 AD",
+        regions: "Southwestern United States",
+        latitude: 36.0544, 
+        longitude: -109.0452,
+        leaders: [],
+        deities: [],
+        events: [
+            { name: "Construction of Mesa Verde Cliff Dwellings", description: "Built sophisticated cliff dwellings for protection and adaptation to the harsh environment." }
+        ]
+    },
+    {
+        id: 36,
+        name: "Hohokam Culture",
+        description: "A prehistoric culture in the southwestern United States, known for their extensive canal systems and unique red-on-buff pottery.",
+        imageurl: "https://www.history.com/.image/t_share/MTU3ODc3NjAzODU3MjE0Mzgy/snaketown-arizona-pueblo-grande-ruin-and-irrigation-canal.jpg",
+        dates: "c. 300 – 1450 AD",
+        regions: "Southern Arizona, United States",
+        latitude: 33.1683,
+        longitude: -111.9333,
+        leaders: [],
+        deities: [],
+        events: [
+            { name: "Canal System Development", description: "Constructed an extensive network of irrigation canals to support agriculture in the arid environment." }
+        ]
+    },
+    {
+        id: 37,
+        name: "Muisca Confederation",
+        description: "A confederation of indigenous peoples in the central highlands of Colombia, known for their goldwork and unique social structure.",
+        imageurl: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Balsa_Muisca_-_Museo_del_Oro.jpg/1280px-Balsa_Muisca_-_Museo_del_Oro.jpg",
+        dates: "c. 600 AD – 1600 AD",
+        regions: "Central highlands of Colombia",
+        latitude: 5.0689,
+        longitude: -73.6581,
+        leaders: [
+            { name: "Zipa", description: "Ruler of the southern Muisca territory" },
+            { name: "Zaque", description: "Ruler of the northern Muisca territory" }
+        ],
+        deities: [
+            { name: "Chía", description: "Goddess of the moon" },
+            { name: "Sué", description: "Sun god" }
+        ],
+        events: [
+            { name: "El Dorado Legend", description: "The legend of El Dorado, a city of gold, was inspired by Muisca rituals." }
+        ]
+    },
+    {
+        id: 38,
+        name: "Lapita Culture",
+        description: "A prehistoric seafaring culture that spread across the Pacific, known for its distinctive pottery and navigation skills.",
+        imageurl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Lapita_pottery_fragment.jpg/1280px-Lapita_pottery_fragment.jpg",
+        dates: "c. 1600 BC – c. 500 BC",
+        regions: "Islands of Melanesia, Western Polynesia",
+        latitude: -15.3767,
+        longitude: 166.9592,
+        leaders: [],
+        deities: [],
+        events: []
     }
 ];
 
@@ -1189,7 +1334,7 @@ const Civilizations = ({ onExpand }) => {
     const videoOptions = {
         width: '100%',
         playerVars: {
-            autoplay: 0,
+            autoplay: 1,
         },
     };
 

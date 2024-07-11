@@ -416,7 +416,7 @@ const Events = ({ onExpand }) => {
     const videoOptions = {
         width: '100%',
         playerVars: {
-            autoplay: 0,
+            autoplay: 1,
         },
     };
 
